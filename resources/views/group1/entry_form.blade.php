@@ -10,20 +10,12 @@
         <div class="col"> {{-- Right column --}}
             <div class="container"> {{-- Entry form container --}}
                 <div class="row">
-                    <div class="col group_title">
-                        {{ $group->name }}
-                    </div>
+                    {{-- Include group header --}}
+                    @include('partials/group_header')
                 </div>
 
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                {{-- Include validation errors --}}
+                @include('partials/validation_errors')
 
                 <form method="POST" action="{{ route('g1_submit_entry') }}">
                     @csrf
@@ -150,12 +142,13 @@
                             <hr>
                 
                             <button type="submit" class="btn btn-primary">Submit</button> 
-                            <button class="btn btn-primary">Reset</button>
+                            <button type="reset" class="btn btn-primary">Reset</button>
                 
                         </div>
                     </div>
                 </form>
 
+                {{-- Add entry log --}}
                 @include('group1/entry_log')
 
             </div> {{-- END Entry form container --}}

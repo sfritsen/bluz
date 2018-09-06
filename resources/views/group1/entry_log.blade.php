@@ -1,4 +1,3 @@
-{{-- Beginning of entry log --}}
 <div class="row">
     <div class="col">
         <table class="table table-hover">
@@ -22,5 +21,4 @@
             </tbody>
         </table>
     </div>
-</div> 
-{{-- END of entry log --}}
+</div>
