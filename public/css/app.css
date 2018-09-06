@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+html {
+  font-size: 16px; }
+
+body {
+  background: #f8fafc;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6; }
+
+.no_underline {
+  text-decoration: none; }
+  .no_underline:hover {
+    text-decoration: none; }
+
+.group_title {
+  font-size: 20px; }
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); }
+
+.sidebar_background {
+  background: #e6edf4; }
+
+.sidebar_group {
+  margin-bottom: 8px; }
+
+.sidebar_title {
+  font-size: 18px;
+  padding: 5px 8px; }
+
+.sidebar_item {
+  padding: 5px 8px;
+  border-radius: 10px; }
+  .sidebar_item:hover {
+    background: orangered;
+    color: #fff; }
+
+.sidebar_break {
+  margin: 2px; }

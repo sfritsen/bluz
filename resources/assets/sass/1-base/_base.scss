@@ -1,0 +1,15 @@
+html {
+	font-size: $font_size_base;
+}
+body {
+	background: $body_bg;
+	font-family: $font_family;
+	font-size: $font_size;
+	line-height: $line_height_base;
+}
+.no_underline {
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
+}

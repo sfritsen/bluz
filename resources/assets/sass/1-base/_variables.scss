@@ -1,0 +1,38 @@
+// Colors
+$red:       #e3342f;
+// $orange:    #f6993f;
+// $yellow:    #ffed4a;
+// $green:     #38c172;
+// $teal:      #4dc0b5;
+// $cyan:      #6cb2eb;
+// $white:     #fff;
+// $off-white: #f8fafc;
+
+// Color Palette
+$pri_accent_color:                  orangered;
+$pri_light_color:                   #fff;
+$sec_light_color:                   #f8fafc;
+
+// Body
+$body_bg:                           $sec_light_color;
+
+// Typography
+$font_family:                       "Nunito", sans-serif;
+$font_size_base:                    16px;
+$font_size:                         0.9rem;
+$line_height_base:                  1.6;
+$error_text:                        $red;
+$group_title_font_size:             20px;
+
+// Navbar
+$nav-bg-color:                      $pri_light_color;
+
+// Sidebars
+$sb_bg_color:                       darken($body_bg, 5%);
+$sb_group_bottom_margin:            8px;
+$sb_title_font_size:                18px;
+$sb_padding:                        5px 8px;
+$sb_border_radius:                  10px;
+$sb_hover_bg_color:                 $pri_accent_color;
+$sb_hover_font_color:               $pri_light_color;
+$sb_break_margin:                   2px;

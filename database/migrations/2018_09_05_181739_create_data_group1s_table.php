@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateDataGroup1sTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('data_group1s', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->string('phone_number', 10);
+            $table->string('lynx', 10);
+            $table->string('chat_session_id');
+            $table->integer('incident_type');
+            $table->integer('equip_type');
+            $table->integer('resolution');
+            $table->integer('troubleshooting');
+            $table->tinyInteger('client_no_ts')->unsigned();
+            $table->tinyInteger('invalid_ref')->unsigned();
+            $table->integer('cat_box_1');
+            $table->integer('cat_box_2');
+            $table->integer('cat_box_3' );
+            $table->text('additional_notes');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('data_group1s');
+    }
+}

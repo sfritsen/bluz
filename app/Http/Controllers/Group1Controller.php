@@ -1,0 +1,136 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\Validat or;
+use App\Data_group1;
+use Auth;
+
+class Group1Controller extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function entry()
+    {
+        $group = DB::table('groups')->where('label', 'group1')->first();
+
+        $cat_lvl1 = DB::table('cat_box_lvl1')->where([
+            ['lvl1_group', '=', '2'],
+            ['lvl1_active', '=', '1'],
+        ])
+        ->orderBy('lvl1_menu_item')->get();
+
+        $cat_lvl2 = DB::table('cat_box_lvl2')->where([
+            ['lvl2_group', '=', '2'],
+            ['lvl2_active', '=', '1'],
+        ])
+        ->orderBy('lvl2_menu_item')->get();
+
+        $cat_lvl3 = DB::table('cat_box_lvl3')->where([
+            ['lvl3_group', '=', '2'],
+            ['lvl3_active', '=', '1'],
+        ])
+        ->orderBy('lvl3_menu_item')->get();
+
+        $dd_incident_type = DB::table('dd_menus')->where([
+            ['active', '=', '1'],
+            ['group_id', '=', '2'],
+            ['parent_id', '=', '2'],
+            ['type', '=', '3'],
+        ])
+        ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
+
+        $dd_resolution = DB::table('dd_menus')->where([
+            ['active', '=', '1'],
+            ['group_id', '=', '2'],
+            ['parent_id', '=', '3'],
+            ['type', '=', '3'],
+        ])
+        ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
+
+        $dd_troubleshooting = DB::table('dd_menus')->where([
+            ['active', '=', '1'],
+            ['group_id', '=', '2'],
+            ['parent_id', '=', '5'],
+            ['type', '=', '3'],
+        ])
+        ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
+
+        $dd_equip_type = DB::table('dd_menus')->where([
+            ['active', '=', '1'],
+            ['group_id', '=', '2'],
+            ['parent_id', '=', '8'],
+            ['type', '=', '3'],
+        ])
+        ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
+
+        $entry_log = DB::table('data_group1s')->where('user_id', Auth::user()->id)->get();
+
+        return view('group1/entry_form', 
+            array(
+                'group' => $group,
+                'cat_lvl1' => $cat_lvl1,
+                'cat_lvl2' => $cat_lvl2,
+                'cat_lvl3' => $cat_lvl3,
+                'dd_incident_type' => $dd_incident_type,
+                'dd_resolution' => $dd_resolution,
+                'dd_troubleshooting' => $dd_troubleshooting,
+                'dd_equip_type' => $dd_equip_type,
+                'entry_log' => $entry_log
+            )
+        );
+    }
+
+    public function submit_entry(Request $request)
+    {
+        $validateData = $request->validate([
+            'phone_number' => 'bail|required|digits:10',
+            'lynx' => 'bail|required|digits:10',
+            'chat_session_id' => 'required',
+            'incident_type' => 'required',
+            // 'equip_type' => 'required',
+            // 'resolution' => 'required',
+            // 'troubleshooting' => 'required',
+            // 'client_no_ts' => 'in:0,1',
+            // 'invalid_ref' => 'required',
+            // 'cat_box_1' => 'required',
+            // 'cat_box_2' => 'required',
+            // 'cat_box_3' => 'required',
+            // 'additional_notes' => 'required',
+        ]);
+
+        $g1 = new Data_group1;
+        $g1->user_id = Auth::user()->id;
+		$g1->phone_number = $request->phone_number;
+		$g1->lynx = $request->lynx;
+        $g1->chat_session_id = $request->chat_session_id;
+        $g1->incident_type = $request->incident_type;
+        $g1->equip_type = $request->equip_type;
+        $g1->resolution = $request->resolution;
+        $g1->troubleshooting = $request->troubleshooting;
+        $g1->client_no_ts = $request->input('client_no_ts', 0);
+        $g1->invalid_ref = $request->input('invalid_ref', 0);
+        $g1->cat_box_1 = $request->cat_box_1;
+        $g1->cat_box_2 = $request->cat_box_2;
+        $g1->cat_box_3 = $request->cat_box_3;
+        $g1->additional_notes = $request->additional_notes;
+        $g1->save();
+        
+        return redirect('/g1_entry');
+    }
+}
