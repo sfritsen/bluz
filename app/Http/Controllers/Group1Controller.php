@@ -79,7 +79,10 @@ class Group1Controller extends Controller
         ])
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
+        // Query for entry log data
         $entry_log = DB::table('data_group1s')->where('user_id', Auth::user()->id)->get();
+        // Count the results
+        $entry_count = $entry_log->count();
 
         return view('group1/entry_form', 
             array(
@@ -91,7 +94,8 @@ class Group1Controller extends Controller
                 'dd_resolution' => $dd_resolution,
                 'dd_troubleshooting' => $dd_troubleshooting,
                 'dd_equip_type' => $dd_equip_type,
-                'entry_log' => $entry_log
+                'entry_log' => $entry_log,
+                'counter' => $entry_count
             )
         );
     }
@@ -103,15 +107,13 @@ class Group1Controller extends Controller
             'lynx' => 'bail|required|digits:10',
             'chat_session_id' => 'required',
             'incident_type' => 'required',
-            // 'equip_type' => 'required',
-            // 'resolution' => 'required',
-            // 'troubleshooting' => 'required',
-            // 'client_no_ts' => 'in:0,1',
-            // 'invalid_ref' => 'required',
-            // 'cat_box_1' => 'required',
-            // 'cat_box_2' => 'required',
-            // 'cat_box_3' => 'required',
-            // 'additional_notes' => 'required',
+            'equip_type' => 'required',
+            'resolution' => 'required',
+            'troubleshooting' => 'required',
+            'cat_box_1' => 'required',
+            'cat_box_2' => 'required',
+            'cat_box_3' => 'required',
+            'additional_notes' => 'required',
         ]);
 
         $g1 = new Data_group1;

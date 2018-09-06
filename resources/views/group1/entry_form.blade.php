@@ -82,8 +82,6 @@
                                 </div>
                             </div>
                 
-                            <hr>
-                
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col">
@@ -100,10 +98,6 @@
                                     </div>
                                 </div>
                             </div>
-                
-                            <hr>
-                
-                            Coaching and Kudos Section
                 
                             <hr>
 

@@ -1,6 +1,6 @@
 <div class="sidebar_group">
     <div class="sidebar_title">My Stats</div>
-    <div class="sidebar_item">5 Today</div>
+    <div class="sidebar_item">{{ $counter }} Today</div>
     <div class="sidebar_item">11 Yesterday</div>
 </div>
 <div class="sidebar_group">
@@ -12,6 +12,7 @@
     <a href="" class="no_underline"><div class="sidebar_item">My Surveys</div></a>
     <a href="" class="no_underline"><div class="sidebar_item">My QCE</div></a>
     <a href="" class="no_underline"><div class="sidebar_item">Time Mgnt</div></a>
+    <a href="" class="no_underline"><div class="sidebar_item">Auto Echo</div></a>
 </div>
 <div class="sidebar_group">
     <div class="sidebar_title">Admin</div>
