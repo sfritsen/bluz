@@ -13,6 +13,12 @@ yarn-error.log
 .env
 .phpunit.result.cache
 
+### Sass ###
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
 ### Node ###
 # Logs
 logs
