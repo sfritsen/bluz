@@ -110,21 +110,24 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col">
-                                        <select multiple class="form-control" name="cat_box_1" id="cat_box_1">
+                                        <select class="custom-select" name="cat_box_1" id="cat_box_1">
+                                            <option disabled selected>Category 1</option>
                                             @foreach($cat_lvl1 as $lvl1)
                                                 <option value="{{ $lvl1->lvl1_id }}" {{(old('cat_box_1') == $lvl1->lvl1_id?'selected':'')}} >{{ $lvl1->lvl1_menu_item }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <select multiple class="form-control" name="cat_box_2" id="cat_box_2">
+                                        <select class="custom-select" name="cat_box_2" id="cat_box_2">
+                                            <option disabled selected>Category 2</option>
                                             @foreach($cat_lvl2 as $lvl2)
                                                 <option value="{{ $lvl2->lvl2_id }}" data-chained="{{ $lvl2->lvl1_id }}" {{(old('cat_box_2') == $lvl2->lvl2_id?'selected':'')}} >{{ $lvl2->lvl2_menu_item }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <select multiple class="form-control" name="cat_box_3" id="cat_box_3">
+                                        <select class="custom-select" name="cat_box_3" id="cat_box_3">
+                                            <option disabled selected>Category 3</option>
                                             @foreach($cat_lvl3 as $lvl3)
                                                 <option value="{{ $lvl3->lvl3_id }}" data-chained="{{ $lvl3->lvl2_id }}" {{(old('cat_box_3') == $lvl3->lvl3_id?'selected':'')}} >{{ $lvl3->lvl3_menu_item }}</option>
                                             @endforeach
