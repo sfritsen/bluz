@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('groups')->insert([
             'label' => 'group1',
-            'name' => 'CCO NS',
+            'name' => 'CCO Network Support',
         ]);
     }
 }

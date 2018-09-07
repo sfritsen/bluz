@@ -127,6 +127,12 @@ class Group1Controller extends Controller
 
         $g1 = new Data_group1;
         $g1->user_id = Auth::user()->id;
+        $g1->emp_info_name = $request->emp_info_name;
+        $g1->emp_info_id = $request->emp_info_id;
+        $g1->emp_info_city = $request->emp_info_city;
+        $g1->emp_info_mgr_id = $request->emp_info_mgr_id;
+        $g1->emp_info_mgr_name = $request->emp_info_mgr_name;
+        $g1->emp_info_title = $request->emp_info_title;
 		$g1->phone_number = $request->phone_number;
 		$g1->lynx = $request->lynx;
         $g1->chat_session_id = $request->chat_session_id;
