@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::table('groups')->insert([
+            'label' => 'group1',
+            'name' => 'CCO NS',
+        ]);
     }
 }

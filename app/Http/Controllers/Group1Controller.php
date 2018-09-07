@@ -14,7 +14,7 @@ class Group1Controller extends Controller
     // Set global variables
     private $gl_group_label = "group1";
     private $gl_group_id = "2";
-    private $gl_data_table = "data_group1s";
+    private $gl_data_table = "data_group1";
 
     /**
      * Create a new controller instance.

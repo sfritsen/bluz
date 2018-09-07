@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Data_group1 extends Model
 {
     protected $primaryKey = 'id';
-    protected $table = 'data_group1s';
+    protected $table = 'data_group1';
     protected $fillable = array(
         'phone_number',
         'lynx',

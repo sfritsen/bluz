@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDataGroup1sTable extends Migration
+class CreateDataGroup1Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDataGroup1sTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_group1s', function (Blueprint $table) {
+        Schema::create('data_group1', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->string('emp_info_name');
@@ -46,6 +46,6 @@ class CreateDataGroup1sTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_group1s');
+        Schema::dropIfExists('data_group1');
     }
 }
