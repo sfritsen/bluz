@@ -146,11 +146,26 @@ body {
   color: #515b69;
   margin: 2px; }
 
-.form-control:focus {
-  box-shadow: 0 0 0 0.2rem #BADA55; }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #FFF inset;
+  box-shadow: 0 0 0px 1000px #FFF inset; }
+
+.form-control {
+  background: #FFF;
+  border: 1px solid #969BA1; }
+
+.form-control:focus,
+.form-control:active {
+  box-shadow: 0 0 0 0.2rem #BADA55;
+  border: 1px solid #969BA1 !important; }
 
 .custom-select:focus {
   box-shadow: 0 0 0 0.2rem #BADA55; }
+
+.required {
+  border-left: 2px solid #e3342f; }
 
 .form_btn {
   background: #3F4752;

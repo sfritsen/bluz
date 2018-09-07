@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-2">
-                            <input type="text" name="agent_id" id="agent_id" class="form-control" placeholder="Agent ID" value="{{ old('agent_id') }}">
+                            <input type="text" name="agent_id" id="agent_id" class="form-control required" placeholder="Agent ID" value="{{ old('agent_id') }}">
                         </div>
                         <div class="col-1">
                             <button id="smtp_address" class="btn moc_btn" value="">MoC</button>
@@ -32,13 +32,13 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <input type="text" name="phone_number" class="form-control" placeholder="Client STN" value="{{ old('phone_number') }}">
+                            <input type="text" name="phone_number" class="form-control required" placeholder="Client STN" value="{{ old('phone_number') }}">
                         </div>
                         <div class="col">
-                            <input type="text" name="lynx" class="form-control" placeholder="Ticket Number" value="{{ old('lynx') }}">
+                            <input type="text" name="lynx" class="form-control required" placeholder="Ticket Number" value="{{ old('lynx') }}">
                         </div>
                         <div class="col">
-                            <input type="text" name="chat_session_id" class="form-control" placeholder="Chat Session ID" value="{{ old('chat_session_id') }}">
+                            <input type="text" name="chat_session_id" class="form-control required" placeholder="Chat Session ID" value="{{ old('chat_session_id') }}">
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <select name="incident_type" class="custom-select">
+                            <select name="incident_type" class="custom-select required">
                                 <option disabled selected>Incident Type</option>
                                 <option disabled>---------------------</option>
                                 @foreach($dd_incident_type as $menu_text => $menu_id)
@@ -55,7 +55,7 @@
                             </select>
                         </div>
                         <div class="col">
-                            <select name="equip_type" class="custom-select">
+                            <select name="equip_type" class="custom-select required">
                                 <option disabled selected>Equipment Type</option>
                                 <option disabled>---------------------</option>
                                 @foreach($dd_equip_type as $menu_text => $menu_id)
@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <select name="resolution" class="custom-select">
+                            <select name="resolution" class="custom-select required">
                                 <option disabled selected>Resolution</option>
                                 <option disabled>---------------------</option>
                                 @foreach($dd_resolution as $menu_text => $menu_id)
@@ -78,7 +78,7 @@
                             </select>
                         </div>
                         <div class="col">
-                            <select name="troubleshooting" class="custom-select">
+                            <select name="troubleshooting" class="custom-select required">
                                 <option disabled selected>Troubleshooting</option>
                                 <option disabled>---------------------</option>
                                 @foreach($dd_troubleshooting as $menu_text => $menu_id)
@@ -111,7 +111,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <select class="custom-select" name="cat_box_1" id="cat_box_1">
+                            <select class="custom-select required" name="cat_box_1" id="cat_box_1">
                                 <option disabled selected>Category 1</option>
                                 @foreach($cat_lvl1 as $lvl1)
                                     <option value="{{ $lvl1->lvl1_id }}" {{(old('cat_box_1') == $lvl1->lvl1_id?'selected':'')}} >{{ $lvl1->lvl1_menu_item }}</option>
@@ -119,7 +119,7 @@
                             </select>
                         </div>
                         <div class="col">
-                            <select class="custom-select" name="cat_box_2" id="cat_box_2">
+                            <select class="custom-select required" name="cat_box_2" id="cat_box_2">
                                 <option disabled selected>Category 2</option>
                                 @foreach($cat_lvl2 as $lvl2)
                                     <option value="{{ $lvl2->lvl2_id }}" data-chained="{{ $lvl2->lvl1_id }}" {{(old('cat_box_2') == $lvl2->lvl2_id?'selected':'')}} >{{ $lvl2->lvl2_menu_item }}</option>
@@ -127,7 +127,7 @@
                             </select>
                         </div>
                         <div class="col">
-                            <select class="custom-select" name="cat_box_3" id="cat_box_3">
+                            <select class="custom-select required" name="cat_box_3" id="cat_box_3">
                                 <option disabled selected>Category 3</option>
                                 @foreach($cat_lvl3 as $lvl3)
                                     <option value="{{ $lvl3->lvl3_id }}" data-chained="{{ $lvl3->lvl2_id }}" {{(old('cat_box_3') == $lvl3->lvl3_id?'selected':'')}} >{{ $lvl3->lvl3_menu_item }}</option>
@@ -168,6 +168,16 @@
 </div>
 
 <script>
+// Used to mark inputs as required if empty
+$('input.required').blur(function(){
+    field_val = $(this).val();
+    if(field_val == '') {
+        $(this).addClass('required');
+    } else {
+        $(this).removeClass('required');
+    }
+});
+
 $(document).ready(function(){
 
     // On load stuff

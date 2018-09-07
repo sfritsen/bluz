@@ -112,8 +112,9 @@ class Group1Controller extends Controller
     public function submit_entry(Request $request)
     {
         $validateData = $request->validate([
-            'phone_number' => 'bail|required|digits:10',
-            'lynx' => 'bail|required|digits:10',
+            'agent_id' => 'required',
+            'phone_number' => 'bail|required|numeric|digits:10',
+            'lynx' => 'bail|required|numeric|digits:10',
             'chat_session_id' => 'required',
             'incident_type' => 'required',
             'equip_type' => 'required',
@@ -122,7 +123,6 @@ class Group1Controller extends Controller
             'cat_box_1' => 'required',
             'cat_box_2' => 'required',
             'cat_box_3' => 'required',
-            'additional_notes' => 'required',
         ]);
 
         $g1 = new Data_group1;

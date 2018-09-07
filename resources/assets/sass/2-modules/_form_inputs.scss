@@ -1,7 +1,28 @@
+// Removes the god awful yellow auto fill in chrome
+input:-webkit-autofill, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,  {
+    -webkit-box-shadow: 0 0 0px 1000px $input_bg_color inset;
+    box-shadow: 0 0 0px 1000px $input_bg_color inset;
+}
+
+// Sets the border color since we have to override the bootstrap 4 outline
+.form-control {
+    background: $input_bg_color;
+    border:1px solid $input_border_color;
+}
+
 // Overrides the bootstrap focus color
-.form-control:focus {
+.form-control:focus,
+.form-control:active {
     box-shadow: 0 0 0 0.2rem $input_hover_focus_color;
+    border:1px solid $input_border_color !important;
+    // box-shadow:none !important;
  }
  .custom-select:focus {
     box-shadow: 0 0 0 0.2rem $input_hover_focus_color;
+ }
+
+ .required {
+    border-left: 2px solid $required_field;
  }
