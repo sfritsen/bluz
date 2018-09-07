@@ -8,6 +8,10 @@
     font-size: $sb_title_font_size;
     color: $sb_title_font_color;
     padding: $sb_padding;
+
+    .icon {
+        font-size: $sb_title_icon_size;
+    }
 }
 .sidebar_item {
     color: $sb_item_font_color;

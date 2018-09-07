@@ -1,16 +1,16 @@
 .logo {
-    padding: 10px 0;
+    padding: $logo_padding;
 }
 .logo_text {
-    color: #BDC1C7;
-    font-size: 24px;
+    color: $logo_font_color;
+    font-size: $logo_font_size;
 
     &:hover {
-        color: white;
+        color: $logo_font_color;
         text-decoration: none;
     }
 
     .logo_icon {
-        color: white;   
+        color: $logo_icon_color;   
     }
 }

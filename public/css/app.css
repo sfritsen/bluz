@@ -29,10 +29,10 @@ body {
   color: #BDC1C7;
   font-size: 24px; }
   .logo_text:hover {
-    color: white;
+    color: #BDC1C7;
     text-decoration: none; }
   .logo_text .logo_icon {
-    color: white; }
+    color: #BADA55; }
 
 .navbar-laravel {
   background-color: #fff;
@@ -48,19 +48,21 @@ body {
   font-size: 18px;
   color: #fff;
   padding: 5px 8px; }
+  .sidebar_title .icon {
+    font-size: 14px; }
 
 .sidebar_item {
   color: #fff;
   padding: 5px 8px;
   border-radius: 10px; }
   .sidebar_item:hover {
-    background: orangered;
-    color: #fff; }
+    background: #55606f;
+    color: #dee1e5; }
 
 .sidebar_break {
-  background-color: #5A6472;
-  border-color: #5A6472;
-  color: #5A6472;
+  background-color: #515b69;
+  border-color: #515b69;
+  color: #515b69;
   margin: 2px; }
 
 .table_icon {
