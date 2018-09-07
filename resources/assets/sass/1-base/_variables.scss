@@ -8,10 +8,12 @@
 // $white:     #fff;
 // $off-white: #f8fafc;
 
-// Color Palette
-$pri_accent_color:                  orangered;
-$pri_light_color:                   #fff;
-$sec_light_color:                   #f8fafc;
+// Palette
+$pri_accent_color:                  #BADA55;
+$sec_accent_color:                  #3F4752;
+$pri_light_color:                   #FFF;
+$sec_light_color:                   #F7F7F7;
+$tri_light_color:                   #969BA1;
 
 // Body
 $body_bg:                           $sec_light_color;
@@ -22,31 +24,46 @@ $font_size_base:                    16px;
 $font_size:                         0.9rem;
 $line_height_base:                  1.6;
 $error_text:                        #e3342f;
-$group_title_font_size:             20px;
 
 // Logo
 $logo_padding:                      10px 0;
-$logo_font_color:                   #BDC1C7;
-$logo_font_size:                    24px;
-$logo_icon_color:                   #BADA55;
+$logo_font_color:                   lighten($sec_accent_color, 50%);
+$logo_font_size:                    1.4rem;
+$logo_icon_color:                   $pri_accent_color;
 
 // Spinner
-$sp_color:                          #3F4752;
+$sp_color:                          $sec_accent_color;
 $sp_bg_color:                       lighten($sp_color, 70%);
 
 // Navbar
 $nav-bg-color:                      $pri_light_color;
 
 // Sidebars
-$sb_bg_color:                       #3F4752;
+$sb_bg_color:                       $sec_accent_color;
 $sb_group_bottom_margin:            8px;
-$sb_title_font_size:                18px;
-$sb_title_icon_size:                14px;
+$sb_title_font_size:                1rem;
+$sb_title_icon_size:                0.8rem;
 $sb_title_font_color:               $pri_light_color;
 $sb_padding:                        5px 8px;
-$sb_border_radius:                  10px;
+$sb_border_radius:                  6px;
+$sb_item_font_size:                 0.8rem;
 $sb_item_font_color:                $pri_light_color;
-$sb_hover_bg_color:                 lighten($sb_bg_color, 10%);
-$sb_hover_font_color:               lighten($sb_bg_color, 60%);
+$sb_hover_bg_color:                 $pri_accent_color;
+$sb_hover_font_color:               $sb_bg_color;
 $sb_break_margin:                   2px;
 $sb_break_color:                    lighten($sb_bg_color, 8%);
+$sb_count_font_size:                1.3rem;
+
+// Tables
+$thead_bg_color:                    lighten($tri_light_color, 30%);
+$table_icon_margin:                 0 4px;
+$el_table_margin:                   8px 0;
+
+// Forms
+$input_hover_focus_color:           $pri_accent_color;
+
+// Buttons
+$fb_bg_color:                       $sec_accent_color;
+$fb_font_color:                     $sec_light_color;
+$fb_hover_bg_color:                 $pri_accent_color;
+$fb_hover_font_color:               $sec_accent_color;

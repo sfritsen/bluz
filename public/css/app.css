@@ -4,7 +4,7 @@ html {
   height: 100%; }
 
 body {
-  background: #f8fafc;
+  background: #F7F7F7;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
   line-height: 1.6;
@@ -19,17 +19,14 @@ body {
   padding: 0 !important;
   margin: 0 !important; }
 
-.group_title {
-  font-size: 20px; }
-
 .logo {
   padding: 10px 0; }
 
 .logo_text {
-  color: #BDC1C7;
-  font-size: 24px; }
+  color: #c1c7cf;
+  font-size: 1.4rem; }
   .logo_text:hover {
-    color: #BDC1C7;
+    color: #c1c7cf;
     text-decoration: none; }
   .logo_text .logo_icon {
     color: #BADA55; }
@@ -115,7 +112,7 @@ body {
     -webkit-transform: scale3D(0, 0, 1);
     transform: scale3D(0, 0, 1); } }
 .navbar-laravel {
-  background-color: #fff;
+  background-color: #FFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); }
 
 .sidebar {
@@ -125,19 +122,23 @@ body {
   margin-bottom: 8px; }
 
 .sidebar_title {
-  font-size: 18px;
-  color: #fff;
+  font-size: 1rem;
+  color: #FFF;
   padding: 5px 8px; }
   .sidebar_title .icon {
-    font-size: 14px; }
+    font-size: 0.8rem; }
 
 .sidebar_item {
-  color: #fff;
+  font-size: 0.8rem;
+  color: #FFF;
   padding: 5px 8px;
-  border-radius: 10px; }
+  border-radius: 6px; }
   .sidebar_item:hover {
-    background: #55606f;
-    color: #dee1e5; }
+    background: #BADA55;
+    color: #3F4752; }
+
+.sidebar_count {
+  font-size: 1.3rem; }
 
 .sidebar_break {
   background-color: #515b69;
@@ -145,5 +146,31 @@ body {
   color: #515b69;
   margin: 2px; }
 
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem #BADA55; }
+
+.custom-select:focus {
+  box-shadow: 0 0 0 0.2rem #BADA55; }
+
+.form_btn {
+  background: #3F4752;
+  color: #F7F7F7; }
+  .form_btn:hover {
+    background: #BADA55;
+    color: #3F4752; }
+
+.moc_btn {
+  background: #BADA55;
+  color: #3F4752; }
+
+.entry_log_table {
+  margin: 8px 0; }
+  .entry_log_table thead {
+    background: #e7e8e9; }
+
 .table_icon {
   margin: 0 4px; }
+
+.agent_info_cage {
+  font-size: 12px;
+  margin-right: 10px; }

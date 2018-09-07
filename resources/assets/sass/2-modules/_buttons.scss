@@ -1,0 +1,13 @@
+.form_btn {
+    background: $fb_bg_color;
+    color: $fb_font_color;
+
+    &:hover {
+        background: $fb_hover_bg_color;
+        color: $fb_hover_font_color;
+    }
+}
+.moc_btn {
+    background: $fb_hover_bg_color;
+    color: $fb_hover_font_color;
+}

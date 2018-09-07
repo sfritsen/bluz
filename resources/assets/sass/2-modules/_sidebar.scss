@@ -14,6 +14,7 @@
     }
 }
 .sidebar_item {
+    font-size: $sb_item_font_size;
     color: $sb_item_font_color;
     padding: $sb_padding;
     border-radius: $sb_border_radius;
@@ -22,6 +23,9 @@
         background: $sb_hover_bg_color;
         color: $sb_hover_font_color;
     }
+}
+.sidebar_count {
+    font-size: $sb_count_font_size;
 }
 .sidebar_break {
     background-color: $sb_break_color;

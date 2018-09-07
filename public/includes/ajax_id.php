@@ -59,7 +59,11 @@ if($emp_id !== "")
 	else
 	{
         // known_as used since not always the same as first_name
-        $agent_info = "<span class=\"deco_text\">Agent </span> : ".$row['known_as']." ".$row['last_name']."&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"deco_text\">Manager</span> : ".$row['manager_name'];
+		// $agent_info = "<span class=\"deco_text\">Agent </span> : ".$row['known_as']." ".$row['last_name']."&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"deco_text\">Manager</span> : ".$row['manager_name'];
+		$agent_info = "<div class=\"agent_info_cage\">".
+						$row['known_as']." ".$row['last_name']." / ".$row['position_code_title']."<br>".
+						$row['manager_name'].
+						"</div>";
 	}
 }
 
