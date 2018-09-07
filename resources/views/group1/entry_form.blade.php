@@ -21,6 +21,21 @@
                     @csrf
                     <div class="row justify-content-center">
                         <div class="col">
+
+                            <hr>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <input type="text" name="agent_id" id="agent_id" class="form-control" placeholder="Agent ID" value="{{ old('agent_id') }}">
+                                    </div>
+                                    <div class="col">
+                                        <button id="smtp_address" class="normal_button" value="">MoC</button>
+                                        <input type="hidden" id="open_moc" value="" />
+                                        <span id="show_agent_info" class="show_agent_info"></span>
+                                    </div>
+                                </div>
+                            </div>
                 
                             <div class="form-group">
                                 <div class="row">
@@ -140,6 +155,13 @@
                 
                             <button type="submit" class="btn btn-primary">Submit</button> 
                             <button type="reset" class="btn btn-primary">Reset</button>
+
+                            <input type="hidden" name="emp_info_name" id="emp_info_name" value="" />
+                            <input type="hidden" name="emp_info_id" id="emp_info_id" value="" />
+                            <input type="hidden" name="emp_info_city" id="emp_info_city" value="" />
+                            <input type="hidden" name="emp_info_mgr_id" id="emp_info_mgr_id" value="" />
+                            <input type="hidden" name="emp_info_mgr_name" id="emp_info_mgr_name" value="" />
+                            <input type="hidden" name="emp_info_title" id="emp_info_title" value="" />
                 
                         </div>
                     </div>
@@ -155,9 +177,55 @@
 
 <script>
 $(document).ready(function(){
+
+    // On load stuff
+	$('#agent_id').focus();
+	$('#smtp_address').hide();
+
+    // Agent ID Fetcher, not with your teeth though
+	$("#agent_id").focusout(function(){
+
+        var agent_info = $("#agent_id").val();
+
+        $.ajax({
+            type: "post",
+            url: "includes/ajax_id.php",
+            data: "agent_id="+agent_info,
+            dataType: 'json',
+            success: function(data){
+                $("#show_agent_info").hide().html(data.agent_info).fadeIn();
+                $('#emp_info_name').val(data.employee_name);
+                $('#emp_info_id').val(data.employee_id);
+                $('#emp_info_city').val(data.employee_city);
+                $('#emp_info_mgr_id').val(data.employee_mgr_id);
+                $('#emp_info_mgr_name').val(data.employee_mgr_name);
+                $('#emp_info_title').val(data.employee_title);
+                $('#open_moc').val(data.smtp_address);
+
+                if(!$("#open_moc").val())
+                {
+                    $("#smtp_address").hide();
+                }
+                else
+                {
+                    $("#smtp_address").show();
+                }
+            }
+        });
+    });
+
     $(function(){
         $("#cat_box_2").chained("#cat_box_1");
         $("#cat_box_3").chained("#cat_box_2");
+    });
+
+    // Opens MoC chat with found agent email
+    $("#smtp_address").click(function(){
+        agent_email = document.getElementById("open_moc").value;
+        //alert(agent_email); DEBUGGING
+        window.location = "sip:"+ agent_email;
+
+        return false;
     });
 });
 </script>

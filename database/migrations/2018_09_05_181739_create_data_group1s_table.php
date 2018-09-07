@@ -16,6 +16,12 @@ class CreateDataGroup1sTable extends Migration
         Schema::create('data_group1s', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->string('emp_info_name');
+            $table->string('emp_info_id');
+            $table->string('emp_info_city');
+            $table->string('emp_info_mgr_id');
+            $table->string('emp_info_mgr_name');
+            $table->string('emp_info_title');
             $table->string('phone_number', 10);
             $table->string('lynx', 10);
             $table->string('chat_session_id');
