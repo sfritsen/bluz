@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    @include('partials/header')
-</head>
-<body>
+@include('partials/header')
 
     <main class="py-4">
         @yield('content')

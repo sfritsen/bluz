@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    @include('partials/header')
-</head>
-<body>
+@include('partials/header')
 
     <div class="container-fluid h-100">
         <div class="row h-100">

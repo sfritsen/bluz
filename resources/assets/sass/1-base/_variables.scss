@@ -30,6 +30,10 @@ $logo_font_color:                   #BDC1C7;
 $logo_font_size:                    24px;
 $logo_icon_color:                   #BADA55;
 
+// Spinner
+$sp_color:                          #3F4752;
+$sp_bg_color:                       lighten($sp_color, 70%);
+
 // Navbar
 $nav-bg-color:                      $pri_light_color;
 
