@@ -1,7 +1,7 @@
 <?php
 
 //Connect to DB
-$conn = new mysqli('localhost', 'root', 'Sf616461949794', 'bluez');
+$conn = new mysqli('localhost', 'bluz_user', 'bluz_password', 'bluez');
 
 if ($conn->connect_error) {
     die("Bunk connection: ".$conn->connect_error);
