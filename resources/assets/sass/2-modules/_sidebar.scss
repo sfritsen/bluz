@@ -1,4 +1,4 @@
-.sidebar_background {
+.sidebar {
     background: $sb_bg_color;
 }
 .sidebar_group {
@@ -6,9 +6,11 @@
 }
 .sidebar_title {
     font-size: $sb_title_font_size;
+    color: $sb_title_font_color;
     padding: $sb_padding;
 }
 .sidebar_item {
+    color: $sb_item_font_color;
     padding: $sb_padding;
     border-radius: $sb_border_radius;
 
@@ -18,5 +20,8 @@
     }
 }
 .sidebar_break {
+    background-color: $sb_break_color;
+    border-color: $sb_break_color;
+    color: $sb_break_color;
     margin: $sb_break_margin;
 }

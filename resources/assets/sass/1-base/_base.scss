@@ -1,15 +1,21 @@
 html {
 	font-size: $font_size_base;
+	height: 100%;
 }
 body {
 	background: $body_bg;
 	font-family: $font_family;
 	font-size: $font_size;
 	line-height: $line_height_base;
+	height: 100%;
 }
-.no_underline {
+.nounderline {
 	text-decoration: none;
 	&:hover {
 		text-decoration: none;
 	}
 }
+.nopadding {
+	padding: 0 !important;
+	margin: 0 !important;
+ }

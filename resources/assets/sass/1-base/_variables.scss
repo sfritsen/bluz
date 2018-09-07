@@ -28,11 +28,14 @@ $group_title_font_size:             20px;
 $nav-bg-color:                      $pri_light_color;
 
 // Sidebars
-$sb_bg_color:                       darken($body_bg, 5%);
+$sb_bg_color:                       #3F4752;
 $sb_group_bottom_margin:            8px;
 $sb_title_font_size:                18px;
+$sb_title_font_color:               $pri_light_color;
 $sb_padding:                        5px 8px;
 $sb_border_radius:                  10px;
+$sb_item_font_color:                $pri_light_color;
 $sb_hover_bg_color:                 $pri_accent_color;
 $sb_hover_font_color:               $pri_light_color;
 $sb_break_margin:                   2px;
+$sb_break_color:                    #5A6472;

@@ -1,36 +1,56 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito");
 html {
-  font-size: 16px; }
+  font-size: 16px;
+  height: 100%; }
 
 body {
   background: #f8fafc;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
-  line-height: 1.6; }
+  line-height: 1.6;
+  height: 100%; }
 
-.no_underline {
+.nounderline {
   text-decoration: none; }
-  .no_underline:hover {
+  .nounderline:hover {
     text-decoration: none; }
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important; }
 
 .group_title {
   font-size: 20px; }
+
+.logo {
+  padding: 10px 0; }
+
+.logo_text {
+  color: #BDC1C7;
+  font-size: 24px; }
+  .logo_text:hover {
+    color: white;
+    text-decoration: none; }
+  .logo_text .logo_icon {
+    color: white; }
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); }
 
-.sidebar_background {
-  background: #e6edf4; }
+.sidebar {
+  background: #3F4752; }
 
 .sidebar_group {
   margin-bottom: 8px; }
 
 .sidebar_title {
   font-size: 18px;
+  color: #fff;
   padding: 5px 8px; }
 
 .sidebar_item {
+  color: #fff;
   padding: 5px 8px;
   border-radius: 10px; }
   .sidebar_item:hover {
@@ -38,6 +58,9 @@ body {
     color: #fff; }
 
 .sidebar_break {
+  background-color: #5A6472;
+  border-color: #5A6472;
+  color: #5A6472;
   margin: 2px; }
 
 .table_icon {
