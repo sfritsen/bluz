@@ -156,6 +156,7 @@
                             <button type="submit" class="btn btn-primary">Submit</button> 
                             <button type="reset" class="btn btn-primary">Reset</button>
 
+                            {{-- Store returned JSON data from agent search --}}
                             <input type="hidden" name="emp_info_name" id="emp_info_name" value="" />
                             <input type="hidden" name="emp_info_id" id="emp_info_id" value="" />
                             <input type="hidden" name="emp_info_city" id="emp_info_city" value="" />
@@ -222,7 +223,6 @@ $(document).ready(function(){
     // Opens MoC chat with found agent email
     $("#smtp_address").click(function(){
         agent_email = document.getElementById("open_moc").value;
-        //alert(agent_email); DEBUGGING
         window.location = "sip:"+ agent_email;
 
         return false;

@@ -59,12 +59,8 @@ if($emp_id !== "")
 	else
 	{
         // known_as used since not always the same as first_name
-        $agent_info = "<span class=\"deco_text\">Agent Found</span> : ".$row['known_as']." ".$row['last_name']."&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"deco_text\">Manager</span> : ".$row['manager_name'];
+        $agent_info = "<span class=\"deco_text\">Agent </span> : ".$row['known_as']." ".$row['last_name']."&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"deco_text\">Manager</span> : ".$row['manager_name'];
 	}
-}
-else
-{
-	$agent_info = "<span class=\"error_text\">Enter an ID</span>";
 }
 
 // Build array to send back

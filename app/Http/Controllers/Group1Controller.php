@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Data_group1;
+use App\Groups;
+use App\DD_menus;
 use Auth;
 
 class Group1Controller extends Controller
@@ -31,7 +33,7 @@ class Group1Controller extends Controller
      */
     public function entry()
     {
-        $group = DB::table('groups')->where('label', $this->gl_group_label)->first();
+        $group = Groups::where('label', $this->gl_group_label)->first();
 
         $cat_lvl1 = DB::table('cat_box_lvl1')->where([
             ['lvl1_group', '=', $this->gl_group_id],
@@ -51,7 +53,7 @@ class Group1Controller extends Controller
         ])
         ->orderBy('lvl3_menu_item')->get();
 
-        $dd_incident_type = DB::table('dd_menus')->where([
+        $dd_incident_type = DD_menus::where([
             ['active', '=', '1'],
             ['group_id', '=', $this->gl_group_id],
             ['parent_id', '=', '2'],
@@ -59,7 +61,7 @@ class Group1Controller extends Controller
         ])
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
-        $dd_resolution = DB::table('dd_menus')->where([
+        $dd_resolution = DD_menus::where([
             ['active', '=', '1'],
             ['group_id', '=', $this->gl_group_id],
             ['parent_id', '=', '3'],
@@ -67,7 +69,7 @@ class Group1Controller extends Controller
         ])
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
-        $dd_troubleshooting = DB::table('dd_menus')->where([
+        $dd_troubleshooting = DD_menus::where([
             ['active', '=', '1'],
             ['group_id', '=', $this->gl_group_id],
             ['parent_id', '=', '5'],
@@ -75,7 +77,7 @@ class Group1Controller extends Controller
         ])
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
-        $dd_equip_type = DB::table('dd_menus')->where([
+        $dd_equip_type = DD_menus::where([
             ['active', '=', '1'],
             ['group_id', '=', $this->gl_group_id],
             ['parent_id', '=', '8'],
@@ -84,7 +86,7 @@ class Group1Controller extends Controller
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
         // Query for entry log data
-        $entry_log = DB::table($this->gl_data_table)->where([
+        $entry_log = Data_group1::where([
             ['user_id', Auth::user()->id],
             ['created_at', 'like', date("Y-m-d") . '%']
             ])->get();
