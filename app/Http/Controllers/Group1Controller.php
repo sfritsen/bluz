@@ -80,7 +80,10 @@ class Group1Controller extends Controller
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
         // Query for entry log data
-        $entry_log = DB::table('data_group1s')->where('user_id', Auth::user()->id)->get();
+        $entry_log = DB::table('data_group1s')->where([
+            ['user_id', Auth::user()->id],
+            ['created_at', 'like', date("Y-m-d") . '%']
+            ])->get();
         // Count the results
         $entry_count = $entry_log->count();
 

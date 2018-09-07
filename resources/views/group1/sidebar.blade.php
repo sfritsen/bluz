@@ -1,7 +1,6 @@
 <div class="sidebar_group">
     <div class="sidebar_title">My Stats</div>
-    <div class="sidebar_item">{{ $counter }} Today</div>
-    <div class="sidebar_item">11 Yesterday</div>
+    <div class="sidebar_item">{{ $counter }}</div>
 </div>
 <div class="sidebar_group">
     <div class="sidebar_title">Menu</div>
