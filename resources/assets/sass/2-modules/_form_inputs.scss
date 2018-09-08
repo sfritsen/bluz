@@ -14,15 +14,16 @@ input:-webkit-autofill:focus,  {
 
 // Overrides the bootstrap focus color
 .form-control:focus,
-.form-control:active {
+.form-control:active,
+.custom-select:focus {
     box-shadow: 0 0 0 0.2rem $input_hover_focus_color;
     border:1px solid $input_border_color !important;
     // box-shadow:none !important;
- }
- .custom-select:focus {
-    box-shadow: 0 0 0 0.2rem $input_hover_focus_color;
- }
+}
+// .custom-select:focus {
+//     box-shadow: 0 0 0 0.2rem $input_hover_focus_color;
+// }
 
- .required {
+.required {
     border-left: 2px solid $required_field;
- }
+}

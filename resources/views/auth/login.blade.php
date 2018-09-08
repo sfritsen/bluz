@@ -1,4 +1,4 @@
-@extends('layouts.main_menu')
+@extends('layouts.centered')
 
 @section('content')
 <div class="container">

@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-2">
-                            <input type="text" name="agent_id" id="agent_id" class="form-control required" placeholder="Agent ID" value="{{ old('agent_id') }}">
+                            <input type="text" name="agent_id" id="agent_id" class="form-control required" placeholder="Agent ID" value="{{ old('agent_id') }}" required>
                         </div>
                         <div class="col-1">
                             <button id="smtp_address" class="btn moc_btn" value="">MoC</button>
@@ -32,13 +32,13 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <input type="text" name="phone_number" class="form-control required" placeholder="Client STN" value="{{ old('phone_number') }}">
+                            <input type="text" name="phone_number" class="form-control required" placeholder="Client STN" value="{{ old('phone_number') }}" required>
                         </div>
                         <div class="col">
-                            <input type="text" name="lynx" class="form-control required" placeholder="Ticket Number" value="{{ old('lynx') }}">
+                            <input type="text" name="lynx" class="form-control required" placeholder="Ticket Number" value="{{ old('lynx') }}" required>
                         </div>
                         <div class="col">
-                            <input type="text" name="chat_session_id" class="form-control required" placeholder="Chat Session ID" value="{{ old('chat_session_id') }}">
+                            <input type="text" name="chat_session_id" class="form-control required" placeholder="Chat Session ID" value="{{ old('chat_session_id') }}" required>
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
 
 <script>
 // Used to mark inputs as required if empty
-$('input.required').blur(function(){
+$("input.required, select.required").change(function(){
     field_val = $(this).val();
     if(field_val == '') {
         $(this).addClass('required');

@@ -157,12 +157,10 @@ input:-webkit-autofill:focus {
   border: 1px solid #969BA1; }
 
 .form-control:focus,
-.form-control:active {
+.form-control:active,
+.custom-select:focus {
   box-shadow: 0 0 0 0.2rem #BADA55;
   border: 1px solid #969BA1 !important; }
-
-.custom-select:focus {
-  box-shadow: 0 0 0 0.2rem #BADA55; }
 
 .required {
   border-left: 2px solid #e3342f; }

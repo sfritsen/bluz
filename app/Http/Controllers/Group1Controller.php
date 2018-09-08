@@ -104,7 +104,7 @@ class Group1Controller extends Controller
                 'dd_troubleshooting' => $dd_troubleshooting,
                 'dd_equip_type' => $dd_equip_type,
                 'entry_log' => $entry_log,
-                'counter' => $entry_count
+                'entry_count' => $entry_count
             )
         );
     }

@@ -20,6 +20,5 @@ class Data_group1 extends Model
         'cat_box_1',
         'cat_box_2',
         'cat_box_3',
-        'additional_notes'
     );
 }

@@ -6,7 +6,7 @@
 
 <div class="sidebar_group">
     <div class="sidebar_title"><i class="far fa-chart-bar icon"></i> My Stats</div>
-    <div class="sidebar_item sidebar_count">{{ $counter }}</div>
+    <div class="sidebar_item sidebar_count">{{ $entry_count }}</div>
 </div>
 <div class="sidebar_group">
     <hr class="sidebar_break">
