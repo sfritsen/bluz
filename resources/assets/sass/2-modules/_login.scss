@@ -1,0 +1,16 @@
+.login_header {
+    background: $login_head_bg;
+    text-align: center;
+    padding: $login_head_padding;
+}
+.login_logo_text {
+    color: $login_font_color;
+    font-size: $login_font_size;
+}
+.login_logo_icon {
+    font-size: $login_icon_size;
+    color: $login_icon_color;
+}
+.login_form_cage {
+    margin: $login_form_margin;
+}

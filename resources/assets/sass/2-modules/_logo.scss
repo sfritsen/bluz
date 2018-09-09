@@ -1,14 +1,13 @@
 .logo {
     padding: $logo_padding;
 }
-.logo_text {
+.logo_text:link, 
+.logo_text:visited, 
+.logo_text:active, 
+.logo_text:hover, {
     color: $logo_font_color;
     font-size: $logo_font_size;
-
-    &:hover {
-        color: $logo_font_color;
-        text-decoration: none;
-    }
+    text-decoration: none;
 
     .logo_icon {
         color: $logo_icon_color;   

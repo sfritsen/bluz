@@ -19,16 +19,28 @@ body {
   padding: 0 !important;
   margin: 0 !important; }
 
+a:link, a:visited, a:active {
+  text-decoration: none !important;
+  color: #86a524; }
+
+a:hover, .btn-link:hover {
+  text-decoration: none !important;
+  color: #3F4752; }
+
 .logo {
   padding: 10px 0; }
 
-.logo_text {
+.logo_text:link,
+.logo_text:visited,
+.logo_text:active,
+.logo_text:hover {
   color: #c1c7cf;
-  font-size: 1.4rem; }
-  .logo_text:hover {
-    color: #c1c7cf;
-    text-decoration: none; }
-  .logo_text .logo_icon {
+  font-size: 1.4rem;
+  text-decoration: none; }
+  .logo_text:link .logo_icon,
+  .logo_text:visited .logo_icon,
+  .logo_text:active .logo_icon,
+  .logo_text:hover .logo_icon {
     color: #BADA55; }
 
 .spinner_overlay {
@@ -183,6 +195,22 @@ input:-webkit-autofill:focus {
 
 .table_icon {
   margin: 0 4px; }
+
+.login_header {
+  background: #3F4752;
+  text-align: center;
+  padding: 25px 0; }
+
+.login_logo_text {
+  color: #c1c7cf;
+  font-size: 2.5rem; }
+
+.login_logo_icon {
+  font-size: 4rem;
+  color: #BADA55; }
+
+.login_form_cage {
+  margin: 25px 0; }
 
 .agent_info_cage {
   font-size: 12px;

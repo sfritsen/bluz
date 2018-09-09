@@ -26,6 +26,8 @@ $font_size:                         0.9rem;
 $line_height_base:                  1.6;
 $error_text:                        $red_color;
 $required_field:                    $red_color;
+$link_active:                       darken($pri_accent_color, 20%);
+$link_hover:                        $sec_accent_color;
 
 // Logo
 $logo_padding:                      10px 0;
@@ -36,6 +38,15 @@ $logo_icon_color:                   $pri_accent_color;
 // Spinner
 $sp_color:                          $sec_accent_color;
 $sp_bg_color:                       lighten($sp_color, 70%);
+
+// Login specific
+$login_head_bg:                     $sec_accent_color;
+$login_form_margin:                 25px 0;
+$login_head_padding:                25px 0;
+$login_icon_color:                  $logo_icon_color;
+$login_icon_size:                   4rem;
+$login_font_color:                  $logo_font_color;
+$login_font_size:                   2.5rem;
 
 // Navbar
 $nav-bg-color:                      $pri_light_color;

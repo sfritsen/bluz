@@ -11,7 +11,7 @@ use Auth;
 
 class Group1Controller extends Controller
 {
-    // Set global variables
+    // Set global variables which are used below
     private $gl_group_label = "group1";
     private $gl_group_id = "2";
     private $gl_data_table = "data_group1";
@@ -33,27 +33,28 @@ class Group1Controller extends Controller
      */
     public function entry()
     {
-        $group = Groups::where('label', $this->gl_group_label)->first();
+        // Gets the groups name based on the label
+        $data['group'] = Groups::where('label', $this->gl_group_label)->first();
 
-        $cat_lvl1 = DB::table('cat_box_lvl1')->where([
+        $data['cat_lvl1'] = DB::table('cat_box_lvl1')->where([
             ['lvl1_group', '=', $this->gl_group_id],
             ['lvl1_active', '=', '1'],
         ])
         ->orderBy('lvl1_menu_item')->get();
 
-        $cat_lvl2 = DB::table('cat_box_lvl2')->where([
+        $data['cat_lvl2'] = DB::table('cat_box_lvl2')->where([
             ['lvl2_group', '=', $this->gl_group_id],
             ['lvl2_active', '=', '1'],
         ])
         ->orderBy('lvl2_menu_item')->get();
 
-        $cat_lvl3 = DB::table('cat_box_lvl3')->where([
+        $data['cat_lvl3'] = DB::table('cat_box_lvl3')->where([
             ['lvl3_group', '=', $this->gl_group_id],
             ['lvl3_active', '=', '1'],
         ])
         ->orderBy('lvl3_menu_item')->get();
 
-        $dd_incident_type = DD_menus::where([
+        $data['dd_incident_type'] = DD_menus::where([
             ['active', '=', '1'],
             ['group_id', '=', $this->gl_group_id],
             ['parent_id', '=', '2'],
@@ -61,7 +62,7 @@ class Group1Controller extends Controller
         ])
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
-        $dd_resolution = DD_menus::where([
+        $data['dd_resolution'] = DD_menus::where([
             ['active', '=', '1'],
             ['group_id', '=', $this->gl_group_id],
             ['parent_id', '=', '3'],
@@ -69,7 +70,7 @@ class Group1Controller extends Controller
         ])
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
-        $dd_troubleshooting = DD_menus::where([
+        $data['dd_troubleshooting'] = DD_menus::where([
             ['active', '=', '1'],
             ['group_id', '=', $this->gl_group_id],
             ['parent_id', '=', '5'],
@@ -77,7 +78,7 @@ class Group1Controller extends Controller
         ])
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
-        $dd_equip_type = DD_menus::where([
+        $data['dd_equip_type'] = DD_menus::where([
             ['active', '=', '1'],
             ['group_id', '=', $this->gl_group_id],
             ['parent_id', '=', '8'],
@@ -86,27 +87,15 @@ class Group1Controller extends Controller
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
         // Query for entry log data
-        $entry_log = Data_group1::where([
+        $data['entry_log'] = Data_group1::where([
             ['user_id', Auth::user()->id],
             ['created_at', 'like', date("Y-m-d") . '%']
             ])->get();
         // Count the results
-        $entry_count = $entry_log->count();
+        $data['entry_count'] = $data['entry_log']->count();
 
-        return view('group1/entry_form', 
-            array(
-                'group' => $group,
-                'cat_lvl1' => $cat_lvl1,
-                'cat_lvl2' => $cat_lvl2,
-                'cat_lvl3' => $cat_lvl3,
-                'dd_incident_type' => $dd_incident_type,
-                'dd_resolution' => $dd_resolution,
-                'dd_troubleshooting' => $dd_troubleshooting,
-                'dd_equip_type' => $dd_equip_type,
-                'entry_log' => $entry_log,
-                'entry_count' => $entry_count
-            )
-        );
+        // Load the view and pass $data
+        return view('group1/entry_form', $data);
     }
 
     public function submit_entry(Request $request)
