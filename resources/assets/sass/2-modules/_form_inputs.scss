@@ -10,6 +10,13 @@ input:-webkit-autofill:focus,  {
 .form-control {
     background: $input_bg_color;
     border:1px solid $input_border_color;
+    border-radius: 8px;
+    color: $input_font_color;
+
+    &::placeholder {
+        color: $input_font_color;
+        opacity: 1;
+    }
 }
 
 // Overrides the bootstrap focus color
@@ -18,12 +25,19 @@ input:-webkit-autofill:focus,  {
 .custom-select:focus {
     box-shadow: 0 0 0 0.2rem $input_hover_focus_color;
     border:1px solid $input_border_color !important;
-    // box-shadow:none !important;
 }
-// .custom-select:focus {
-//     box-shadow: 0 0 0 0.2rem $input_hover_focus_color;
-// }
 
+// Marks the input with a left border red
 .required {
-    border-left: 2px solid $required_field;
+    border-left: 2px solid $input_required;
+}
+
+// Custom checkboxes and radios
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before,
+.custom-radio .custom-control-input:checked~.custom-control-label::before {
+    background-color: $input_check_radio_bg;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: $input_check_radio_color;
+    background-color: $input_check_radio_bg;
 }

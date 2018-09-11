@@ -24,6 +24,7 @@ class Group1Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->group_name = Groups::where('label', $this->gl_group_label)->first();
     }
 
     /**
@@ -34,8 +35,9 @@ class Group1Controller extends Controller
     public function entry()
     {
         // Gets the groups name based on the label
-        $data['group'] = Groups::where('label', $this->gl_group_label)->first();
+        $data['group'] = $this->group_name;
 
+        // Drop menu item population
         $data['cat_lvl1'] = DB::table('cat_box_lvl1')->where([
             ['lvl1_group', '=', $this->gl_group_id],
             ['lvl1_active', '=', '1'],
@@ -87,10 +89,15 @@ class Group1Controller extends Controller
         ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
 
         // Query for entry log data
-        $data['entry_log'] = Data_group1::where([
-            ['user_id', Auth::user()->id],
-            ['created_at', 'like', date("Y-m-d") . '%']
-            ])->get();
+        $data['entry_log'] = Data_group1::
+            join('dd_menus', $this->gl_data_table.'.incident_type', '=', 'dd_menus.menu_id')
+            ->where([
+                ['data_group1.user_id', Auth::user()->id],
+                ['data_group1.created_at', 'like', date("Y-m-d") . '%']
+            ])
+            ->select('data_group1.*', 'dd_menus.menu_text')
+            ->get();
+
         // Count the results
         $data['entry_count'] = $data['entry_log']->count();
 
@@ -100,6 +107,7 @@ class Group1Controller extends Controller
 
     public function submit_entry(Request $request)
     {
+        // Validates the data
         $validateData = $request->validate([
             'agent_id' => 'required',
             'phone_number' => 'bail|required|numeric|digits:10',
@@ -114,6 +122,14 @@ class Group1Controller extends Controller
             'cat_box_3' => 'required',
         ]);
 
+        // Since notes are not manditory, write something if left blank
+        if (empty($request->additional_notes)) {
+            $additional_notes = "na";
+        }else{
+            $additional_notes = $request->additional_notes;
+        }
+
+        // Saves the data to the table once it validates
         $g1 = new Data_group1;
         $g1->user_id = Auth::user()->id;
         $g1->emp_info_name = $request->emp_info_name;
@@ -134,9 +150,34 @@ class Group1Controller extends Controller
         $g1->cat_box_1 = $request->cat_box_1;
         $g1->cat_box_2 = $request->cat_box_2;
         $g1->cat_box_3 = $request->cat_box_3;
-        $g1->additional_notes = $request->additional_notes;
+        $g1->additional_notes = $additional_notes;
         $g1->save();
         
+        // Redirect after writing
         return redirect('/g1_entry');
+    }
+
+    public function history()
+    {
+        // Gets the groups name based on the label
+        $data['group'] = $this->group_name;
+
+        // Query for entry log data stats
+        $data['entry_count'] = Data_group1::where([
+            ['user_id', Auth::user()->id],
+            ['created_at', 'like', date("Y-m-d") . '%']
+            ])->count();
+
+        // Gets the history for the selected user
+        $data['entry_history'] = Data_group1::
+            join('dd_menus', $this->gl_data_table.'.incident_type', '=', 'dd_menus.menu_id')
+            ->where('data_group1.user_id', Auth::user()->id)
+            ->select('data_group1.*', 'dd_menus.menu_text')
+            ->get();
+        // Count the results
+        $data['history_count'] = $data['entry_history']->count();
+
+        // Load the view and pass $data
+        return view('group1/history', $data);
     }
 }

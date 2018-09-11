@@ -1,4 +1,15 @@
 .navbar-laravel {
-  background-color: $nav-bg-color;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  background-color: $nav_bg_color;
+  box-shadow: $nav_box_shadow;
+}
+
+// Overrides the bootstrap navbar brand style
+.navbar-brand, 
+.navbar-brand:link,
+.navbar-brand:active,
+.navbar-brand:visited,
+.navbar-brand:hover, {
+    font-family: $pri_font_family;
+    font-size: $nav_brand_font_size;
+    color: $nav_brand_color;
 }

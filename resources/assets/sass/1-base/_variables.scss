@@ -1,13 +1,3 @@
-// Colors
-// $red:       #e3342f;
-// $orange:    #f6993f;
-// $yellow:    #ffed4a;
-// $green:     #38c172;
-// $teal:      #4dc0b5;
-// $cyan:      #6cb2eb;
-// $white:     #fff;
-// $off-white: #f8fafc;
-
 // Palette
 $pri_accent_color:                  #BADA55;
 $sec_accent_color:                  #3F4752;
@@ -19,20 +9,24 @@ $red_color:                         #e3342f;
 // Body
 $body_bg:                           $sec_light_color;
 
+// Globals
+$box-shadow:                        0 2px 4px rgba(0, 0, 0, 0.04);
+
 // Typography
-$font_family:                       "Nunito", sans-serif;
+$pri_font_family:                   'Assistant', sans-serif;
+$sec_font_family:                   'Roboto Condensed', sans-serif;
 $font_size_base:                    16px;
-$font_size:                         0.9rem;
+$pri_font_size:                     0.95rem;
+$pri_font_color:                    #6b7b9d;
 $line_height_base:                  1.6;
 $error_text:                        $red_color;
-$required_field:                    $red_color;
 $link_active:                       darken($pri_accent_color, 20%);
 $link_hover:                        $sec_accent_color;
 
 // Logo
 $logo_padding:                      10px 0;
 $logo_font_color:                   lighten($sec_accent_color, 50%);
-$logo_font_size:                    1.4rem;
+$logo_font_size:                    1.6rem;
 $logo_icon_color:                   $pri_accent_color;
 
 // Spinner
@@ -49,33 +43,52 @@ $login_font_color:                  $logo_font_color;
 $login_font_size:                   2.5rem;
 
 // Navbar
-$nav-bg-color:                      $pri_light_color;
+$nav_bg_color:                      $pri_light_color;
+$nav_brand_color:                   $pri_font_color;
+$nav_brand_font_size:               1.2rem;
+$nav_box_shadow:                    $box-shadow;
 
 // Sidebars
 $sb_bg_color:                       $sec_accent_color;
+$sb_max_width:                      250px;
+$sb_min_width:                      160px;
 $sb_group_bottom_margin:            8px;
-$sb_title_font_size:                1rem;
-$sb_title_icon_size:                0.8rem;
-$sb_title_font_color:               $pri_light_color;
+$sb_title_font_size:                0.9rem;
+$sb_title_icon_size:                1rem;
+$sb_title_font_color:               lighten($pri_accent_color, 20%);
+$sb_title_text_trans:               uppercase;
 $sb_padding:                        5px 8px;
 $sb_border_radius:                  6px;
-$sb_item_font_size:                 0.8rem;
+$sb_item_font_size:                 0.9rem;
 $sb_item_font_color:                $pri_light_color;
+$sb_item_transition:                0.4s;
 $sb_hover_bg_color:                 $pri_accent_color;
 $sb_hover_font_color:               $sb_bg_color;
 $sb_break_margin:                   2px;
 $sb_break_color:                    lighten($sb_bg_color, 8%);
-$sb_count_font_size:                1.3rem;
+$sb_count_font_size:                1.8rem;
 
 // Tables
-$thead_bg_color:                    lighten($tri_light_color, 30%);
-$table_icon_margin:                 0 4px;
-$el_table_margin:                   8px 0;
+$table_title_font_size:             1.1rem;
+$table_title_font_color:            $pri_font_color;
+$table_title_font_transform:        capitalize;
+$thead_bg_color:                    lighten($sec_accent_color, 60%);
+$thead_font_color:                  $pri_font_color;
+$thead_font_size:                   0.75rem;
+$thead_font_transform:              uppercase;
+$thead_font_weight:                 normal;
+$tbody_icon_margin:                 0 4px;
+$tbody_font_size:                   0.95rem;
+$tbody_font_color:                  $pri_font_color;
 
 // Forms
 $input_bg_color:                    $pri_light_color;
-$input_border_color:                $tri_light_color;
+$input_border_color:                lighten($sec_accent_color, 50%);
+$input_font_color:                  $pri_font_color;
 $input_hover_focus_color:           $pri_accent_color;
+$input_required:                    $red_color;
+$input_check_radio_bg:                    $sec_accent_color;
+$input_check_radio_color:                 $pri_light_color;
 
 // Buttons
 $fb_bg_color:                       $sec_accent_color;

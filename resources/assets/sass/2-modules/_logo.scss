@@ -5,8 +5,9 @@
 .logo_text:visited, 
 .logo_text:active, 
 .logo_text:hover, {
-    color: $logo_font_color;
+    font-family: $sec_font_family;
     font-size: $logo_font_size;
+    color: $logo_font_color;
     text-decoration: none;
 
     .logo_icon {

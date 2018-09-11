@@ -1,10 +1,29 @@
-.entry_log_table {
-    margin: $el_table_margin;
+.table_title {
+    font-size: $table_title_font_size;
+    color: $table_title_font_color;
+    text-transform: $table_title_font_transform;
+}
+.table_title_records {
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: right;
+}
 
+.data_table {
     thead {
         background: $thead_bg_color;
+        color: $thead_font_color;
+        font-size: $thead_font_size;
+        font-weight: $thead_font_weight;
+        text-transform: $thead_font_transform;
     }
-}
-.table_icon {
-    margin: $table_icon_margin;
+
+    tbody {
+        font-size: $tbody_font_size;
+        color: $tbody_font_color;
+
+        .table_icon {
+            margin: $tbody_icon_margin;
+        }
+    }
 }

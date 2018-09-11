@@ -5,13 +5,14 @@
 </div>
 
 <div class="sidebar_group">
-    <div class="sidebar_title"><i class="far fa-chart-bar icon"></i> My Stats</div>
+    <div class="sidebar_title">My Stats</div>
     <div class="sidebar_item sidebar_count">{{ $entry_count }}</div>
 </div>
 <div class="sidebar_group">
     <hr class="sidebar_break">
+    <div class="sidebar_title">User Menu</div>
     <a href="{!! url('/g1_entry'); !!}" class="nounderline"><div class="sidebar_item">Entry Form</div></a>
-    <a href="" class="nounderline"><div class="sidebar_item">History</div></a>
+    <a href="{!! url('/g1_history'); !!}" class="nounderline"><div class="sidebar_item">History</div></a>
     <a href="" class="nounderline"><div class="sidebar_item">Abandon</div></a>
     <a href="" class="nounderline"><div class="sidebar_item">Surveys</div></a>
     <a href="" class="nounderline"><div class="sidebar_item">QCE</div></a>
@@ -20,7 +21,7 @@
 </div>
 <div class="sidebar_group">
     <hr class="sidebar_break">
-    <div class="sidebar_title"><i class="fas fa-lock icon"></i> Admin</div>
+    <div class="sidebar_title">Administration</div>
     <a href="" class="nounderline"><div class="sidebar_item">Main</div></a>
     <a href="" class="nounderline"><div class="sidebar_item">Entry History</div></a>
     <a href="" class="nounderline"><div class="sidebar_item">Activity</div></a>

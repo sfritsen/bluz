@@ -4,13 +4,15 @@ html {
 }
 body {
 	background: $body_bg;
-	font-family: $font_family;
-	font-size: $font_size;
+	font-family: $pri_font_family;
+	font-size: $pri_font_size;
+	color: $pri_font_color;
 	line-height: $line_height_base;
 	height: 100%;
 }
 .nounderline {
 	text-decoration: none;
+
 	&:hover {
 		text-decoration: none;
 	}
@@ -18,4 +20,4 @@ body {
 .nopadding {
 	padding: 0 !important;
 	margin: 0 !important;
- }
+}

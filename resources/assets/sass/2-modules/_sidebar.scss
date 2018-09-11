@@ -1,5 +1,7 @@
 .sidebar {
     background: $sb_bg_color;
+    max-width: $sb_max_width;
+    min-width: $sb_min_width;
 }
 .sidebar_group {
     margin-bottom: $sb_group_bottom_margin;
@@ -7,6 +9,7 @@
 .sidebar_title {
     font-size: $sb_title_font_size;
     color: $sb_title_font_color;
+    text-transform: $sb_title_text_trans;
     padding: $sb_padding;
 
     .icon {
@@ -18,10 +21,12 @@
     color: $sb_item_font_color;
     padding: $sb_padding;
     border-radius: $sb_border_radius;
-
+    transition: $sb_item_transition;
+    
     &:hover {
         background: $sb_hover_bg_color;
         color: $sb_hover_font_color;
+        opacity: 1
     }
 }
 .sidebar_count {

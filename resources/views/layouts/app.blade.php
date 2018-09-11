@@ -8,7 +8,7 @@
             <div class="col nopadding"> {{-- Content --}}
                 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                     <div class="container-fluid nopadding">
-                        <a class="navbar-brand" href="{{ url('/') }}">
+                        <a class="navbar-brand" href="{{ route('g1_entry') }}">
                             {{ $group->name }}
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -69,7 +69,7 @@
                     </div>
                 </nav>
 
-                <main class="py-4">
+                <main class="py-3">
                     @yield('content')
                 </main>
             </div>
