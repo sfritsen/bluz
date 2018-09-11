@@ -125,6 +125,35 @@ a:hover, .btn-link:hover {
   35% {
     -webkit-transform: scale3D(0, 0, 1);
     transform: scale3D(0, 0, 1); } }
+.mm_header {
+  background: #3F4752;
+  text-align: center;
+  padding: 25px 0; }
+
+.mm_logo_text {
+  color: #c1c7cf;
+  font-size: 2.5rem; }
+
+.mm_logo_icon {
+  font-size: 4rem;
+  color: #BADA55; }
+
+.mm_form_cage {
+  margin: 25px 0;
+  text-align: center; }
+
+.mm_card {
+  background: #FFF;
+  display: inline-block;
+  text-align: left;
+  width: 300px;
+  margin: 8px; }
+  .mm_card .card-header {
+    background: #8793a3;
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 0.85rem; }
+
 .navbar-laravel {
   background-color: #FFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); }

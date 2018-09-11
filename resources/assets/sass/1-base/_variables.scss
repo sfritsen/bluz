@@ -33,6 +33,19 @@ $logo_icon_color:                   $pri_accent_color;
 $sp_color:                          $sec_accent_color;
 $sp_bg_color:                       lighten($sp_color, 70%);
 
+// Main Menu
+$mm_head_bg:                        $sec_accent_color;
+$mm_head_padding:                   25px 0;
+$mm_font_color:                     $logo_font_color;
+$mm_font_size:                      2.5rem;
+$mm_icon_color:                     $logo_icon_color;
+$mm_icon_size:                      4rem;
+$mm_form_margin:                    25px 0;
+$mm_card_bg_color:                  $pri_light_color;
+$mm_card_head_bg_color:             lighten($sec_accent_color, 30%);
+$mm_card_head_font_color:           $pri_light_color;
+$mm_card_head_font_size:            0.85rem;
+
 // Login specific
 $login_head_bg:                     $sec_accent_color;
 $login_form_margin:                 25px 0;

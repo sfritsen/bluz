@@ -24,6 +24,7 @@ class MainMenuController extends Controller
      */
     public function index()
     {
-        return view('main_menu');
+        $data['groups'] = Groups::where('active', '1')->get();
+        return view('main_menu', $data);
     }
 }

@@ -1,0 +1,32 @@
+.mm_header {
+    background: $mm_head_bg;
+    text-align: center;
+    padding: $mm_head_padding;
+}
+.mm_logo_text {
+    color: $mm_font_color;
+    font-size: $mm_font_size;
+}
+.mm_logo_icon {
+    font-size: $mm_icon_size;
+    color: $mm_icon_color;
+}
+.mm_form_cage {
+    margin: $mm_form_margin;
+    text-align: center;
+}
+
+.mm_card {
+    background: $mm_card_bg_color;
+    display: inline-block;
+    text-align: left;
+    width: 300px;
+    margin: 8px;
+
+    .card-header {
+        background: $mm_card_head_bg_color;
+        color: $mm_card_head_font_color;
+        text-transform: uppercase;
+        font-size: $mm_card_head_font_size;
+    }
+}

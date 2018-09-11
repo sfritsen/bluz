@@ -17,6 +17,9 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('label');
             $table->string('name');
+            $table->string('entry_route');
+            $table->string('admin_route');
+            $table->tinyInteger('active');
             $table->timestamps();
         });
     }
