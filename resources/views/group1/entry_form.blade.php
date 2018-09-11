@@ -20,7 +20,8 @@
                             <input type="text" name="agent_id" id="agent_id" class="form-control required" placeholder="Agent ID" value="{{ old('agent_id') }}" required autofocus>
                         </div>
                         <div class="col-sm-auto">
-                            <button id="smtp_address" class="btn moc_btn" value="">Message</button>
+                            <button type="button" id="smtp_address" class="btn agent_info_btn" value="">Message</button>
+                            <button type="button" id="echo" data-toggle="modal" data-target="#echo_modal" class="btn agent_info_btn" value="">Echo</button>
                             <input type="hidden" id="open_moc" value="" />
                         </div>
                         <div class="col-sm-auto">
@@ -158,6 +159,12 @@
     </div>
 </div>
 
+{{-- Include the echo modal --}}
+@include('partials/echo')
+
+{{-- Include the entry details modal --}}
+@include('group1/entry_details')
+
 <script>
 // Used to mark inputs as required if empty
 $("input.required, select.required").change(function(){
@@ -169,31 +176,9 @@ $("input.required, select.required").change(function(){
     }
 });
 
-
-
 $(document).ready(function(){
-
-    (function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-
     // On load stuff
-    // $('#agent_id').focus();
-    $('#smtp_address').hide();
+    $('#smtp_address, #echo').hide();
 
     // Agent ID Fetcher, not with your teeth though
     $("#agent_id").focusout(function(){
@@ -217,16 +202,17 @@ $(document).ready(function(){
 
                 if(!$("#open_moc").val())
                 {
-                    $("#smtp_address").hide();
+                    $("#smtp_address, #echo").hide();
                 }
                 else
                 {
-                    $("#smtp_address").show();
+                    $("#smtp_address, #echo").show();
                 }
             }
         });
     });
 
+    // JQuery chain selects
     $(function(){
         $("#cat_box_2").chained("#cat_box_1");
         $("#cat_box_3").chained("#cat_box_2");

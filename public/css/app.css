@@ -145,30 +145,30 @@ a:hover, .btn-link:hover {
 .mm_plate {
   background: #8793a3;
   display: inline-block;
-  margin: 8px;
+  margin: 6px;
   text-align: left;
   border-radius: 8px;
   border: 2px solid #b2bac4;
-  font-size: 0.85rem; }
+  font-size: 0.9rem; }
   .mm_plate a:link, .mm_plate a:active, .mm_plate a:hover, .mm_plate a:visited {
     color: #FFF; }
-
-.mm_left {
-  display: inline-block;
-  padding: 12px;
-  width: 200px; }
-  .mm_left:hover {
-    background: #BADA55;
-    border-radius: 8px 0 0 8px;
-    color: #3F4752; }
-
-.mm_right {
-  display: inline-block;
-  padding: 12px; }
-  .mm_right:hover {
-    background: #BADA55;
-    border-radius: 0 8px 8px 0;
-    color: #3F4752; }
+  .mm_plate .mm_left {
+    display: inline-block;
+    padding: 12px;
+    width: 200px;
+    transition: 0.4s; }
+    .mm_plate .mm_left:hover {
+      background: #BADA55;
+      color: #3F4752;
+      opacity: 1; }
+  .mm_plate .mm_right {
+    display: inline-block;
+    padding: 12px;
+    transition: 0.4s; }
+    .mm_plate .mm_right:hover {
+      background: #BADA55;
+      color: #3F4752;
+      opacity: 1; }
 
 .navbar-laravel {
   background-color: #FFF;
@@ -261,7 +261,7 @@ input:-webkit-autofill:focus {
     background: #BADA55;
     color: #3F4752; }
 
-.moc_btn {
+.agent_info_btn {
   background: #BADA55;
   color: #3F4752; }
 
@@ -285,7 +285,8 @@ input:-webkit-autofill:focus {
   font-size: 0.95rem;
   color: #6b7b9d; }
   .data_table tbody .table_icon {
-    margin: 0 4px; }
+    margin: 0 4px;
+    cursor: pointer; }
 
 .login_header {
   background: #3F4752;

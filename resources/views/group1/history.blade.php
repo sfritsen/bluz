@@ -31,7 +31,7 @@
                     <tbody>
                         @foreach($entry_history as $row)
                         <tr>
-                            <td>{{ $row->created_at }}</td>
+                            <td>{{ date("M d Y h:i:s a", strtotime($row->created_at)) }}</td>
                             <td>{{ $row->phone_number }}</td>
                             <td>{{ $row->lynx }}</td>
                             <td>{{ $row->chat_session_id }}</td>

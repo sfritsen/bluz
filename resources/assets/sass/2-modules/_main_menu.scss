@@ -19,34 +19,38 @@
 .mm_plate {
     background: $mm_plate_bg_color;
     display: inline-block;
-    margin: 8px;
+    margin: $mm_plate_margin;
     text-align: left;
     border-radius: $mm_plate_border_radius;
-    border: 2px solid $mm_plate_border_color;
+    border: $mm_plate_border_size solid $mm_plate_border_color;
     font-size: $mm_plate_font_size;
 
     a:link, a:active, a:hover, a:visited {
         color: $mm_plate_font_color;
     }
-}
-.mm_left {
-    display: inline-block;
-    padding: 12px;
-    width: 200px;
 
-    &:hover {
-        background: $mm_hover_bg_color;
-        border-radius: $mm_plate_border_radius 0 0 $mm_plate_border_radius;
-        color: $mm_hover_font_color;
+    .mm_left {
+        display: inline-block;
+        padding: $mm_plate_padding;
+        width: $mm_left_width;
+        transition: $mm_hover_transition;
+    
+        &:hover {
+            background: $mm_hover_bg_color;
+            color: $mm_hover_font_color;
+            opacity: 1;
+        }
     }
-}
-.mm_right {
-    display: inline-block;
-    padding: 12px;
-
-    &:hover {
-        background: $mm_hover_bg_color;
-        border-radius: 0 $mm_plate_border_radius $mm_plate_border_radius 0;
-        color: $mm_hover_font_color;
+    
+    .mm_right {
+        display: inline-block;
+        padding: $mm_plate_padding;
+        transition: $mm_hover_transition;
+    
+        &:hover {
+            background: $mm_hover_bg_color;
+            color: $mm_hover_font_color;
+            opacity: 1;
+        }
     }
 }

@@ -17,7 +17,6 @@
     <a href="" class="nounderline"><div class="sidebar_item">Surveys</div></a>
     <a href="" class="nounderline"><div class="sidebar_item">QCE</div></a>
     <a href="" class="nounderline"><div class="sidebar_item">Time Mgnt</div></a>
-    <a href="" class="nounderline"><div class="sidebar_item">Echo</div></a>
 </div>
 <div class="sidebar_group">
     <hr class="sidebar_break">
