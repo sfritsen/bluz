@@ -16,17 +16,37 @@
     text-align: center;
 }
 
-.mm_card {
-    background: $mm_card_bg_color;
+.mm_plate {
+    background: $mm_plate_bg_color;
     display: inline-block;
-    text-align: left;
-    width: 300px;
     margin: 8px;
+    text-align: left;
+    border-radius: $mm_plate_border_radius;
+    border: 2px solid $mm_plate_border_color;
+    font-size: $mm_plate_font_size;
 
-    .card-header {
-        background: $mm_card_head_bg_color;
-        color: $mm_card_head_font_color;
-        text-transform: uppercase;
-        font-size: $mm_card_head_font_size;
+    a:link, a:active, a:hover, a:visited {
+        color: $mm_plate_font_color;
+    }
+}
+.mm_left {
+    display: inline-block;
+    padding: 12px;
+    width: 200px;
+
+    &:hover {
+        background: $mm_hover_bg_color;
+        border-radius: $mm_plate_border_radius 0 0 $mm_plate_border_radius;
+        color: $mm_hover_font_color;
+    }
+}
+.mm_right {
+    display: inline-block;
+    padding: 12px;
+
+    &:hover {
+        background: $mm_hover_bg_color;
+        border-radius: 0 $mm_plate_border_radius $mm_plate_border_radius 0;
+        color: $mm_hover_font_color;
     }
 }
