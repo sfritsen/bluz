@@ -62,7 +62,7 @@ if($emp_id !== "")
 		// $agent_info = "<span class=\"deco_text\">Agent </span> : ".$row['known_as']." ".$row['last_name']."&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"deco_text\">Manager</span> : ".$row['manager_name'];
 		$agent_info = "<div class=\"agent_info_cage\">".
 						$row['known_as']." ".$row['last_name']." / ".$row['position_code_title']."<br>".
-						$row['manager_name'].
+						$row['manager_name']." (Manager)".
 						"</div>";
 	}
 }

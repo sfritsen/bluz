@@ -27,11 +27,6 @@ input:-webkit-autofill:focus,  {
     border:1px solid $input_border_color !important;
 }
 
-// Marks the input with a left border red
-.required {
-    border-left: 2px solid $input_required;
-}
-
 // Custom checkboxes and radios
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before,
 .custom-radio .custom-control-input:checked~.custom-control-label::before {
@@ -40,4 +35,14 @@ input:-webkit-autofill:focus,  {
 .custom-control-input:checked~.custom-control-label::before {
     color: $input_check_radio_color;
     background-color: $input_check_radio_bg;
+}
+
+// Marks the input with a left border red
+.required {
+    border-left: 2px solid $input_required;
+}
+
+// Sets vertical margin for stacked selects in the same container
+.spaced_select {
+    margin-bottom: 4px;
 }

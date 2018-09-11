@@ -19,12 +19,12 @@
                         <div class="col-2">
                             <input type="text" name="agent_id" id="agent_id" class="form-control required" placeholder="Agent ID" value="{{ old('agent_id') }}" required autofocus>
                         </div>
-                        <div class="col-1">
+                        <div class="col-sm-auto">
                             <button id="smtp_address" class="btn moc_btn" value="">Message</button>
                             <input type="hidden" id="open_moc" value="" />
                         </div>
-                        <div class="col agent_info_cage">
-                            <span id="show_agent_info" class="show_agent_info"></span>
+                        <div class="col-sm-auto">
+                            <div id="show_agent_info"></div>
                         </div>
                     </div>
                 </div>
@@ -107,22 +107,18 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <select class="form-control required" name="cat_box_1" id="cat_box_1" required>
+                            <select class="form-control spaced_select required" name="cat_box_1" id="cat_box_1" required>
                                 <option value="" disabled selected hidden>Category 1</option>
                                 @foreach($cat_lvl1 as $lvl1)
                                     <option value="{{ $lvl1->lvl1_id }}" {{(old('cat_box_1') == $lvl1->lvl1_id?'selected':'')}} >{{ $lvl1->lvl1_menu_item }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="col">
-                            <select class="form-control required" name="cat_box_2" id="cat_box_2" required>
+                            <select class="form-control spaced_select required" name="cat_box_2" id="cat_box_2" required>
                                 <option value="" disabled selected hidden>Category 2</option>
                                 @foreach($cat_lvl2 as $lvl2)
                                     <option value="{{ $lvl2->lvl2_id }}" data-chained="{{ $lvl2->lvl1_id }}" {{(old('cat_box_2') == $lvl2->lvl2_id?'selected':'')}} >{{ $lvl2->lvl2_menu_item }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="col">
                             <select class="form-control required" name="cat_box_3" id="cat_box_3" required>
                                 <option value="" disabled selected hidden>Category 3</option>
                                 @foreach($cat_lvl3 as $lvl3)
@@ -130,14 +126,13 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="col">
+                            <textarea style="height: 100%;" class="form-control" name="additional_notes" id="additional_notes" rows="3" placeholder="Additional Notes">{{ old('additional_notes') }}</textarea>
+                        </div>
                     </div>
                 </div>
 
                 <hr>
-
-                <div class="form-group">
-                    <textarea class="form-control" name="additional_notes" id="additional_notes" rows="3" placeholder="Additional Notes">{{ old('additional_notes') }}</textarea>
-                </div>
 
                 <div class="form-group">
                     <button type="submit" class="btn form_btn">Submit</button> 
