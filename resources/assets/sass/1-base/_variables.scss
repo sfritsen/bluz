@@ -31,7 +31,7 @@ $logo_icon_color:                   $pri_accent_color;
 
 // Spinner
 $sp_color:                          $sec_accent_color;
-$sp_bg_color:                       lighten($sp_color, 70%);
+$sp_bg_color:                       $sec_light_color;
 
 // Main Menu
 $mm_head_bg:                        $sec_accent_color;
