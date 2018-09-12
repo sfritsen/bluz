@@ -37,4 +37,5 @@
     <a href="" class="nounderline"><div class="sidebar_item">Entry History</div></a>
     <a href="" class="nounderline"><div class="sidebar_item">Activity</div></a>
     <a href="" class="nounderline"><div class="sidebar_item">Search</div></a>
+    <a href="{!! url('/category_boxes'); !!}" class="nounderline"><div class="sidebar_item">Category Boxes</div></a>
 </div>

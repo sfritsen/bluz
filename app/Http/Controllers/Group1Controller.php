@@ -17,26 +17,21 @@ class Group1Controller extends Controller
     private $gl_group_id = "2";
     private $gl_data_table = "data_group1";
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
+        // Restrict access to logged in user
         $this->middleware('auth');
-        $this->group_name = Groups::where('label', $this->gl_group_label)->first();
+        // Fetches the group data for use in this controller
+        $group = Groups::GroupData($this->gl_group_label)->first();
+        $this->group_name = $group['name'];
+        $this->group_route = $group['entry_route'];
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function entry()
     {
-        // Gets the groups name based on the label
-        $data['group'] = $this->group_name;
+        // Sets group name to pass into view
+        $data['section_title'] = $this->group_name;
+        $data['main_route'] = $this->group_route;
 
         // Category boxes.  Group_id and type
         $data['cat_lvl1'] = Category_boxes::Box($this->gl_group_id, '1')->get();
@@ -122,8 +117,9 @@ class Group1Controller extends Controller
 
     public function history()
     {
-        // Gets the groups name based on the label
-        $data['group'] = $this->group_name;
+        // Sets group name to pass into view
+        $data['section_title'] = $this->group_name;
+        $data['main_route'] = $this->group_route;
 
         // Get todays and yesterdays stat count
         $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
