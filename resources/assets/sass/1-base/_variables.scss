@@ -87,7 +87,9 @@ $sb_hover_bg_color:                 $pri_accent_color;
 $sb_hover_font_color:               $sb_bg_color;
 $sb_break_margin:                   2px;
 $sb_break_color:                    lighten($sb_bg_color, 8%);
-$sb_count_font_size:                1.8rem;
+$sb_stat_text_font_size:            0.8rem;
+$sb_stat_count_font_size:           0.8rem;
+$sb_stat_padding:                   2px 8px;
 
 // Tables
 $table_title_font_size:             1.1rem;

@@ -29,8 +29,18 @@
         opacity: 1;
     }
 }
-.sidebar_count {
-    font-size: $sb_count_font_size;
+.sidebar_statistics {
+    color: $sb_item_font_color;
+    text-transform: uppercase;
+    padding: $sb_stat_padding;
+
+    .sidebar_stat_text {
+        font-size: $sb_stat_text_font_size;
+    }
+    .sidebar_stat_count {
+        font-size: $sb_stat_count_font_size;
+        text-align: right;
+    }
 }
 .sidebar_break {
     background-color: $sb_break_color;

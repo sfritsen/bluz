@@ -56,37 +56,11 @@ class Group1Controller extends Controller
         ])
         ->orderBy('lvl3_menu_item')->get();
 
-        $data['dd_incident_type'] = DD_menus::where([
-            ['active', '=', '1'],
-            ['group_id', '=', $this->gl_group_id],
-            ['parent_id', '=', '2'],
-            ['type', '=', '3'],
-        ])
-        ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
-
-        $data['dd_resolution'] = DD_menus::where([
-            ['active', '=', '1'],
-            ['group_id', '=', $this->gl_group_id],
-            ['parent_id', '=', '3'],
-            ['type', '=', '3'],
-        ])
-        ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
-
-        $data['dd_troubleshooting'] = DD_menus::where([
-            ['active', '=', '1'],
-            ['group_id', '=', $this->gl_group_id],
-            ['parent_id', '=', '5'],
-            ['type', '=', '3'],
-        ])
-        ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
-
-        $data['dd_equip_type'] = DD_menus::where([
-            ['active', '=', '1'],
-            ['group_id', '=', $this->gl_group_id],
-            ['parent_id', '=', '8'],
-            ['type', '=', '3'],
-        ])
-        ->orderBy('menu_text')->pluck('menu_id', 'menu_text');
+        // Get dropdown menus. Second param is the parent_id
+        $data['dd_incident_type'] = DD_menus::GetMenu($this->gl_group_id, '2')->pluck('menu_id', 'menu_text');
+        $data['dd_resolution'] = DD_menus::GetMenu($this->gl_group_id, '3')->pluck('menu_id', 'menu_text');
+        $data['dd_troubleshooting'] = DD_menus::GetMenu($this->gl_group_id, '5')->pluck('menu_id', 'menu_text');
+        $data['dd_equip_type'] = DD_menus::GetMenu($this->gl_group_id, '8')->pluck('menu_id', 'menu_text');
 
         // Query for entry log data
         $data['entry_log'] = Data_group1::
@@ -96,10 +70,12 @@ class Group1Controller extends Controller
                 ['data_group1.created_at', 'like', date("Y-m-d") . '%']
             ])
             ->select('data_group1.*', 'dd_menus.menu_text')
+            ->orderBy('created_at', 'desc')
             ->get();
 
-        // Count the results
-        $data['entry_count'] = $data['entry_log']->count();
+        // Get todays and yesterdays stat count
+        $data['entry_count_today'] = $data['entry_log']->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Load the view and pass $data
         return view('group1/entry_form', $data);
@@ -162,18 +138,18 @@ class Group1Controller extends Controller
         // Gets the groups name based on the label
         $data['group'] = $this->group_name;
 
-        // Query for entry log data stats
-        $data['entry_count'] = Data_group1::where([
-            ['user_id', Auth::user()->id],
-            ['created_at', 'like', date("Y-m-d") . '%']
-            ])->count();
+        // Get todays and yesterdays stat count
+        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Gets the history for the selected user
         $data['entry_history'] = Data_group1::
             join('dd_menus', $this->gl_data_table.'.incident_type', '=', 'dd_menus.menu_id')
             ->where('data_group1.user_id', Auth::user()->id)
             ->select('data_group1.*', 'dd_menus.menu_text')
+            ->orderBy('created_at', 'desc')
             ->get();
+
         // Count the results
         $data['history_count'] = $data['entry_history']->count();
 

@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @if ($entry_count > 0)
+            @if ($history_count > 0)
                 <table class="table table-hover data_table">
                     <thead>
                         <tr>

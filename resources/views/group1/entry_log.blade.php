@@ -1,4 +1,4 @@
-@if ($entry_count > 0)
+@if ($entry_count_today > 0)
     <table class="table table-hover data_table">
         <thead>
             <tr>

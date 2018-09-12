@@ -181,7 +181,7 @@ $(document).ready(function(){
     $('#smtp_address, #echo').hide();
 
     // Agent ID Fetcher, not with your teeth though
-    $("#agent_id").focusout(function(){
+    $("#agent_id").change(function(){
 
         var agent_info = $("#agent_id").val();
 

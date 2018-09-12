@@ -210,8 +210,15 @@ a:hover, .btn-link:hover {
     color: #3F4752;
     opacity: 1; }
 
-.sidebar_count {
-  font-size: 1.8rem; }
+.sidebar_statistics {
+  color: #FFF;
+  text-transform: uppercase;
+  padding: 2px 8px; }
+  .sidebar_statistics .sidebar_stat_text {
+    font-size: 0.8rem; }
+  .sidebar_statistics .sidebar_stat_count {
+    font-size: 0.8rem;
+    text-align: right; }
 
 .sidebar_break {
   background-color: #515b69;

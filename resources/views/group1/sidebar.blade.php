@@ -1,13 +1,25 @@
-<div class="logo">
-    <a class="logo_text" href="{{ url('/') }}">
-        <i class="fas fa-leaf logo_icon"></i> {{ config('app.name', 'Laravel') }}
-    </a>
-</div>
+@include('partials/sidebar_logo')
 
 <div class="sidebar_group">
-    <div class="sidebar_title">My Stats</div>
-    <div class="sidebar_item sidebar_count">{{ $entry_count }}</div>
+    <div class="sidebar_title">My Statistics</div>
+    <div class="row sidebar_statistics">
+        <div class="col">
+            <div class="sidebar_stat_text">Today</div>
+        </div>
+        <div class="col">
+            <div class="sidebar_stat_count">{{ $entry_count_today }}</div>
+        </div>
+    </div>
+    <div class="row sidebar_statistics">
+        <div class="col">
+            <div class="sidebar_stat_text">Yesterday</div>
+        </div>
+        <div class="col">
+            <div class="sidebar_stat_count">{{ $entry_count_yesterday }}</div>
+        </div>
+    </div>
 </div>
+
 <div class="sidebar_group">
     <hr class="sidebar_break">
     <div class="sidebar_title">User Menu</div>
