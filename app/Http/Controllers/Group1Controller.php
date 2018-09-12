@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Data_group1;
 use App\Groups;
 use App\DD_menus;
+use App\Category_boxes;
 use Auth;
 
 class Group1Controller extends Controller
@@ -37,24 +38,10 @@ class Group1Controller extends Controller
         // Gets the groups name based on the label
         $data['group'] = $this->group_name;
 
-        // Drop menu item population
-        $data['cat_lvl1'] = DB::table('cat_box_lvl1')->where([
-            ['lvl1_group', '=', $this->gl_group_id],
-            ['lvl1_active', '=', '1'],
-        ])
-        ->orderBy('lvl1_menu_item')->get();
-
-        $data['cat_lvl2'] = DB::table('cat_box_lvl2')->where([
-            ['lvl2_group', '=', $this->gl_group_id],
-            ['lvl2_active', '=', '1'],
-        ])
-        ->orderBy('lvl2_menu_item')->get();
-
-        $data['cat_lvl3'] = DB::table('cat_box_lvl3')->where([
-            ['lvl3_group', '=', $this->gl_group_id],
-            ['lvl3_active', '=', '1'],
-        ])
-        ->orderBy('lvl3_menu_item')->get();
+        // Category boxes.  Group_id and type
+        $data['cat_lvl1'] = Category_boxes::Box($this->gl_group_id, '1')->get();
+        $data['cat_lvl2'] = Category_boxes::Box($this->gl_group_id, '2')->get();
+        $data['cat_lvl3'] = Category_boxes::Box($this->gl_group_id, '3')->get();
 
         // Get dropdown menus. Second param is the parent_id
         $data['dd_incident_type'] = DD_menus::GetMenu($this->gl_group_id, '2')->pluck('menu_id', 'menu_text');

@@ -111,19 +111,19 @@
                             <select class="form-control spaced_select required" name="cat_box_1" id="cat_box_1" required>
                                 <option value="" disabled selected hidden>Category 1</option>
                                 @foreach($cat_lvl1 as $lvl1)
-                                    <option value="{{ $lvl1->lvl1_id }}" {{(old('cat_box_1') == $lvl1->lvl1_id?'selected':'')}} >{{ $lvl1->lvl1_menu_item }}</option>
+                                    <option value="{{ $lvl1->id }}" {{(old('cat_box_1') == $lvl1->id?'selected':'')}} >{{ $lvl1->cat1_label }}</option>
                                 @endforeach
                             </select>
                             <select class="form-control spaced_select required" name="cat_box_2" id="cat_box_2" required>
                                 <option value="" disabled selected hidden>Category 2</option>
                                 @foreach($cat_lvl2 as $lvl2)
-                                    <option value="{{ $lvl2->lvl2_id }}" data-chained="{{ $lvl2->lvl1_id }}" {{(old('cat_box_2') == $lvl2->lvl2_id?'selected':'')}} >{{ $lvl2->lvl2_menu_item }}</option>
+                                    <option value="{{ $lvl2->id }}" data-chained="{{ $lvl2->is_under }}" {{(old('cat_box_2') == $lvl2->id?'selected':'')}} >{{ $lvl2->cat2_label }}</option>
                                 @endforeach
                             </select>
                             <select class="form-control required" name="cat_box_3" id="cat_box_3" required>
                                 <option value="" disabled selected hidden>Category 3</option>
                                 @foreach($cat_lvl3 as $lvl3)
-                                    <option value="{{ $lvl3->lvl3_id }}" data-chained="{{ $lvl3->lvl2_id }}" {{(old('cat_box_3') == $lvl3->lvl3_id?'selected':'')}} >{{ $lvl3->lvl3_menu_item }}</option>
+                                    <option value="{{ $lvl3->id }}" data-chained="{{ $lvl3->is_under }}" {{(old('cat_box_3') == $lvl3->id?'selected':'')}} >{{ $lvl3->cat3_label }}</option>
                                 @endforeach
                             </select>
                         </div>
