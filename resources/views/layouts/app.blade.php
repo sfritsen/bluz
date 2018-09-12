@@ -72,9 +72,12 @@
                 <main class="py-3">
                     @yield('content')
                 </main>
+
+                {{-- Include the footer container --}}
+                @include('partials/footer')
             </div>
         </div>
     </div>
-
+    
 </body>
 </html>

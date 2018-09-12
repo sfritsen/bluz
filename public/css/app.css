@@ -314,3 +314,12 @@ input:-webkit-autofill:focus {
 .agent_info_cage {
   font-size: 12px;
   margin-right: 10px; }
+
+.footer {
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 10px 0; }
+  .footer hr {
+    margin: 6px; }
+  .footer .divider {
+    margin: 0 10px; }

@@ -16,5 +16,8 @@
     </div>
 </div>
 
+{{-- Include the footer container --}}
+@include('partials/footer')
+
 </body>
 </html>
