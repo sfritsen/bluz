@@ -15,6 +15,10 @@ class CreatePermissionsTable extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->tinyInteger('sys_admin')->default('0')->unsigned();
+            $table->tinyInteger('group1_entry')->default('0')->unsigned();
+            $table->tinyInteger('group1_admin')->default('0')->unsigned();
             $table->timestamps();
         });
     }
