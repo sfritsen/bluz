@@ -22,6 +22,7 @@ class CreateCategoryBoxTable extends Migration
             $table->string('cat2_label')->default('-');
             $table->string('cat3_label')->default('-');
             $table->string('cat4_label')->default('-');
+            $table->tinyInteger('active')->unsigned()->default('1');
             $table->timestamps();
         });
     }

@@ -21,8 +21,8 @@ class CreateDdMenusTable extends Migration
             $table->integer('parent_id');
             $table->string('menu_text');
             $table->tinyInteger('active')->unsigned();
-            $table->integer('dd_last_edit_time');
-            $table->integer('dd_last_edit_by');
+            // $table->integer('dd_last_edit_time');
+            // $table->integer('dd_last_edit_by');
             $table->timestamps();
         });
     }

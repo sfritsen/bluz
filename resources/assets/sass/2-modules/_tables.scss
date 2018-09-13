@@ -22,7 +22,12 @@
         font-size: $tbody_font_size;
         color: $tbody_font_color;
 
+        td {
+            padding: $tbody_row_padding;
+        }
+
         .table_icon {
+            font-size: $tbody_icon_size;
             margin: $tbody_icon_margin;
             cursor: pointer;
         }

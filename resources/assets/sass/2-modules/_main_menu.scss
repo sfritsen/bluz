@@ -6,9 +6,10 @@
 .mm_logo_text {
     color: $mm_font_color;
     font-size: $mm_font_size;
+    margin-top: 0;
 }
 .mm_logo_icon {
-    font-size: $mm_icon_size;
+    // font-size: $mm_icon_size;
     color: $mm_icon_color;
 }
 .mm_form_cage {

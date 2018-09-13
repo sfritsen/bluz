@@ -15,6 +15,10 @@ class CategoryBoxController extends Controller
 
     public function index()
     {
-        return view('admin/category_box');
+        // Sets title and route
+        $data['section_title'] = 'Category Box Administration';
+        $data['section_route'] = 'category_boxes';
+
+        return view('admin/category_box', $data);
     }
 }

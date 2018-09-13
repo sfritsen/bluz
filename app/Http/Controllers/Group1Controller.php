@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 use App\Data_group1;
 use App\Groups;
 use App\DD_menus;
@@ -13,40 +13,42 @@ use Auth;
 class Group1Controller extends Controller
 {
     // Set global variables which are used below
-    private $gl_group_label = "group1";
-    private $gl_group_id = "2";
-    private $gl_data_table = "data_group1";
+    // Set the group_id from the value given
+    private $group_id = "1";
 
     public function __construct()
     {
         // Restrict access to logged in user
         $this->middleware('auth');
+
         // Fetches the group data for use in this controller
-        $group = Groups::GroupData($this->gl_group_label)->first();
+        $group = Groups::GroupData($this->group_id)->first();
         $this->group_name = $group['name'];
+        $this->group_db_table = $group['db_table'];
         $this->group_route = $group['entry_route'];
+        $this->group_label = $group['label'];
     }
 
     public function entry()
     {
-        // Sets group name to pass into view
+        // Sets title and route
         $data['section_title'] = $this->group_name;
-        $data['main_route'] = $this->group_route;
+        $data['section_route'] = $this->group_route;
 
         // Category boxes.  Group_id and type
-        $data['cat_lvl1'] = Category_boxes::Box($this->gl_group_id, '1')->get();
-        $data['cat_lvl2'] = Category_boxes::Box($this->gl_group_id, '2')->get();
-        $data['cat_lvl3'] = Category_boxes::Box($this->gl_group_id, '3')->get();
+        $data['cat_lvl1'] = Category_boxes::Box($this->group_id, '1')->get();
+        $data['cat_lvl2'] = Category_boxes::Box($this->group_id, '2')->get();
+        $data['cat_lvl3'] = Category_boxes::Box($this->group_id, '3')->get();
 
         // Get dropdown menus. Second param is the parent_id
-        $data['dd_incident_type'] = DD_menus::GetMenu($this->gl_group_id, '2')->pluck('menu_id', 'menu_text');
-        $data['dd_resolution'] = DD_menus::GetMenu($this->gl_group_id, '3')->pluck('menu_id', 'menu_text');
-        $data['dd_troubleshooting'] = DD_menus::GetMenu($this->gl_group_id, '5')->pluck('menu_id', 'menu_text');
-        $data['dd_equip_type'] = DD_menus::GetMenu($this->gl_group_id, '8')->pluck('menu_id', 'menu_text');
+        $data['dd_incident_type'] = DD_menus::GetMenu($this->group_id, '2')->pluck('menu_id', 'menu_text');
+        $data['dd_resolution'] = DD_menus::GetMenu($this->group_id, '3')->pluck('menu_id', 'menu_text');
+        $data['dd_troubleshooting'] = DD_menus::GetMenu($this->group_id, '5')->pluck('menu_id', 'menu_text');
+        $data['dd_equip_type'] = DD_menus::GetMenu($this->group_id, '8')->pluck('menu_id', 'menu_text');
 
         // Query for entry log data
         $data['entry_log'] = Data_group1::
-            join('dd_menus', $this->gl_data_table.'.incident_type', '=', 'dd_menus.menu_id')
+            join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.menu_id')
             ->where([
                 ['data_group1.user_id', Auth::user()->id],
                 ['data_group1.created_at', 'like', date("Y-m-d") . '%']
@@ -117,9 +119,9 @@ class Group1Controller extends Controller
 
     public function history()
     {
-        // Sets group name to pass into view
+        // Sets title and route
         $data['section_title'] = $this->group_name;
-        $data['main_route'] = $this->group_route;
+        $data['section_route'] = $this->group_route;
 
         // Get todays and yesterdays stat count
         $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
@@ -127,7 +129,7 @@ class Group1Controller extends Controller
 
         // Gets the history for the selected user
         $data['entry_history'] = Data_group1::
-            join('dd_menus', $this->gl_data_table.'.incident_type', '=', 'dd_menus.menu_id')
+            join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.menu_id')
             ->where('data_group1.user_id', Auth::user()->id)
             ->select('data_group1.*', 'dd_menus.menu_text')
             ->orderBy('created_at', 'desc')

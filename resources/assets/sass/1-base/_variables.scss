@@ -24,10 +24,20 @@ $link_active:                       darken($pri_accent_color, 20%);
 $link_hover:                        $sec_accent_color;
 
 // Logo
-$logo_padding:                      10px 0;
+$logo_padding:                      0;
+$logo_bg_color:                     darken($sec_accent_color, 8%);
+$logo_font_family:                  $pri_font_family;
 $logo_font_color:                   lighten($sec_accent_color, 50%);
-$logo_font_size:                    1.6rem;
+$logo_font_size:                    1.8rem;
 $logo_icon_color:                   $pri_accent_color;
+
+// Navbar
+$nav_main_bg_color:                 $pri_light_color;
+$nav_brand_bg_color:                darken($sec_accent_color, 8%);
+$nav_brand_font_color:              $logo_font_color;
+$nav_brand_font_size:               1.4rem;
+$nav_brand_icon_size:               1.6rem;
+$nav_box_shadow:                    $box-shadow;
 
 // Spinner
 $sp_color:                          $sec_accent_color;
@@ -39,7 +49,7 @@ $mm_head_padding:                   25px 0;
 $mm_font_color:                     $logo_font_color;
 $mm_font_size:                      2.5rem;
 $mm_icon_color:                     $logo_icon_color;
-$mm_icon_size:                      4rem;
+$mm_icon_size:                      80px;
 $mm_form_margin:                    25px 0;
 $mm_plate_bg_color:                 lighten($sec_accent_color, 30%);
 $mm_plate_border_color:             lighten($sec_accent_color, 45%);
@@ -63,29 +73,18 @@ $login_icon_size:                   4rem;
 $login_font_color:                  $logo_font_color;
 $login_font_size:                   2.5rem;
 
-// Navbar
-$nav_bg_color:                      $pri_light_color;
-$nav_brand_color:                   $pri_font_color;
-$nav_brand_font_size:               1.2rem;
-$nav_box_shadow:                    $box-shadow;
-
 // Sidebars
 $sb_bg_color:                       $sec_accent_color;
-$sb_max_width:                      250px;
-$sb_min_width:                      160px;
-$sb_group_bottom_margin:            8px;
 $sb_title_font_size:                0.9rem;
-$sb_title_icon_size:                1rem;
 $sb_title_font_color:               lighten($pri_accent_color, 20%);
-$sb_title_text_trans:               uppercase;
-$sb_padding:                        5px 8px;
-$sb_border_radius:                  6px;
+$sb_title_text_transform:           uppercase;
+$sb_padding:                        4px 10px;
 $sb_item_font_size:                 0.9rem;
 $sb_item_font_color:                $pri_light_color;
 $sb_item_transition:                0.4s;
 $sb_hover_bg_color:                 $pri_accent_color;
 $sb_hover_font_color:               $sb_bg_color;
-$sb_break_margin:                   2px;
+$sb_break_margin:                   10px 0;
 $sb_break_color:                    lighten($sb_bg_color, 8%);
 $sb_stat_text_font_size:            0.8rem;
 $sb_stat_count_font_size:           0.8rem;
@@ -100,9 +99,11 @@ $thead_font_color:                  $pri_font_color;
 $thead_font_size:                   0.75rem;
 $thead_font_transform:              uppercase;
 $thead_font_weight:                 normal;
-$tbody_icon_margin:                 0 4px;
-$tbody_font_size:                   0.95rem;
+$tbody_row_padding:                 6px;
+$tbody_font_size:                   0.9rem;
 $tbody_font_color:                  $pri_font_color;
+$tbody_icon_margin:                 0 4px;
+$tbody_icon_size:                   1rem;
 
 // Forms
 $input_bg_color:                    $pri_light_color;

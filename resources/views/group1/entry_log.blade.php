@@ -19,8 +19,8 @@
                 <td>{{ $row->chat_session_id }}</td>
                 <td>{{ $row->menu_text }}</td>
                 <td align="right">
-                    <i class="fas fa-edit table_icon" title="Edit"></i> 
-                    <i class="fas fa-info-circle table_icon" title="Details" data-toggle="modal" data-target="#entry_details_modal"></i>
+                    <i class="material-icons table_icon" title="Edit Record">edit</i>
+                    <i class="material-icons table_icon" title="Entry Details" data-toggle="modal" data-target="#entry_details_modal">info</i>
                 </td>
             </tr>
             @endforeach

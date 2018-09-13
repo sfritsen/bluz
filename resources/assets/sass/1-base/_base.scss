@@ -21,3 +21,6 @@ body {
 	padding: 0 !important;
 	margin: 0 !important;
 }
+[role="main"] {
+	padding-top: 48px; /* Space for fixed navbar */
+}

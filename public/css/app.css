@@ -20,6 +20,10 @@ body {
   padding: 0 !important;
   margin: 0 !important; }
 
+[role="main"] {
+  padding-top: 48px;
+  /* Space for fixed navbar */ }
+
 a:link, a:visited, a:active {
   text-decoration: none !important;
   color: #86a524; }
@@ -28,22 +32,21 @@ a:hover, .btn-link:hover {
   text-decoration: none !important;
   color: #3F4752; }
 
-.logo {
-  padding: 10px 0; }
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+  font-size: 18px; }
 
-.logo_text:link,
-.logo_text:visited,
-.logo_text:active,
-.logo_text:hover {
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 1.6rem;
-  color: #c1c7cf;
-  text-decoration: none; }
-  .logo_text:link .logo_icon,
-  .logo_text:visited .logo_icon,
-  .logo_text:active .logo_icon,
-  .logo_text:hover .logo_icon {
-    color: #BADA55; }
+.material-icons.md-24 {
+  font-size: 24px; }
+
+.material-icons.md-36 {
+  font-size: 36px; }
+
+.material-icons.md-48 {
+  font-size: 48px; }
+
+.material-icons.md-85 {
+  font-size: 85px; }
 
 .spinner_overlay {
   display: block;
@@ -132,10 +135,10 @@ a:hover, .btn-link:hover {
 
 .mm_logo_text {
   color: #c1c7cf;
-  font-size: 2.5rem; }
+  font-size: 2.5rem;
+  margin-top: 0; }
 
 .mm_logo_icon {
-  font-size: 4rem;
   color: #BADA55; }
 
 .mm_form_cage {
@@ -170,45 +173,82 @@ a:hover, .btn-link:hover {
       color: #3F4752;
       opacity: 1; }
 
-.navbar-laravel {
+.navbar_custom {
   background-color: #FFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); }
-
-.navbar-brand,
-.navbar-brand:link,
-.navbar-brand:active,
-.navbar-brand:visited,
-.navbar-brand:hover {
-  font-family: "Assistant", sans-serif;
-  font-size: 1.2rem;
-  color: #6b7b9d; }
+  .navbar_custom .navbar-brand,
+  .navbar_custom .navbar-brand:link,
+  .navbar_custom .navbar-brand:active,
+  .navbar_custom .navbar-brand:visited,
+  .navbar_custom .navbar-brand:hover {
+    font-family: "Assistant", sans-serif;
+    font-size: 1.4rem;
+    background-color: #2d333b;
+    color: #c1c7cf;
+    padding-top: 0.70rem;
+    padding-bottom: 0.70rem;
+    letter-spacing: 2px;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+    /* Adds divider to match up with fixed sidebar */ }
+    .navbar_custom .navbar-brand .logo_icon,
+    .navbar_custom .navbar-brand:link .logo_icon,
+    .navbar_custom .navbar-brand:active .logo_icon,
+    .navbar_custom .navbar-brand:visited .logo_icon,
+    .navbar_custom .navbar-brand:hover .logo_icon {
+      font-size: 1.6rem;
+      color: #BADA55;
+      margin-right: 6px; }
+  .navbar_custom .section_title {
+    font-size: 18px; }
 
 .sidebar {
   background: #3F4752;
-  max-width: 250px;
-  min-width: 160px; }
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  /* Behind the navbar */
+  padding: 48px 10px;
+  /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  /* Creates breakline */ }
+  .sidebar .nav-link {
+    font-size: 0.9rem;
+    color: #FFF;
+    padding: 4px 10px;
+    /* Overrides nav-link */
+    transition: 0.4s; }
+    .sidebar .nav-link:hover {
+      background: #BADA55;
+      color: #3F4752;
+      opacity: 1; }
 
-.sidebar_group {
-  margin-bottom: 8px; }
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */ }
+
+@supports (position: -webkit-sticky) or (position: sticky) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky; } }
+.material-icons {
+  vertical-align: text-bottom; }
+
+.sidebar .nav-link .material-icons {
+  margin-right: 8px;
+  color: #999999; }
 
 .sidebar_title {
   font-size: 0.9rem;
   color: #dceca9;
   text-transform: uppercase;
-  padding: 5px 8px; }
-  .sidebar_title .icon {
-    font-size: 1rem; }
-
-.sidebar_item {
-  font-size: 0.9rem;
-  color: #FFF;
-  padding: 5px 8px;
-  border-radius: 6px;
-  transition: 0.4s; }
-  .sidebar_item:hover {
-    background: #BADA55;
-    color: #3F4752;
-    opacity: 1; }
+  padding: 6px 0; }
 
 .sidebar_statistics {
   color: #FFF;
@@ -224,7 +264,7 @@ a:hover, .btn-link:hover {
   background-color: #515b69;
   border-color: #515b69;
   color: #515b69;
-  margin: 2px; }
+  margin: 10px 0; }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -289,9 +329,12 @@ input:-webkit-autofill:focus {
   font-weight: normal;
   text-transform: uppercase; }
 .data_table tbody {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #6b7b9d; }
+  .data_table tbody td {
+    padding: 6px; }
   .data_table tbody .table_icon {
+    font-size: 1rem;
     margin: 0 4px;
     cursor: pointer; }
 
