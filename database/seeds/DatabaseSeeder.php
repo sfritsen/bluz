@@ -14,11 +14,23 @@ class DatabaseSeeder extends Seeder
         // Seed sample group
         DB::table('groups')->insert([
             'label' => 'group1',
-            'name' => 'CE Network Support',
+            'name' => 'Group 1 Name',
             'db_table' => 'data_group1',
             'entry_route' => 'g1_entry',
             'admin_route' => 'g1_admin',
             'active' => '1',
+            'created_at' => (date("Y-m-d H:i:s")),
+            'updated_at' => (date("Y-m-d H:i:s")),
+        ]);
+
+        // Seed sample permissions for user_id 1
+        DB::table('permissions')->insert([
+            'user_id' => '1',
+            'sys_admin' => '0',
+            'g1_entry' => '1',
+            'g1_admin' => '1',
+            'g2_entry' => '1',
+            'g2_admin' => '0',
             'created_at' => (date("Y-m-d H:i:s")),
             'updated_at' => (date("Y-m-d H:i:s")),
         ]);
