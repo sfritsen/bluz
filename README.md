@@ -1,4 +1,4 @@
-### Bluz
+# Bluz
 Data collection and reporting
 
 ## Installation
@@ -14,6 +14,6 @@ Data collection and reporting
 * Group labels should be groupx where x is the groups id from the groups table.
 * Entry route should be in gx_entry where x is the groups id.
 
-# Add a new group
+## Add a new group
 1. Enter the group information from the Groups Administration section
 2. ...
