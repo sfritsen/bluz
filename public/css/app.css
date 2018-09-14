@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Assistant|Roboto+Condensed");
+@import url("https://fonts.googleapis.com/css?family=Assistant:400,700|Titillium+Web:600");
 html {
   font-size: 16px;
   height: 100%; }
@@ -199,7 +199,9 @@ a:hover, .btn-link:hover {
       color: #BADA55;
       margin-right: 6px; }
   .navbar_custom .section_title {
-    font-size: 18px; }
+    font-family: "Titillium Web", sans-serif;
+    font-size: 18px;
+    text-transform: uppercase; }
 
 .sidebar {
   background: #3F4752;
@@ -313,7 +315,8 @@ input:-webkit-autofill:focus {
   color: #3F4752; }
 
 .table_title {
-  font-size: 1.1rem;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.05rem;
   color: #6b7b9d;
   text-transform: capitalize; }
 

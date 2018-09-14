@@ -9,7 +9,7 @@
     <div class="container-fluid nopadding">
         <div class="row">
             <div class="col table_title">
-                <i class="material-icons md-24">history</i> My Entry History
+                <i class="material-icons md-24">history</i> History
             </div>
             <div class="col table_title_records">
                 {{ $history_count }} found

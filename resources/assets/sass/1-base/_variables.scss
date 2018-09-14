@@ -14,7 +14,7 @@ $box-shadow:                        0 2px 4px rgba(0, 0, 0, 0.04);
 
 // Typography
 $pri_font_family:                   'Assistant', sans-serif;
-$sec_font_family:                   'Roboto Condensed', sans-serif;
+$sec_font_family:                   'Titillium Web', sans-serif;
 $font_size_base:                    16px;
 $pri_font_size:                     0.95rem;
 $pri_font_color:                    #6b7b9d;
@@ -91,7 +91,8 @@ $sb_stat_count_font_size:           0.8rem;
 $sb_stat_padding:                   2px 8px;
 
 // Tables
-$table_title_font_size:             1.1rem;
+$table_title_font:                  $sec_font_family;
+$table_title_font_size:             1.05rem;
 $table_title_font_color:            $pri_font_color;
 $table_title_font_transform:        capitalize;
 $thead_bg_color:                    lighten($sec_accent_color, 60%);
