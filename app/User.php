@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -26,4 +28,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getPermissionAttribute()
+    {
+        // Get the current user id
+        $user_id = Auth::user()->id;
+
+        // Query the permissions
+        $permission = DB::table('permissions')->where('user_id', '=', $user_id)->first();
+
+        // Use
+        // Auth::user()->permissions->[permission]
+        return $permission;
+    }
 }
