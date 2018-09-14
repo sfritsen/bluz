@@ -16,4 +16,4 @@ Data collection and reporting
 
 ## Add a new group
 1. Enter the group information from the Groups Administration section
-2. ...
+2. Permissions table must have a default value of 0 for each column other than user_id

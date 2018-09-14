@@ -27,14 +27,17 @@ input:-webkit-autofill:focus,  {
     border:1px solid $input_border_color !important;
 }
 
-// Custom checkboxes and radios
+// Checkbox and radio unchecked state
+.custom-control-label:before {
+    background-color: $check_radio_bg;
+    border: 1px solid $check_radio_border_color;
+}
+
+// Checkboxes and radio checked state
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before,
 .custom-radio .custom-control-input:checked~.custom-control-label::before {
-    background-color: $input_check_radio_bg;
-}
-.custom-control-input:checked~.custom-control-label::before {
-    color: $input_check_radio_color;
-    background-color: $input_check_radio_bg;
+    background-color: $check_radio_bg_checked;
+    border: 1px solid $check_radio_border_color;
 }
 
 // Marks the input with a left border red

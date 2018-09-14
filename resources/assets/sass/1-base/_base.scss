@@ -24,3 +24,13 @@ body {
 [role="main"] {
 	padding-top: 48px; /* Space for fixed navbar */
 }
+
+// Base text links
+a:link, a:visited, a:active {
+    text-decoration: none !important;
+    color: $link_active;
+}
+a:hover, .btn-link:hover {
+    text-decoration: none !important;
+    color: $link_hover;
+}

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Permissions;
 
 class RegisterController extends Controller
 {
@@ -64,11 +65,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // Creates the new account
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // All table columns will have a default value of 0
+        // so only user_id will be needed which is taken from
+        // the $user that was just created
+        $permission = Permissions::create([
+            'user_id' => $user->id
+        ]);
+        
+        // Return the data just created to the session
+        return $user;
     }
 }

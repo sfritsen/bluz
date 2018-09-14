@@ -32,6 +32,11 @@ a:hover, .btn-link:hover {
   text-decoration: none !important;
   color: #3F4752; }
 
+.info_msg {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #6b7b9d; }
+
 /* Rules for sizing the icon. */
 .material-icons.md-18 {
   font-size: 18px; }
@@ -289,13 +294,14 @@ input:-webkit-autofill:focus {
   box-shadow: 0 0 0 0.2rem #BADA55;
   border: 1px solid #c1c7cf !important; }
 
+.custom-control-label:before {
+  background-color: #cccccc;
+  border: 1px solid #999999; }
+
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before,
 .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #3F4752; }
-
-.custom-control-input:checked ~ .custom-control-label::before {
-  color: #FFF;
-  background-color: #3F4752; }
+  background-color: #3F4752;
+  border: 1px solid #999999; }
 
 .required {
   border-left: 2px solid #e3342f; }

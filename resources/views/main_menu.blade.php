@@ -30,6 +30,8 @@
                             @endif
 
                         </div>
+                    @else
+                        <div class="info_msg">You do not have access to any groups.  Please contact your manager</div>
                     @endif
 
                 @endforeach

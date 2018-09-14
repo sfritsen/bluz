@@ -22,6 +22,9 @@ $line_height_base:                  1.6;
 $error_text:                        $red_color;
 $link_active:                       darken($pri_accent_color, 20%);
 $link_hover:                        $sec_accent_color;
+$info_msg_font_size:                1.1rem;
+$info_msg_font_style:               italic;
+$info_msg_font_color:               $pri_font_color;
 
 // Logo
 $logo_padding:                      0;
@@ -112,8 +115,9 @@ $input_border_color:                lighten($sec_accent_color, 50%);
 $input_font_color:                  $pri_font_color;
 $input_hover_focus_color:           $pri_accent_color;
 $input_required:                    $red_color;
-$input_check_radio_bg:                    $sec_accent_color;
-$input_check_radio_color:                 $pri_light_color;
+$check_radio_bg:                    darken($pri_light_color, 20%);
+$check_radio_border_color:          darken($check_radio_bg, 20%);
+$check_radio_bg_checked:            $sec_accent_color;
 
 // Buttons
 $fb_bg_color:                       $sec_accent_color;
