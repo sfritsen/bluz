@@ -3,34 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use App\Data_group1;
 use App\Groups;
 use App\DD_menus;
 use App\Category_boxes;
+use App\Permissions;
 use Auth;
 
 class Group1Controller extends Controller
 {
     // Set global variables which are used below
-    // Set the group_id from the value given
+    // Set the group_id from the id in groups
     private $group_id = "1";
 
     public function __construct()
     {
         // Restrict access to logged in user
-        $this->middleware('auth');
+        $this->middleware('auth'); 
 
         // Fetches the group data for use in this controller
         $group = Groups::GroupData($this->group_id)->first();
         $this->group_name = $group['name'];
         $this->group_db_table = $group['db_table'];
         $this->group_route = $group['entry_route'];
-        $this->group_label = $group['label'];
+        $this->group_label = $group['label'];  
     }
 
     public function entry()
     {
+        // Check permissions for access to this controller (group)
+        $myid = Auth::user()->id;
+        $check = Permissions::CheckAccess($myid, $this->group_route)->first();
+
+        if($check['g1_entry'] === 0){
+            abort(404);
+        }
+
         // Sets title and route
         $data['section_title'] = $this->group_name;
         $data['section_route'] = $this->group_route;

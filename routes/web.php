@@ -16,6 +16,7 @@ Auth::routes();
 // Base Routes
 Route::get('/', 'MainMenuController@index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout'); /* Need for link logout */
 Route::get('/main_menu', 'MainMenuController@index')->name('main_menu');
 
 // Group 1
