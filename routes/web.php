@@ -19,6 +19,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout'); /* Need for link logout */
 Route::get('/main_menu', 'MainMenuController@index')->name('main_menu');
 
+// Agent search
+Route::get('/agent_search','AgentSearchController@search')->name('agent_search');
+
 // Group 1
 Route::get('/g1_entry', 'Group1Controller@entry')->name('g1_entry');
 Route::post('/g1_submit_entry', 'Group1Controller@submit_entry')->name('g1_submit_entry');

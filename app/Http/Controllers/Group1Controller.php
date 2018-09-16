@@ -27,15 +27,15 @@ class Group1Controller extends Controller
         $this->group_name = $group['name'];
         $this->group_db_table = $group['db_table'];
         $this->group_route = $group['entry_route'];
-        $this->group_label = $group['label'];  
+        $this->group_label = $group['label'];
     }
 
     public function entry()
     {
         // Check permissions for access to this controller (group)
-        $myid = Auth::user()->id;
-        $check = Permissions::CheckAccess($myid, $this->group_route)->first();
+        $check = Permissions::CheckAccess()->first();
 
+        // If false, abort to 404
         if($check['g1_entry'] === 0){
             abort(404);
         }

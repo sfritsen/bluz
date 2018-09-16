@@ -13,10 +13,11 @@ class Permissions extends Model
         'user_id',
     ];
 
-    public function scopeCheckAccess($query, $user_id, $group_route)
+    public function scopeCheckAccess($query)
     {
-        // $user_id = Auth::user();
+        // Gets the logged in users id
+        $my_id = Auth::user()->id;
 
-        return $query->where('user_id', $user_id);
+        return $query->where('user_id', $my_id);
     }
 }

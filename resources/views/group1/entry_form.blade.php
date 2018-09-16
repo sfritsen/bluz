@@ -26,7 +26,8 @@
                                 <input type="hidden" id="open_moc" value="" />
                             </div>
                             <div class="col-sm-auto">
-                                <div id="show_agent_info"></div>
+                                <div class="agent_info_cage" id="show_agent_info"></div>
+                                <div class="agent_info_cage" id="show_manager_info"></div>
                             </div>
                         </div>
                     </div>
@@ -186,12 +187,16 @@
             var agent_info = $("#agent_id").val();
 
             $.ajax({
-                type: "post",
-                url: "includes/ajax_id.php",
-                data: "agent_id="+agent_info,
+                type: "get",
+                url: "{{ url('agent_search') }}",
+                data: {'search':agent_info},
                 dataType: 'json',
                 success: function(data){
-                    $("#show_agent_info").hide().html(data.agent_info).fadeIn();
+                    // Displays the returned agent information
+                    $("#show_agent_info").hide().html(data.employee_name+' / '+data.employee_title).slideDown();
+                    $("#show_manager_info").hide().html(data.employee_mgr_name).slideDown();
+
+                    // Sets the value of the hidden inputs for submission
                     $('#emp_info_name').val(data.employee_name);
                     $('#emp_info_id').val(data.employee_id);
                     $('#emp_info_city').val(data.employee_city);
@@ -200,6 +205,7 @@
                     $('#emp_info_title').val(data.employee_title);
                     $('#open_moc').val(data.smtp_address);
 
+                    // If an smtp_address is returned, show the moc button
                     if(!$("#open_moc").val())
                     {
                         $("#smtp_address, #echo").hide();
