@@ -48,9 +48,9 @@
                 <button type="submit" class="btn form_btn">
                     {{ __('Reset Password') }}
                 </button>
-                <button type="button" class="btn form_btn" onclick="location.href='{{ route('login') }}'">
-                    Cancelss
-                </button>
+                {{-- <button type="button" class="btn form_btn" onclick="location.href='{{ route('login') }}'">
+                    Cancel
+                </button> --}}
             </div>
         </div>
     </form>

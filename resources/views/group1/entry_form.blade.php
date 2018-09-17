@@ -20,15 +20,13 @@
                             <div class="col-2">
                                 <input type="text" name="agent_id" id="agent_id" class="form-control required" placeholder="Agent ID" value="{{ old('agent_id') }}" required autofocus>
                             </div>
-                            <div class="col-sm-auto">
+                            <div class="col-auto text-nowrap">
                                 <button type="button" id="smtp_address" class="btn agent_info_btn" value="">Message</button>
                                 <button type="button" id="echo" data-toggle="modal" data-target="#echo_modal" class="btn agent_info_btn" value="">Echo</button>
                                 <input type="hidden" id="open_moc" value="" />
                             </div>
-                            <div class="col-sm-auto">
-                                <div class="agent_info_cage" id="show_agent_info"></div>
-                                <div class="agent_info_cage" id="show_manager_info"></div>
-                            </div>
+                            <div class="col agent_info" id="show_agent_info"></div>
+                            <div class="col manager_info" id="show_manager_info"></div>
                         </div>
                     </div>
 
@@ -93,7 +91,7 @@
                             <div class="col">
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input" type="checkbox" name="client_no_ts" id="client_no_ts" value="{{ old('client_no_ts', 1) }}">
-                                    <label class="custom-control-label" for="client_no_ts">Client Unwilling / Unable to TS</label>
+                                    <label class="custom-control-label" for="client_no_ts">Client Unwilling / Unable to Troubleshoot</label>
                                 </div>
                             </div>
                             <div class="col">
@@ -167,19 +165,19 @@
     @include('group1/modal_entry_details')
 
     <script>
-    // Used to mark inputs as required if empty
-    $("input.required, select.required").change(function(){
-        field_val = $(this).val();
-        if(field_val == '') {
-            $(this).addClass('required');
-        } else {
-            $(this).removeClass('required');
-        }
-    });
-
     $(document).ready(function(){
         // On load stuff
-        $('#smtp_address, #echo').hide();
+        $('#smtp_address, #echo, #show_agent_info, #show_manager_info').hide();
+
+        // Used to mark inputs as required if empty
+        $("input.required, select.required").change(function(){
+            field_val = $(this).val();
+            if(field_val == '') {
+                $(this).addClass('required');
+            } else {
+                $(this).removeClass('required');
+            }
+        });
 
         // Agent ID Fetcher, not with your teeth though
         $("#agent_id").change(function(){
@@ -193,8 +191,8 @@
                 dataType: 'json',
                 success: function(data){
                     // Displays the returned agent information
-                    $("#show_agent_info").hide().html(data.employee_name+' / '+data.employee_title).slideDown();
-                    $("#show_manager_info").hide().html(data.employee_mgr_name).slideDown();
+                    $("#show_agent_info").hide().html('<div class="title">Agent Information</div>'+data.employee_name+' &#9679; '+data.employee_title).slideDown("slow");
+                    $("#show_manager_info").hide().html('<div class="title">Manager Information</div>'+data.employee_mgr_name).slideDown("slow");
 
                     // Sets the value of the hidden inputs for submission
                     $('#emp_info_name').val(data.employee_name);
@@ -208,11 +206,11 @@
                     // If an smtp_address is returned, show the moc button
                     if(!$("#open_moc").val())
                     {
-                        $("#smtp_address, #echo").hide();
+                        $("#smtp_address, #echo").fadeOut();
                     }
                     else
                     {
-                        $("#smtp_address, #echo").show();
+                        $("#smtp_address, #echo").fadeIn();
                     }
                 }
             });

@@ -5,19 +5,6 @@
     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
         @csrf
 
-        {{-- <div class="form-group row">
-
-            <div class="col">
-                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email Address" required autofocus>
-
-                @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div> --}}
-
         <div class="form-group row">
 
             <div class="col">

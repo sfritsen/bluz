@@ -26,7 +26,7 @@
 
 	.section_title {
 		font-family: $sec_font_family;
-		font-size: 18px;
-		text-transform: uppercase;
+		font-size: $nav_s_title_font_size;
+		text-transform: $nav_s_title_transform;
 	}
 }

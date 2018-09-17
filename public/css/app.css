@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Assistant:400,700|Titillium+Web:600");
+@import url("https://fonts.googleapis.com/css?family=Assistant:400,600|Source+Sans+Pro:600");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono");
 html {
   font-size: 16px;
   height: 100%; }
@@ -204,8 +205,8 @@ a:hover, .btn-link:hover {
       color: #BADA55;
       margin-right: 6px; }
   .navbar_custom .section_title {
-    font-family: "Titillium Web", sans-serif;
-    font-size: 18px;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1.1rem;
     text-transform: uppercase; }
 
 .sidebar {
@@ -264,7 +265,8 @@ a:hover, .btn-link:hover {
   .sidebar_statistics .sidebar_stat_text {
     font-size: 0.8rem; }
   .sidebar_statistics .sidebar_stat_count {
-    font-size: 0.8rem;
+    font-family: "Ubuntu Mono", monospace;
+    font-size: 0.85rem;
     text-align: right; }
 
 .sidebar_break {
@@ -321,7 +323,7 @@ input:-webkit-autofill:focus {
   color: #3F4752; }
 
 .table_title {
-  font-family: "Titillium Web", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 1.05rem;
   color: #6b7b9d;
   text-transform: capitalize; }
@@ -341,7 +343,7 @@ input:-webkit-autofill:focus {
   font-size: 0.9rem;
   color: #6b7b9d; }
   .data_table tbody td {
-    padding: 6px; }
+    padding: 6px 10px; }
   .data_table tbody .table_icon {
     font-size: 1rem;
     margin: 0 4px;
@@ -363,9 +365,15 @@ input:-webkit-autofill:focus {
 .login_form_cage {
   margin: 25px 0; }
 
-.agent_info_cage {
-  font-size: 12px;
-  margin-right: 10px; }
+.agent_info, .manager_info {
+  font-size: 0.78rem;
+  text-transform: capitalize;
+  padding: 0;
+  margin: 0 8px; }
+  .agent_info .title, .manager_info .title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase; }
 
 .footer {
   font-size: 0.8rem;

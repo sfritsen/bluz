@@ -21,7 +21,8 @@
                     <table class="table table-hover data_table">
                         <thead>
                             <tr>
-                                <th scopt="col">Submitted</th>
+                                <th scope="col">Submitted</th>
+                                <th scope="col">Agent</th>
                                 <th scope="col">Phone Number</th>
                                 <th scope="col">Lynx</th>
                                 <th scope="col">Chat ID</th>
@@ -33,13 +34,14 @@
                             @foreach($entry_history as $row)
                             <tr>
                                 <td>{{ date("M d Y h:i:s a", strtotime($row->created_at)) }}</td>
+                                <td>{{ $row->emp_info_name }}</td>
                                 <td>{{ $row->phone_number }}</td>
                                 <td>{{ $row->lynx }}</td>
                                 <td>{{ $row->chat_session_id }}</td>
                                 <td>{{ $row->menu_text }}</td>
                                 <td align="right">
-                                    <i class="fas fa-edit table_icon" title="Edit"></i> 
-                                    <i class="fas fa-info-circle table_icon" title="Details"></i>
+                                    <i class="material-icons table_icon" title="Edit Record">edit</i>
+                                    <i class="material-icons table_icon" title="Entry Details" data-toggle="modal" data-target="#entry_details_modal">info</i>
                                 </td>
                             </tr>
                             @endforeach

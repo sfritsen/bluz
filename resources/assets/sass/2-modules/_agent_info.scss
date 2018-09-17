@@ -1,5 +1,12 @@
-// File located in public/includes/ajax_id.php
-.agent_info_cage {
-	font-size: 12px;
-	margin-right: 10px;
+.agent_info, .manager_info {
+	font-size: $agent_info_font_size;
+	text-transform: capitalize;
+	padding: 0;
+	margin: 0 8px;
+
+	.title {
+		font-size: $agent_title_font_size;
+		font-weight: $agent_title_font_weight;
+		text-transform: uppercase;
+	}
 }

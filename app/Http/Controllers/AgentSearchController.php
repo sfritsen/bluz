@@ -15,8 +15,6 @@ class AgentSearchController extends Controller
 
     public function search(Request $request)
     {
-        $agent_data = "";
-
         $agent_data = DB::table('employee_data')->where('personnel_number', 'LIKE', '%'.$request->search.'%')->first();
 
         $emp_data = array(

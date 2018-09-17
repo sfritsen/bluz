@@ -14,7 +14,8 @@ $box-shadow:                        0 2px 4px rgba(0, 0, 0, 0.04);
 
 // Typography
 $pri_font_family:                   'Assistant', sans-serif;
-$sec_font_family:                   'Titillium Web', sans-serif;
+$sec_font_family:                   'Source Sans Pro', sans-serif;
+$mono_font_family:                  'Ubuntu Mono', monospace;
 $font_size_base:                    16px;
 $pri_font_size:                     0.95rem;
 $pri_font_color:                    #6b7b9d;
@@ -41,6 +42,8 @@ $nav_brand_font_color:              $logo_font_color;
 $nav_brand_font_size:               1.4rem;
 $nav_brand_icon_size:               1.6rem;
 $nav_box_shadow:                    $box-shadow;
+$nav_s_title_font_size:             1.1rem;
+$nav_s_title_transform:             uppercase;
 
 // Spinner
 $sp_color:                          $sec_accent_color;
@@ -89,8 +92,9 @@ $sb_hover_bg_color:                 $pri_accent_color;
 $sb_hover_font_color:               $sb_bg_color;
 $sb_break_margin:                   10px 0;
 $sb_break_color:                    lighten($sb_bg_color, 8%);
+$sb_stat_font_family:               $mono_font_family;
 $sb_stat_text_font_size:            0.8rem;
-$sb_stat_count_font_size:           0.8rem;
+$sb_stat_count_font_size:           0.85rem;
 $sb_stat_padding:                   2px 8px;
 
 // Tables
@@ -103,7 +107,7 @@ $thead_font_color:                  $pri_font_color;
 $thead_font_size:                   0.75rem;
 $thead_font_transform:              uppercase;
 $thead_font_weight:                 normal;
-$tbody_row_padding:                 6px;
+$tbody_row_padding:                 6px 10px;
 $tbody_font_size:                   0.9rem;
 $tbody_font_color:                  $pri_font_color;
 $tbody_icon_margin:                 0 4px;
@@ -118,6 +122,9 @@ $input_required:                    $red_color;
 $check_radio_bg:                    darken($pri_light_color, 20%);
 $check_radio_border_color:          darken($check_radio_bg, 20%);
 $check_radio_bg_checked:            $sec_accent_color;
+$agent_info_font_size:              0.78rem;
+$agent_title_font_weight:           600;
+$agent_title_font_size:             0.70rem;
 
 // Buttons
 $fb_bg_color:                       $sec_accent_color;
