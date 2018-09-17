@@ -166,6 +166,12 @@
 
     <script>
     $(document).ready(function(){
+        // Retrieves the entry details and loads it into modal_entry_details
+        $("#entry_details_modal").on("show.bs.modal", function(e) {
+            var link = $(e.relatedTarget);
+            $(this).find(".modal-body").load(link.attr("href"));
+        });
+
         // On load stuff
         $('#smtp_address, #echo, #show_agent_info, #show_manager_info').hide();
 

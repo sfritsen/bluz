@@ -149,4 +149,10 @@ class Group1Controller extends Controller
         // Load the view and pass $data
         return view('group1/history', $data);
     }
+
+    public function record_details(Request $request, $id)
+    {
+        $data['record'] = Data_group1::where('id', $id)->first();
+        return view('group1/entry_details', $data);
+    }
 }
