@@ -41,7 +41,7 @@
                                 <td>{{ $row->menu_text }}</td>
                                 <td align="right">
                                     <i class="material-icons table_icon" title="Edit Record">edit</i>
-                                    <i class="material-icons table_icon" title="Entry Details" data-toggle="modal" data-target="#entry_details_modal">info</i>
+                                    <i href="{{ url('g1_record_details/'.$row->id) }}" data-remote="false" class="material-icons table_icon" title="Entry Details" data-toggle="modal" data-target="#entry_details_modal">info</i>
                                 </td>
                             </tr>
                             @endforeach
@@ -51,5 +51,16 @@
             </div>
         </div>
     </div>
+
+    {{-- Make sure to add the modal --}}
+    @include('group1/modal_entry_details')
+
+    <script>
+    // Retrieves the entry details and loads it into modal_entry_details
+    $("#entry_details_modal").on("show.bs.modal", function(e) {
+        var link = $(e.relatedTarget);
+        $(this).find(".modal-body").load(link.attr("href"));
+    });
+    </script>
 
 @endsection

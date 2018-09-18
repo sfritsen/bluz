@@ -36,12 +36,6 @@
         <td>{{ $record->dd_troubleshooting }}</td>
     </tr>
     <tr>
-        <td class="section_label">Resolution</td>
-        <td>{{ $record->dd_resolution }}</td>
-        <td class="section_label"></td>
-        <td></td>
-    </tr>
-    <tr>
         <td class="section_label">Client Troubleshooting</td>
         <td>
             @if ($record->client_no_ts === 1)
@@ -58,6 +52,12 @@
                 No
             @endif
         </td>
+    </tr>
+    <tr>
+        <td class="section_label">Resolution</td>
+        <td>{{ $record->dd_resolution }}</td>
+        <td class="section_label"></td>
+        <td></td>
     </tr>
     <tr>
         <th colspan="4">Category</th>

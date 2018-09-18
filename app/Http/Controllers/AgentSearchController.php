@@ -23,17 +23,30 @@ class AgentSearchController extends Controller
         // Find the possible match
         $agent_data = DB::table('employee_data')->where('personnel_number', 'LIKE', '%'.$emp_id.'%')->first();
 
-        // Build array to pass back for the form data
-        $emp_data = array(
-            'agent_info'        => $agent_data->personnel_number,
-            'employee_name'     => $agent_data->first_name." ".$agent_data->last_name,
-            'employee_id'       => $agent_data->personnel_number,
-            'employee_city'     => $agent_data->work_address_city,
-            'employee_mgr_id'   => $agent_data->manager_personnel_number,
-            'employee_mgr_name' => $agent_data->manager_name,
-            'employee_title'    => $agent_data->position_code_title,
-            'smtp_address'      => $agent_data->smtp_address
-        );
+        if (isset($agent_data->personnel_number)) {
+            // If a personnel_number was found, build array to pass back for the form data
+            $emp_data = array(
+                'agent_info'        => $agent_data->personnel_number,
+                'employee_name'     => $agent_data->known_as." ".$agent_data->last_name,
+                'employee_id'       => $agent_data->personnel_number,
+                'employee_city'     => $agent_data->work_address_city,
+                'employee_mgr_id'   => $agent_data->manager_personnel_number,
+                'employee_mgr_name' => $agent_data->manager_name,
+                'employee_title'    => $agent_data->position_code_title,
+                'smtp_address'      => $agent_data->smtp_address
+            );
+        }else{
+            // Send back demo information if no record was found
+            $emp_data = array(
+                'agent_info'        => '00000000',
+                'employee_name'     => 'Demo Employee',
+                'employee_id'       => '00000000',
+                'employee_city'     => 'Demo City',
+                'employee_mgr_id'   => '00000000',
+                'employee_mgr_name' => 'Demo Employee',
+                'employee_title'    => 'Demo Employee'
+            );
+        }
 
         // Ship it off!
         return json_encode($emp_data);

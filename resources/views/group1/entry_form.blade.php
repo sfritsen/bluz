@@ -164,7 +164,7 @@
 
     <script>
     $(document).ready(function(){
-        // On load stuff
+        // Hide elements on page load
         $('#smtp_address, #echo, #show_agent_info, #show_manager_info').hide();
 
         // Used to mark inputs as required if empty
@@ -177,7 +177,7 @@
             }
         });
 
-        // Agent ID Fetcher, not with your teeth though
+        // Agent ID Fetcher 5000, not with your teeth though !
         $("#agent_id").change(function(){
 
             var agent_info = $("#agent_id").val();
@@ -214,13 +214,13 @@
             });
         });
 
-        // JQuery chain selects
+        // JQuery chained selects
         $(function(){
             $("#cat_box_2").chained("#cat_box_1");
             $("#cat_box_3").chained("#cat_box_2");
         });
 
-        // Opens MoC chat with found agent email
+        // Opens MoC chat with found agent smtp_address
         $("#smtp_address").click(function(){
             agent_email = document.getElementById("open_moc").value;
             window.location = "sip:"+ agent_email;
