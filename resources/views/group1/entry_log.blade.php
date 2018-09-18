@@ -29,3 +29,14 @@
         </tbody>
     </table>
 @endif
+
+{{-- Make sure to add the modal --}}
+@include('group1/modal_entry_details')
+
+<script>
+// Retrieves the entry details and loads it into modal_entry_details
+$("#entry_details_modal").on("show.bs.modal", function(e) {
+    var link = $(e.relatedTarget);
+    $(this).find(".modal-body").load(link.attr("href"));
+});
+</script>

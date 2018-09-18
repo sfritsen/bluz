@@ -4,15 +4,15 @@
     </tr>
     <tr>
         <td class="section_label">Name</td>
-        <td>{{ $record->emp_info_name." - ".$record->emp_info_id }}</td>
+        <td>{{ $record->emp_info_name }}</td>
         <td class="section_label">City</td>
         <td>{{ $record->emp_info_city }}</td>
     </tr>
     <tr>
+        <td class="section_label">Agent ID</td>
+        <td>{{ $record->emp_info_id }}</td>
         <td class="section_label">Manager</td>
         <td>{{ $record->emp_info_mgr_name }}</td>
-        <td class="section_label">Manager ID</td>
-        <td>{{ $record->emp_info_mgr_id }}</td>
     </tr>
     <tr>
         <th colspan="4">Record Details</th>
@@ -32,14 +32,32 @@
     <tr>
         <td class="section_label">Equipment</td>
         <td>{{ $record->dd_equip_type }}</td>
+        <td class="section_label">Troubleshooting</td>
+        <td>{{ $record->dd_troubleshooting }}</td>
+    </tr>
+    <tr>
         <td class="section_label">Resolution</td>
         <td>{{ $record->dd_resolution }}</td>
+        <td class="section_label"></td>
+        <td></td>
     </tr>
     <tr>
         <td class="section_label">Client Troubleshooting</td>
-        <td>{{ $record->client_no_ts }}</td>
+        <td>
+            @if ($record->client_no_ts === 1)
+                Yes
+            @else
+                No
+            @endif
+        </td>
         <td class="section_label">Invalid Insight</td>
-        <td>{{ $record->invalid_ref }}</td>
+        <td>
+            @if ($record->invalid_ref === 1)
+                Yes
+            @else
+                No
+            @endif
+        </td>
     </tr>
     <tr>
         <th colspan="4">Category</th>

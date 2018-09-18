@@ -172,6 +172,7 @@ class Group1Controller extends Controller
                 'dd_troubleshooting.menu_text as dd_troubleshooting'
             )
             ->first();
+
         return view('group1/entry_details', $data);
     }
 }

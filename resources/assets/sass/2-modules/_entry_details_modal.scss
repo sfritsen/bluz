@@ -10,13 +10,11 @@
     th {
         background: $erm_th_bg_color;
         text-transform: uppercase;
-        padding-top: $erm_padding;
-        padding-bottom: $erm_padding;
+        padding: $erm_padding 10px;
     }
 
     td {
-        padding-top: $erm_padding;
-        padding-bottom: $erm_padding;
+        padding: $erm_padding 10px;
     }
 
     .section_label {
