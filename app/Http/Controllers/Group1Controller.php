@@ -152,7 +152,13 @@ class Group1Controller extends Controller
 
     public function record_details(Request $request, $id)
     {
-        $data['record'] = Data_group1::where('id', $id)->first();
+        $data['record'] = Data_group1::
+            join('category_boxes as lvl1', $this->group_db_table.'.cat_box_1', '=', 'lvl1.id')
+            ->join('category_boxes as lvl2', $this->group_db_table.'.cat_box_2', '=', 'lvl2.id')
+            ->join('category_boxes as lvl3', $this->group_db_table.'.cat_box_3', '=', 'lvl3.id')
+            ->where('data_group1.id', $id)
+            ->select('data_group1.*', 'lvl1.cat1_label as category_1', 'lvl2.cat2_label as category_2', 'lvl3.cat3_label as category_3')
+            ->first();
         return view('group1/entry_details', $data);
     }
 }

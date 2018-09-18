@@ -1,0 +1,29 @@
+.modal .entry_details_modal {
+    background: $erm_bg_color;
+    border: 1px solid $erm_border_color;
+
+    .modal-header {
+        background: $erm_header_bg_color;
+        color: $pri_light_color;
+    }
+
+    .row1 {
+        background: $erm_row1_color;
+        padding: 4px 0;
+    }
+
+    .section_title {
+        background: lighten($pri_accent_color, 25%);
+        border: 1px solid $pri_accent_color;
+        border-radius: 8px;
+        text-transform: uppercase;
+        padding: 5px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    .section_label {
+        color: lighten($sec_accent_color, 35%);
+        font-weight: 600;
+    }
+}

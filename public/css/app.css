@@ -375,6 +375,27 @@ input:-webkit-autofill:focus {
     font-weight: 600;
     text-transform: uppercase; }
 
+.modal .entry_details_modal {
+  background: #F7F7F7;
+  border: 1px solid #3F4752; }
+  .modal .entry_details_modal .modal-header {
+    background: #a4adb9;
+    color: #FFF; }
+  .modal .entry_details_modal .row1 {
+    background: #FFF;
+    padding: 4px 0; }
+  .modal .entry_details_modal .section_title {
+    background: #e5f1be;
+    border: 1px solid #BADA55;
+    border-radius: 8px;
+    text-transform: uppercase;
+    padding: 5px;
+    margin-top: 4px;
+    margin-bottom: 4px; }
+  .modal .entry_details_modal .section_label {
+    color: #96a0ae;
+    font-weight: 600; }
+
 .footer {
   font-size: 0.8rem;
   text-align: center;

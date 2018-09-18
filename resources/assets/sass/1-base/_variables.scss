@@ -131,3 +131,10 @@ $fb_bg_color:                       $sec_accent_color;
 $fb_font_color:                     $sec_light_color;
 $fb_hover_bg_color:                 $pri_accent_color;
 $fb_hover_font_color:               $sec_accent_color;
+
+// Entry record modal
+$erm_bg_color:                      $body_bg;
+$erm_header_bg_color:               lighten($sec_accent_color, 40%);
+$erm_header_font_color:             $pri_light_color;
+$erm_border_color:                  $sec_accent_color;
+$erm_row1_color:                    $pri_light_color;
