@@ -381,19 +381,16 @@ input:-webkit-autofill:focus {
   .modal .entry_details_modal .modal-header {
     background: #a4adb9;
     color: #FFF; }
-  .modal .entry_details_modal .row1 {
-    background: #FFF;
-    padding: 4px 0; }
-  .modal .entry_details_modal .section_title {
+  .modal .entry_details_modal th {
     background: #e5f1be;
-    border: 1px solid #BADA55;
-    border-radius: 8px;
     text-transform: uppercase;
-    padding: 5px;
-    margin-top: 4px;
-    margin-bottom: 4px; }
+    padding-top: 5px;
+    padding-bottom: 5px; }
+  .modal .entry_details_modal td {
+    padding-top: 5px;
+    padding-bottom: 5px; }
   .modal .entry_details_modal .section_label {
-    color: #96a0ae;
+    color: #a4adb9;
     font-weight: 600; }
 
 .footer {

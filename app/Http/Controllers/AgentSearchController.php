@@ -15,8 +15,15 @@ class AgentSearchController extends Controller
 
     public function search(Request $request)
     {
-        $agent_data = DB::table('employee_data')->where('personnel_number', 'LIKE', '%'.$request->search.'%')->first();
+        // Parse $request->search to align with table employee_data personnel_number
+        $emp_id = preg_replace('~[a-z]~i','',$request->search);
+        $emp_id = str_pad($emp_id, 8, "0", STR_PAD_LEFT);
+        $emp_id = trim($emp_id);
 
+        // Find the possible match
+        $agent_data = DB::table('employee_data')->where('personnel_number', 'LIKE', '%'.$emp_id.'%')->first();
+
+        // Build array to pass back for the form data
         $emp_data = array(
             'agent_info'        => $agent_data->personnel_number,
             'employee_name'     => $agent_data->first_name." ".$agent_data->last_name,
@@ -28,6 +35,7 @@ class AgentSearchController extends Controller
             'smtp_address'      => $agent_data->smtp_address
         );
 
+        // Ship it off!
         return json_encode($emp_data);
     }
 }

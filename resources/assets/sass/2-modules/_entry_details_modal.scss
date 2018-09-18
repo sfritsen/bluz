@@ -4,26 +4,23 @@
 
     .modal-header {
         background: $erm_header_bg_color;
-        color: $pri_light_color;
+        color: $erm_header_font_color;
     }
 
-    .row1 {
-        background: $erm_row1_color;
-        padding: 4px 0;
-    }
-
-    .section_title {
-        background: lighten($pri_accent_color, 25%);
-        border: 1px solid $pri_accent_color;
-        border-radius: 8px;
+    th {
+        background: $erm_th_bg_color;
         text-transform: uppercase;
-        padding: 5px;
-        margin-top: 4px;
-        margin-bottom: 4px;
+        padding-top: $erm_padding;
+        padding-bottom: $erm_padding;
+    }
+
+    td {
+        padding-top: $erm_padding;
+        padding-bottom: $erm_padding;
     }
 
     .section_label {
-        color: lighten($sec_accent_color, 35%);
+        color: $erm_label_font_color;
         font-weight: 600;
     }
 }

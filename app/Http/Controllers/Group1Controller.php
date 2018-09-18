@@ -156,8 +156,21 @@ class Group1Controller extends Controller
             join('category_boxes as lvl1', $this->group_db_table.'.cat_box_1', '=', 'lvl1.id')
             ->join('category_boxes as lvl2', $this->group_db_table.'.cat_box_2', '=', 'lvl2.id')
             ->join('category_boxes as lvl3', $this->group_db_table.'.cat_box_3', '=', 'lvl3.id')
+            ->join('dd_menus as dd_incident_type', $this->group_db_table.'.incident_type', '=', 'dd_incident_type.menu_id')
+            ->join('dd_menus as dd_equip_type', $this->group_db_table.'.equip_type', '=', 'dd_equip_type.menu_id')
+            ->join('dd_menus as dd_resolution', $this->group_db_table.'.resolution', '=', 'dd_resolution.menu_id')
+            ->join('dd_menus as dd_troubleshooting', $this->group_db_table.'.troubleshooting', '=', 'dd_troubleshooting.menu_id')
             ->where('data_group1.id', $id)
-            ->select('data_group1.*', 'lvl1.cat1_label as category_1', 'lvl2.cat2_label as category_2', 'lvl3.cat3_label as category_3')
+            ->select(
+                'data_group1.*', 
+                'lvl1.cat1_label as category_1', 
+                'lvl2.cat2_label as category_2', 
+                'lvl3.cat3_label as category_3',
+                'dd_equip_type.menu_text as dd_equip_type',
+                'dd_incident_type.menu_text as dd_incident_type',
+                'dd_resolution.menu_text as dd_resolution',
+                'dd_troubleshooting.menu_text as dd_troubleshooting'
+            )
             ->first();
         return view('group1/entry_details', $data);
     }
