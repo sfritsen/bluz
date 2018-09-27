@@ -21,9 +21,9 @@
                                 <input type="text" name="agent_id" id="agent_id" class="form-control required" placeholder="Agent ID" value="{{ old('agent_id') }}" required autofocus>
                             </div>
                             <div class="col-auto text-nowrap">
-                                <button type="button" id="smtp_address" class="btn agent_info_btn" value="">Message</button>
-                                <button type="button" id="echo" data-toggle="modal" data-target="#echo_modal" class="btn agent_info_btn" value="">Echo</button>
-                                <input type="hidden" id="open_moc" value="" />
+                                <button type="button" id="smtp_address" class="btn small_btn slideleft bouncein" value="">Message</button>
+                                <button type="button" id="echo" data-toggle="modal" data-target="#echo_modal" class="btn small_btn slideleft bouncein" value="">Echo</button>
+                                <input type="hidden" id="open_moc" value="{{ old('open_moc') }}">
                             </div>
                             <div class="col agent_info" id="show_agent_info"></div>
                             <div class="col manager_info" id="show_manager_info"></div>
@@ -141,12 +141,12 @@
                     </div>
 
                     {{-- Store returned JSON data from agent search --}}
-                    <input type="hidden" name="emp_info_name" id="emp_info_name" value="" />
-                    <input type="hidden" name="emp_info_id" id="emp_info_id" value="" />
-                    <input type="hidden" name="emp_info_city" id="emp_info_city" value="" />
-                    <input type="hidden" name="emp_info_mgr_id" id="emp_info_mgr_id" value="" />
-                    <input type="hidden" name="emp_info_mgr_name" id="emp_info_mgr_name" value="" />
-                    <input type="hidden" name="emp_info_title" id="emp_info_title" value="" />
+                    <input type="hidden" name="emp_info_name" id="emp_info_name" value="">
+                    <input type="hidden" name="emp_info_id" id="emp_info_id" value="">
+                    <input type="hidden" name="emp_info_city" id="emp_info_city" value="">
+                    <input type="hidden" name="emp_info_mgr_id" id="emp_info_mgr_id" value="">
+                    <input type="hidden" name="emp_info_mgr_name" id="emp_info_mgr_name" value="">
+                    <input type="hidden" name="emp_info_title" id="emp_info_title" value="">
 
                 </form>
             </div>
@@ -154,7 +154,11 @@
 
         <div class="row">
             <div class="col">
-                @include('group1/entry_log')
+
+                @if ($entry_count_today > 0)
+                    @include('group1/entry_log')
+                @endif
+
             </div>
         </div>
     </div>
@@ -209,6 +213,12 @@
                     else
                     {
                         $("#smtp_address, #echo").fadeIn();
+                    }
+
+                    // If the field is made empty, clear values
+                    if(!$("#agent_id").val())
+                    {
+                        $("#show_agent_info, #show_manager_info").fadeOut();
                     }
                 }
             });

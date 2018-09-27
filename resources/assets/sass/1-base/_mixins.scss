@@ -1,0 +1,57 @@
+@mixin transition($in) {
+	transition:$in;
+	-webkit-transition:$in;
+	-moz-transition:$in;
+	-o-transition:$in;
+	-ms-transition:$in;
+}
+
+// Normal button style
+@mixin btn_style_normal($padding) {
+    text-transform: uppercase;
+	border-radius: $btn_radius;
+    padding: $padding;
+    cursor: pointer;
+	white-space: nowrap;
+	outline: none;
+	overflow: hidden;
+	box-shadow: $btn_shadow;
+	z-index: 1;
+}
+
+@mixin btn_slide($bg_color, $hover_color, $hover_font_color) {
+	&:before, &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        background: $hover_color; /* Hover background color */
+        border-radius: $btn_radius;
+        z-index: -1;
+        transform: translate3D(-101%,0,0); /* Move elements above button so they don't appear initially */
+        @include transition(all 0.5s ease);
+	}
+	
+	&:before{
+        background: $bg_color; /* Button default background color */
+        z-index: -2;
+        transform: translate3D(0,0,0);
+	}
+	
+	&:hover{
+		color: $hover_font_color;
+		
+		&:before {
+			transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important;
+		}
+    
+        &:after{
+			transform: translate3D(0,0,0);
+			transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important;
+            @include transition(all 0.5s ease);
+        }
+    }
+}

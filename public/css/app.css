@@ -226,9 +226,11 @@ a:hover, .btn-link:hover {
     color: #FFF;
     padding: 4px 10px;
     /* Overrides nav-link */
-    transition: 0.4s; }
+    transition: 0.4s;
+    border-radius: 12px; }
     .sidebar .nav-link:hover {
       background: #BADA55;
+      border-radius: 12px;
       color: #3F4752;
       opacity: 1; }
 
@@ -311,16 +313,121 @@ input:-webkit-autofill:focus {
 .spaced_select {
   margin-bottom: 4px; }
 
-.form_btn {
-  background: #3F4752;
-  color: #F7F7F7; }
-  .form_btn:hover {
+.form_btn, .form_btn:focus, .form_btn:active {
+  position: relative;
+  background: transparent;
+  border: 2px solid #b2bac4 !important;
+  color: #FFF;
+  /* Button text color */
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  border-radius: 25px;
+  padding: 8px 25px;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  z-index: 1;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease; }
+  .form_btn:before, .form_btn:after, .form_btn:focus:before, .form_btn:focus:after, .form_btn:active:before, .form_btn:active:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
     background: #BADA55;
+    /* Hover background color */
+    border-radius: 25px;
+    z-index: -1;
+    transform: translate3D(-101%, 0, 0);
+    /* Move elements above button so they don't appear initially */
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease; }
+  .form_btn:before, .form_btn:focus:before, .form_btn:active:before {
+    background: #8793a3;
+    /* Button default background color */
+    z-index: -2;
+    transform: translate3D(0, 0, 0); }
+  .form_btn:hover, .form_btn:focus:hover, .form_btn:active:hover {
     color: #3F4752; }
+    .form_btn:hover:before, .form_btn:focus:hover:before, .form_btn:active:hover:before {
+      transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important; }
+    .form_btn:hover:after, .form_btn:focus:hover:after, .form_btn:active:hover:after {
+      transform: translate3D(0, 0, 0);
+      transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important;
+      transition: all 0.5s ease;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease; }
 
-.agent_info_btn {
-  background: #BADA55;
-  color: #3F4752; }
+.small_btn {
+  position: relative;
+  background: transparent;
+  border: 1px solid #ccced1 !important;
+  font-size: 0.75rem;
+  color: #3F4752;
+  /* Button text color */
+  text-transform: uppercase;
+  border-radius: 25px;
+  padding: 8px 15px;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  z-index: 1;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease; }
+  .small_btn:before, .small_btn:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background: #BADA55;
+    /* Hover background color */
+    border-radius: 25px;
+    z-index: -1;
+    transform: translate3D(-101%, 0, 0);
+    /* Move elements above button so they don't appear initially */
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease; }
+  .small_btn:before {
+    background: #FFF;
+    /* Button default background color */
+    z-index: -2;
+    transform: translate3D(0, 0, 0); }
+  .small_btn:hover {
+    color: #FFF; }
+    .small_btn:hover:before {
+      transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important; }
+    .small_btn:hover:after {
+      transform: translate3D(0, 0, 0);
+      transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important;
+      transition: all 0.5s ease;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease; }
 
 .table_title {
   font-family: "Source Sans Pro", sans-serif;

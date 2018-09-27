@@ -1,13 +1,27 @@
-.form_btn {
-    background: $fb_bg_color;
-    color: $fb_font_color;
+// Primary form buttons
+.form_btn, .form_btn:focus, .form_btn:active {
+    // display: inline-block;
+    position: relative;
+    background: transparent;
+    border: 2px solid $fb_border_color !important;
+    color: $fb_font_color; /* Button text color */
+    font-size: 0.75rem;
 
-    &:hover {
-        background: $fb_hover_bg_color;
-        color: $fb_hover_font_color;
-    }
+    @include btn_style_normal(8px 25px);
+    @include transition(all 0.5s ease);
+    @include btn_slide($fb_bg_color, $fb_hover_bg_color, $fb_hover_font_color);
 }
-.agent_info_btn {
-    background: $fb_hover_bg_color;
-    color: $fb_hover_font_color;
+
+// Small form button
+.small_btn {
+    // display: inline-block;
+    position: relative;
+    background: transparent;
+    border: 1px solid $sm_btn_border_color !important;
+    font-size: 0.75rem;
+    color: $sm_btn_font_color; /* Button text color */
+
+    @include btn_style_normal(8px 15px);
+    @include transition(all 0.5s ease);
+    @include btn_slide($sm_btn_bg_color, $sm_btn_hover_bg_color, $sm_btn_hover_font_color);
 }

@@ -55,7 +55,7 @@ class Group1Controller extends Controller
         $data['dd_equip_type'] = DD_menus::GetMenu($this->group_id, '8')->pluck('menu_id', 'menu_text');
 
         // Query for entry log data
-        $data['entry_log'] = Data_group1::
+        $data['entry_records'] = Data_group1::
             join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.menu_id')
             ->where([
                 ['data_group1.user_id', Auth::user()->id],
@@ -65,11 +65,14 @@ class Group1Controller extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        // Sets the date format for the records shown
+        $data['entry_records_date_format'] = 'h:i:s a';
+
         // Get todays and yesterdays stat count
-        $data['entry_count_today'] = $data['entry_log']->count();
+        $data['entry_count_today'] = $data['entry_records']->count();
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
-        // Load the view and pass $data
+        // Load the view and pass it $data
         return view('group1/entry_form', $data);
     }
 
@@ -77,48 +80,41 @@ class Group1Controller extends Controller
     {
         // Validates the data
         $validateData = $request->validate([
-            'agent_id' => 'required',
-            'phone_number' => 'bail|required|numeric|digits:10',
-            'lynx' => 'bail|required|numeric|digits:10',
-            'chat_session_id' => 'required',
-            'incident_type' => 'required',
-            'equip_type' => 'required',
-            'resolution' => 'required',
-            'troubleshooting' => 'required',
-            'cat_box_1' => 'required',
-            'cat_box_2' => 'required',
-            'cat_box_3' => 'required',
+            'agent_id'              => 'required',
+            'phone_number'          => 'bail|required|numeric|digits:10',
+            'lynx'                  => 'bail|required|numeric|digits:10',
+            'chat_session_id'       => 'required',
+            'incident_type'         => 'required',
+            'equip_type'            => 'required',
+            'resolution'            => 'required',
+            'troubleshooting'       => 'required',
+            'cat_box_1'             => 'required',
+            'cat_box_2'             => 'required',
+            'cat_box_3'             => 'required',
         ]);
-
-        // Since notes are not manditory, write something if left blank
-        if (empty($request->additional_notes)) {
-            $additional_notes = "na";
-        }else{
-            $additional_notes = $request->additional_notes;
-        }
 
         // Saves the data to the table once it validates
         $g1 = new Data_group1;
-        $g1->user_id = Auth::user()->id;
-        $g1->emp_info_name = $request->emp_info_name;
-        $g1->emp_info_id = $request->emp_info_id;
-        $g1->emp_info_city = $request->emp_info_city;
-        $g1->emp_info_mgr_id = $request->emp_info_mgr_id;
-        $g1->emp_info_mgr_name = $request->emp_info_mgr_name;
-        $g1->emp_info_title = $request->emp_info_title;
-		$g1->phone_number = $request->phone_number;
-		$g1->lynx = $request->lynx;
-        $g1->chat_session_id = $request->chat_session_id;
-        $g1->incident_type = $request->incident_type;
-        $g1->equip_type = $request->equip_type;
-        $g1->resolution = $request->resolution;
-        $g1->troubleshooting = $request->troubleshooting;
-        $g1->client_no_ts = $request->input('client_no_ts', 0);
-        $g1->invalid_ref = $request->input('invalid_ref', 0);
-        $g1->cat_box_1 = $request->cat_box_1;
-        $g1->cat_box_2 = $request->cat_box_2;
-        $g1->cat_box_3 = $request->cat_box_3;
-        $g1->additional_notes = $additional_notes;
+        $g1->user_id                = Auth::user()->id;
+        $g1->emp_info_name          = $request->emp_info_name ?: 'na';
+        $g1->emp_info_id            = $request->emp_info_id ?: 'na';
+        $g1->emp_info_city          = $request->emp_info_city ?: 'na';
+        $g1->emp_info_mgr_id        = $request->emp_info_mgr_id ?: 'na';
+        $g1->emp_info_mgr_name      = $request->emp_info_mgr_name ?: 'na';
+        $g1->emp_info_title         = $request->emp_info_title ?: 'na';
+		$g1->phone_number           = $request->phone_number;
+		$g1->lynx                   = $request->lynx;
+        $g1->chat_session_id        = $request->chat_session_id;
+        $g1->incident_type          = $request->incident_type;
+        $g1->equip_type             = $request->equip_type;
+        $g1->resolution             = $request->resolution;
+        $g1->troubleshooting        = $request->troubleshooting;
+        $g1->client_no_ts           = $request->input('client_no_ts', 0);
+        $g1->invalid_ref            = $request->input('invalid_ref', 0);
+        $g1->cat_box_1              = $request->cat_box_1;
+        $g1->cat_box_2              = $request->cat_box_2;
+        $g1->cat_box_3              = $request->cat_box_3;
+        $g1->additional_notes       = $request->additional_notes ?: 'na';
         $g1->save();
         
         // Redirect after writing
@@ -136,15 +132,18 @@ class Group1Controller extends Controller
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Gets the history for the selected user
-        $data['entry_history'] = Data_group1::
+        $data['entry_records'] = Data_group1::
             join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.menu_id')
             ->where('data_group1.user_id', Auth::user()->id)
             ->select('data_group1.*', 'dd_menus.menu_text')
             ->orderBy('created_at', 'desc')
             ->get();
 
+        // Sets the date format for the records shown
+        $data['entry_records_date_format'] = 'M d Y h:i:s a';
+
         // Count the results
-        $data['history_count'] = $data['entry_history']->count();
+        $data['history_count'] = $data['entry_records']->count();
 
         // Load the view and pass $data
         return view('group1/history', $data);
@@ -152,6 +151,7 @@ class Group1Controller extends Controller
 
     public function record_details(Request $request, $id)
     {
+        // Gets the entire record for the supplied $id
         $data['record'] = Data_group1::
             join('category_boxes as lvl1', $this->group_db_table.'.cat_box_1', '=', 'lvl1.id')
             ->join('category_boxes as lvl2', $this->group_db_table.'.cat_box_2', '=', 'lvl2.id')

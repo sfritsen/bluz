@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\DB;
 use App\Data_group1;
 use App\Groups;
-use App\DD_menus;
+// use App\DD_menus;
 use App\Category_boxes;
 use Auth;
 
@@ -40,11 +39,18 @@ class Group1AdminController extends Controller
         $data['cat_lvl2'] = Category_boxes::Box($this->group_id, '2')->get();
         $data['cat_lvl3'] = Category_boxes::Box($this->group_id, '3')->get();
 
-        // Get todays and yesterdays stat count
+        // Get users today and yesterday stat count for the sidebar
         $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Load the view and pass $data
         return view('partials/category_boxes', $data);
+    }
+
+    public function category_boxes_fetch(Request $request)
+    {
+        $data = Category_boxes::FetchBox($this->group_id)->get();
+
+        return $data;
     }
 }

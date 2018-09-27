@@ -13,9 +13,11 @@
         color: $sb_item_font_color;
         padding: $sb_padding; /* Overrides nav-link */
         transition: $sb_item_transition;
+        border-radius: $sb_item_border_radius;
         
         &:hover {
             background: $sb_hover_bg_color;
+            border-radius: $sb_item_border_radius;
             color: $sb_hover_font_color;
             opacity: 1;
         }

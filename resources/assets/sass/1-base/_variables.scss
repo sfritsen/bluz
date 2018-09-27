@@ -88,6 +88,7 @@ $sb_padding:                        4px 10px;
 $sb_item_font_size:                 0.9rem;
 $sb_item_font_color:                $pri_light_color;
 $sb_item_transition:                0.4s;
+$sb_item_border_radius:             12px;
 $sb_hover_bg_color:                 $pri_accent_color;
 $sb_hover_font_color:               $sb_bg_color;
 $sb_break_margin:                   10px 0;
@@ -127,10 +128,18 @@ $agent_title_font_weight:           600;
 $agent_title_font_size:             0.70rem;
 
 // Buttons
-$fb_bg_color:                       $sec_accent_color;
-$fb_font_color:                     $sec_light_color;
+$btn_shadow:                        $box-shadow;
+$btn_radius:                        25px;
+$fb_bg_color:                       lighten($sec_accent_color, 30%);
+$fb_border_color:                   lighten($sec_accent_color, 45%);
+$fb_font_color:                     $pri_light_color;
 $fb_hover_bg_color:                 $pri_accent_color;
 $fb_hover_font_color:               $sec_accent_color;
+$sm_btn_bg_color:                   $pri_light_color;
+$sm_btn_border_color:               lighten($tri_light_color, 20%);
+$sm_btn_font_color:                 $sec_accent_color;
+$sm_btn_hover_bg_color:             $pri_accent_color;
+$sm_btn_hover_font_color:           $pri_light_color;
 
 // Entry record modal
 $erm_padding:                       5px;

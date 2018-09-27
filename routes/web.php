@@ -28,6 +28,7 @@ Route::post('/g1_submit_entry', 'Group1Controller@submit_entry')->name('g1_submi
 Route::get('/g1_history', 'Group1Controller@history')->name('g1_history');
 Route::get('/g1_record_details/{id}', 'Group1Controller@record_details')->name('g1_record_details');
 Route::get('/g1_cat_boxes', 'Group1AdminController@category_boxes')->name('g1_cat_boxes');
+Route::get('/g1_cat_boxes_fetch', 'Group1AdminController@category_boxes_fetch')->name('g1_cat_boxes_fetch');
 
 // Administration
 Route::get('/category_boxes', 'Admin\CategoryBoxController@index')->name('category_boxes');
