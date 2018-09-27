@@ -116,6 +116,7 @@ $tbody_icon_size:                   1rem;
 
 // Forms
 $input_bg_color:                    $pri_light_color;
+$input_border_radius:               6px;
 $input_border_color:                lighten($sec_accent_color, 50%);
 $input_font_color:                  $pri_font_color;
 $input_hover_focus_color:           $pri_accent_color;
@@ -130,14 +131,20 @@ $agent_title_font_size:             0.70rem;
 // Buttons
 $btn_shadow:                        $box-shadow;
 $btn_radius:                        25px;
+$fb_padding:                        8px 25px;
 $fb_bg_color:                       lighten($sec_accent_color, 30%);
 $fb_border_color:                   lighten($sec_accent_color, 45%);
+$fb_border_size:                    2px;
 $fb_font_color:                     $pri_light_color;
+$fb_font_size:                      0.75rem;
 $fb_hover_bg_color:                 $pri_accent_color;
 $fb_hover_font_color:               $sec_accent_color;
+$sm_btn_padding:                    8px 15px;
 $sm_btn_bg_color:                   $pri_light_color;
 $sm_btn_border_color:               lighten($tri_light_color, 20%);
+$sm_btn_border_size:                1px;
 $sm_btn_font_color:                 $sec_accent_color;
+$sm_btn_font_size:                  0.75rem;
 $sm_btn_hover_bg_color:             $pri_accent_color;
 $sm_btn_hover_font_color:           $pri_light_color;
 

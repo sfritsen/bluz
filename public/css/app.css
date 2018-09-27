@@ -222,17 +222,53 @@ a:hover, .btn-link:hover {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
   /* Creates breakline */ }
   .sidebar .nav-link {
+    position: relative;
+    background: transparent;
     font-size: 0.9rem;
     color: #FFF;
     padding: 4px 10px;
     /* Overrides nav-link */
-    transition: 0.4s;
-    border-radius: 12px; }
-    .sidebar .nav-link:hover {
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease; }
+    .sidebar .nav-link:before, .sidebar .nav-link:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
       background: #BADA55;
-      border-radius: 12px;
-      color: #3F4752;
-      opacity: 1; }
+      /* Hover background color */
+      border-radius: 0 25px 25px 0;
+      z-index: -1;
+      transform: translate3D(-101%, 0, 0);
+      /* Move elements above button so they don't appear initially */
+      transition: all 0.5s ease;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease; }
+    .sidebar .nav-link:before {
+      background: #3F4752;
+      /* Button default background color */
+      z-index: -2;
+      transform: translate3D(0, 0, 0); }
+    .sidebar .nav-link:hover {
+      color: #3F4752; }
+      .sidebar .nav-link:hover:before {
+        transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important; }
+      .sidebar .nav-link:hover:after {
+        transform: translate3D(0, 0, 0);
+        transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important;
+        transition: all 0.5s ease;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease; }
 
 .sidebar-sticky {
   position: relative;
@@ -286,7 +322,7 @@ input:-webkit-autofill:focus {
 .form-control {
   background: #FFF;
   border: 1px solid #c1c7cf;
-  border-radius: 8px;
+  border-radius: 6px;
   color: #6b7b9d; }
   .form-control::placeholder {
     color: #6b7b9d;
@@ -323,6 +359,7 @@ input:-webkit-autofill:focus {
   text-transform: uppercase;
   border-radius: 25px;
   padding: 8px 25px;
+  margin: 0 3px;
   cursor: pointer;
   white-space: nowrap;
   outline: none;
@@ -381,6 +418,7 @@ input:-webkit-autofill:focus {
   text-transform: uppercase;
   border-radius: 25px;
   padding: 8px 15px;
+  margin: 0 3px;
   cursor: pointer;
   white-space: nowrap;
   outline: none;

@@ -9,6 +9,7 @@
     <div class="container-fluid nopadding">
         <div class="row">
             <div class="col">
+
                 {{-- Include validation errors --}}
                 @include('partials/validation_errors')
 

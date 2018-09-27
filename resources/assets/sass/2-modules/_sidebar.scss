@@ -9,18 +9,14 @@
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1); /* Creates breakline */
 
     .nav-link {
+        position: relative;
+        background: transparent;
         font-size: $sb_item_font_size;
         color: $sb_item_font_color;
         padding: $sb_padding; /* Overrides nav-link */
-        transition: $sb_item_transition;
-        border-radius: $sb_item_border_radius;
-        
-        &:hover {
-            background: $sb_hover_bg_color;
-            border-radius: $sb_item_border_radius;
-            color: $sb_hover_font_color;
-            opacity: 1;
-        }
+
+        @include transition(all 0.5s ease);
+        @include sidebar_slide($sb_bg_color, $sb_hover_bg_color, $sb_hover_font_color);
     }
 }
 .sidebar-sticky {
