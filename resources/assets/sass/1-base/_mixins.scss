@@ -27,10 +27,14 @@
         background: $bg_color; /* Button default background color */
         z-index: -2;
         transform: translate3D(0,0,0);
-	}
+    }
 	
-	&:hover{
-		color: $hover_font_color;
+	&:hover {
+        color: $hover_font_color;
+
+        .material-icons {
+            color: $sb_hover_icon_color;
+        }
 		
 		&:before {
 			transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important;

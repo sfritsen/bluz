@@ -258,7 +258,9 @@ a:hover, .btn-link:hover {
       z-index: -2;
       transform: translate3D(0, 0, 0); }
     .sidebar .nav-link:hover {
-      color: #3F4752; }
+      color: #131518; }
+      .sidebar .nav-link:hover .material-icons {
+        color: #FFF; }
       .sidebar .nav-link:hover:before {
         transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important; }
       .sidebar .nav-link:hover:after {
