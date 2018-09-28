@@ -25,3 +25,18 @@
     @include transition(all 0.5s ease);
     @include btn_slide($sm_btn_bg_color, $sm_btn_hover_bg_color, $sm_btn_hover_font_color);
 }
+
+.modal_btn {
+    background: $fb_bg_color;
+    border: $fb_border_size solid $fb_border_color !important;
+    color: $fb_font_color;
+    font-size: $fb_font_size;
+
+    @include btn_style_normal($fb_padding);
+    @include transition(all 0.6s ease);
+
+    &:hover {
+        background: $fb_hover_bg_color;
+        color: $fb_hover_font_color;
+    }
+}

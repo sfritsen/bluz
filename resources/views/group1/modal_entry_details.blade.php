@@ -11,8 +11,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn form_btn">Edit</button>
-                <button type="button" class="btn form_btn" data-dismiss="modal">Close</button>
+                <button type="button" class="btn modal_btn">Edit</button>
+                <button type="button" class="btn modal_btn" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

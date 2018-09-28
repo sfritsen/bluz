@@ -59,7 +59,6 @@
 	outline: none;
 	overflow: hidden;
 	box-shadow: $btn_shadow;
-	z-index: 1;
 }
 
 @mixin btn_slide($bg_color, $hover_color, $hover_font_color) {

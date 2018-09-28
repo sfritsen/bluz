@@ -11,8 +11,8 @@
                 <p>Auto echo info will go here</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn form_btn" data-dismiss="modal">Close</button>
-                <button type="button" class="btn form_btn">Submit Echo</button>
+                <button type="button" class="btn modal_btn" data-dismiss="modal">Close</button>
+                <button type="button" class="btn modal_btn">Submit Echo</button>
             </div>
         </div>
     </div>
