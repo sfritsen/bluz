@@ -40,3 +40,14 @@
         color: $fb_hover_font_color;
     }
 }
+
+.table_btn {
+    background: white;
+    border: 1px solid lightgrey;
+    font-size: 10px;
+    color: grey;
+    padding: 4px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+}

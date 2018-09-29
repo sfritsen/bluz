@@ -572,6 +572,16 @@ input:-webkit-autofill:focus {
     background: #BADA55;
     color: #3F4752; }
 
+.table_btn {
+  background: white;
+  border: 1px solid lightgrey;
+  font-size: 10px;
+  color: grey;
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase; }
+
 .table_title {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.05rem;

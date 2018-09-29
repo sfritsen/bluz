@@ -18,12 +18,13 @@ class Category_boxes extends Model
         ]);
     }
 
-    public function scopeAllBoxItems($query, $group_id, $type)
+    public function scopeNonDeletedItems($query, $group_id, $type)
     {
         return $query->where([
+            ['active', '<=', '1'],
             ['group_id', '=', $group_id],
             ['type', '=', $type],
-        ]);
+        ])->orderBy('cat1_label', 'asc');
     }
 
     public function scopeFetchBox($query, $group_id)

@@ -35,7 +35,7 @@ class Group1AdminController extends Controller
         $data['section_route'] = 'g1_cat_boxes';
 
         // Category boxes.  Group_id and type
-        $data['cat_lvl1'] = Category_boxes::AllBoxItems($this->group_id, '1')->get();
+        $data['cat_lvl1'] = Category_boxes::NonDeletedItems($this->group_id, '1')->get();
 
         // Get users today and yesterday stat count for the sidebar
         $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
@@ -95,6 +95,20 @@ class Group1AdminController extends Controller
 
         // Return the encoded array
         return json_encode($item_data);
+    }
+
+    public function category_boxes_delete(Request $request, $id)
+    {
+        // Saves the change
+        $del = Category_boxes::find($id);
+        $del->active = '9';
+        $del->save();
+
+        // Reformat the timestamp for sending
+        $updated = date("Y-m-d H:i:s", strtotime($del->updated_at));
+
+        // Return new date
+        return $updated;
     }
 
     // public function category_boxes_fetch(Request $request)

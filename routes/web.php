@@ -30,6 +30,7 @@ Route::get('/g1_record_details/{id}', 'Group1Controller@record_details')->name('
 Route::get('/g1_cat_boxes', 'Group1AdminController@category_boxes')->name('g1_cat_boxes');
 Route::get('/g1_cat_boxes_edit/{id}/{state}', 'Group1AdminController@category_boxes_edit')->name('g1_cat_boxes_edit');
 Route::get('/g1_cat_boxes_save', 'Group1AdminController@category_boxes_save')->name('g1_cat_boxes_save');
+Route::get('/g1_cat_boxes_delete/{id}', 'Group1AdminController@category_boxes_delete')->name('g1_cat_boxes_delete');
 
 // Administration
 Route::get('/category_boxes', 'Admin\CategoryBoxController@index')->name('category_boxes');
