@@ -44,9 +44,9 @@ class Group1Controller extends Controller
         $data['section_route'] = $this->group_route;
 
         // Category boxes.  Group_id and type
-        $data['cat_lvl1'] = Category_boxes::Box($this->group_id, '1')->get();
-        $data['cat_lvl2'] = Category_boxes::Box($this->group_id, '2')->get();
-        $data['cat_lvl3'] = Category_boxes::Box($this->group_id, '3')->get();
+        $data['cat_lvl1'] = Category_boxes::Box($this->group_id, '1')->orderBy('cat1_label', 'asc')->get();
+        $data['cat_lvl2'] = Category_boxes::Box($this->group_id, '2')->orderBy('cat2_label', 'asc')->get();
+        $data['cat_lvl3'] = Category_boxes::Box($this->group_id, '3')->orderBy('cat3_label', 'asc')->get();
 
         // Get dropdown menus. Second param is the parent_id
         $data['dd_incident_type'] = DD_menus::GetMenu($this->group_id, '2')->pluck('menu_id', 'menu_text');

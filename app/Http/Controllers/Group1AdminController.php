@@ -28,14 +28,19 @@ class Group1AdminController extends Controller
         $this->group_label = $group['label'];
     }
 
-    public function category_boxes()
+    public function category_boxes($type, $is_under)
     {
         // Sets title and route
         $data['section_title'] = 'Category Box Administration';
-        $data['section_route'] = 'g1_cat_boxes';
+        $data['section_route'] = 'g1_cat_boxes/'.$type.'/'.$is_under;
 
-        // Category boxes.  Group_id and type
-        $data['cat_lvl1'] = Category_boxes::NonDeletedItems($this->group_id, '1')->get();
+        // Include type and is_under in data
+        $data['type'] = $type;
+        $data['next_level'] = $type + 1;
+        $data['is_under'] = $is_under;
+
+        // Category boxes.  Group_id, type, is_under
+        $data['category_items'] = Category_boxes::NonDeletedItems($this->group_id, $type, $is_under)->get();
 
         // Get users today and yesterday stat count for the sidebar
         $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
@@ -68,15 +73,43 @@ class Group1AdminController extends Controller
 
     public function category_boxes_save(Request $request)
     {
+        // Set recieved paramaters into easy to use variables
+        $item = $request->item;
+        $type = $request->type;
+        $is_under = $request->is_under;
+
+        // Figure out the field values based on what was passed
+        if ($type === '1') {
+            $cat1_label = $item;
+            $cat2_label = '-';
+            $cat3_label = '-';
+            $cat4_label = '-';
+        }elseif ($type === '2') {
+            $cat1_label = '-';
+            $cat2_label = $item;
+            $cat3_label = '-';
+            $cat4_label = '-';
+        }elseif ($type === '3') {
+            $cat1_label = '-';
+            $cat2_label = '-';
+            $cat3_label = $item;
+            $cat4_label = '-';
+        }elseif ($type === '4') {
+            $cat1_label = '-';
+            $cat2_label = '-';
+            $cat3_label = '-';
+            $cat4_label = $item;
+        }
+
         // Saves the item
         $item = new Category_boxes;
         $item->group_id = '1';
-        $item->type = '1';
-        $item->is_under = '0';
-        $item->cat1_label = $request->item;
-        $item->cat2_label = '-';
-        $item->cat3_label = '-';
-        $item->cat4_label = '-';
+        $item->type = $type;
+        $item->is_under = $is_under;
+        $item->cat1_label = $cat1_label;
+        $item->cat2_label = $cat2_label;
+        $item->cat3_label = $cat3_label;
+        $item->cat4_label = $cat4_label;
         $item->active = '1';
         $item->save();
 

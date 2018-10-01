@@ -7,7 +7,7 @@
         </a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap ">
-                <a class="nav-link section_title" href="{{ route($section_route) }}">{{ $section_title }}</a>
+                <a class="nav-link section_title" href="{{ url($section_route) }}">{{ $section_title }}</a>
             </li>
         </ul>
         

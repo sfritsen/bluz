@@ -9,6 +9,11 @@
     <div class="container-fluid nopadding">
         <div class="row">
             <div class="col">
+                <a href="{{ url('g1_cat_boxes/1/0') }}">Category Main</a> &#9679; <a href="">Trash Bin</a> &#9679; <a href="">Another Item</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 To add a new item, navigate to the section you want to add the item too and enter the value in the field below.
             </div>
         </div>
@@ -16,6 +21,9 @@
             <div class="col">
                 <div class="form-group">
                     <input type="text" id="new_item" class="form-control" placeholder="Add New Item" value="{{ old('new_item') }}" aria-describedby="newHelpBlock" autofocus>
+                    <input type="hidden" id="type" value="{{ $type }}">
+                    <input type="hidden" id="is_under" value="{{ $is_under }}">
+                    <small>Tip! After entering a value, press TAB then ENTER</small>
                 </div>
             </div>
             <div class="col-auto">
@@ -39,15 +47,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($cat_lvl1 as $lvl1)
-                        <tr id="{{ $lvl1->id }}">
-                            <td><a href="{{ url('g1_cat_boxes') }}">{{ $lvl1->cat1_label }}</a></td>
-                            <td>{{ $lvl1->created_at }}</td>
-                            <td><span id="updated_val_{{ $lvl1->id }}">{{ $lvl1->updated_at }}</span></td>
-                            <td><button type="button" class="btn table_btn del_btn" value="{{ $lvl1->id }}">Delete</button></td>
+                        @foreach($category_items as $item)
+
+                        {{-- Figure out which level we're on and set the proper label --}}
+                        <?php 
+                        if ($item->cat1_label !== "-"){
+                            $item_label = $item->cat1_label;
+                        }elseif ($item->cat2_label !== "-"){
+                            $item_label = $item->cat2_label;
+                        }elseif ($item->cat3_label !== "-"){
+                            $item_label = $item->cat3_label;
+                        }elseif ($item->cat4_label !== "-"){
+                            $item_label = $item->cat4_label;
+                        }
+                        ?>
+
+                        <tr id="{{ $item->id }}">
+                            <td><a href="{{ url('g1_cat_boxes/'.$next_level.'/'.$item->id) }}">{{ $item_label }}</a></td>
+                            <td>{{ $item->created_at }}</td>
+                            <td><span id="updated_val_{{ $item->id }}">{{ $item->updated_at }}</span></td>
+                            <td align="right"><button type="button" class="btn table_btn del_btn" value="{{ $item->id }}">Delete</button></td>
                             <td align="right">
                                 <?php
-                                if($lvl1->active === 1) {
+                                if($item->active === 1) {
                                     $state = "checked";
                                 }else{
                                     $state = "";
@@ -55,7 +77,7 @@
                                 ?>
 
                                 <label class="switch switch_type1" role="switch">
-                                    <input type="checkbox" class="switch__toggle" value="{{ $lvl1->id }}" <?php echo $state; ?>>
+                                    <input type="checkbox" class="switch__toggle" value="{{ $item->id }}" <?php echo $state; ?>>
                                     <span class="switch__label"></span>
                                 </label>
 
@@ -76,12 +98,14 @@
 
             // Gets the value of item
             var item = $("#new_item").val();
+            var type = $("#type").val();
+            var is_under = $("#is_under").val();
 
             // Sends the info to the route to be saved
             $.ajax({
                 type: "get",
                 url: "{{ url('g1_cat_boxes_save') }}",
-                data: {'item':item},
+                data: {item: item, type: type, is_under: is_under},
                 dataType: 'json',
                 success:function(data){
 
@@ -94,10 +118,10 @@
                     }
 
                     // Append the new row to the table body with a perdy fade in =)
-                    $('#cat_table tbody').hide().append('<tr id="'+data.id+'"><td><a href="">'+data.item+'</a></td>'+
+                    $('#cat_table tbody').hide().append('<tr id="'+data.id+'"><td><a href="{{ url('g1_cat_boxes/'.$next_level) }}/'+data.id+'">'+data.item+'</a></td>'+
                         '<td>'+data.created_at+'</td>'+
                         '<td><span id="updated_val_'+data.id+'">'+data.updated_at+'</span></td>'+
-                        '<td><button type="button" class="btn table_btn del_btn" value="'+data.id+'">Delete</button></td>'+
+                        '<td align="right"><button type="button" class="btn table_btn del_btn" value="'+data.id+'">Delete</button></td>'+
                         '<td align="right"><label class="switch switch_type1" role="switch">'+
                         '<input type="checkbox" class="switch__toggle" value="'+data.id+'" '+checked+'>'+
                         '<span class="switch__label"></span>'+
@@ -118,19 +142,11 @@
                             return $('td:first', b).text().localeCompare($('td:first', a).text());
                         }
                     }).appendTo(tbody);
+
+                    // Clear input value and set focus after submitting
+                    $("#new_item").val("").focus();
                 }
             });
-
-            // var asc = order === 'asc',
-            // tbody = $('#cat_table').find('tbody');
-
-            // tbody.find('tr').sort(function(a, b) {
-            //     if (asc) {
-            //         return $('td:first', a).text().localeCompare($('td:first', b).text());
-            //     } else {
-            //         return $('td:first', b).text().localeCompare($('td:first', a).text());
-            //     }
-            // }).appendTo(tbody);
             
             return false;
         });
@@ -167,7 +183,6 @@
 
             // Removes the row
             $(this).closest('tr').remove();
-            // $(this).fadeOut(600,function(){$(this).closest('tr').remove();});
         });
     });
     </script>

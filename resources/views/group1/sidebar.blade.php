@@ -88,7 +88,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{!! url('/g1_cat_boxes'); !!}">
+        <a class="nav-link" href="{{ url('/g1_cat_boxes/1/0') }}">
             <div class="sidebar_item">
                 <i class="material-icons md-18">menu</i>
                 Category Boxes
@@ -96,7 +96,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{!! url('/category_boxes'); !!}">
+        <a class="nav-link" href="">
             <div class="sidebar_item">
                 <i class="material-icons md-18">bubble_chart</i>
                 Activity
@@ -104,7 +104,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{!! url('/g1_cat_boxes'); !!}">
+        <a class="nav-link" href="">
             <div class="sidebar_item">
                 <i class="material-icons md-18">search</i>
                 Search
