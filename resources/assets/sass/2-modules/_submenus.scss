@@ -1,0 +1,15 @@
+.submenu {
+    background: lighten($sec_accent_color, 60%);
+    font-size: 0.8rem;
+
+    .item {
+        display: inline-block;
+        color: $sec_accent_color;
+        padding: 10px;
+
+        &:hover {
+            background: $pri_accent_color;
+            color: $sec_accent_color;
+        }
+    }
+}

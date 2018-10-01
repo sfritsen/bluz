@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Assistant:400,600|Source+Sans+Pro:600");
 @import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono");
+@font-face {
+  font-family: 'GoogleSans';
+  src: url("../fonts/GoogleSans/GoogleSans-Regular.ttf"); }
 html {
   font-size: 16px;
   height: 100%; }
@@ -608,6 +611,9 @@ input:-webkit-autofill:focus {
     font-size: 1rem;
     margin: 0 4px;
     cursor: pointer; }
+  .data_table tbody .disabled_row, .data_table tbody .disabled_row a {
+    color: #b8bfd0;
+    font-style: italic; }
 
 .login_header {
   background: #3F4752;
@@ -650,6 +656,17 @@ input:-webkit-autofill:focus {
   .modal .entry_details_modal .section_label {
     color: #a4adb9;
     font-weight: 600; }
+
+.submenu {
+  background: #dee1e5;
+  font-size: 0.8rem; }
+  .submenu .item {
+    display: inline-block;
+    color: #3F4752;
+    padding: 10px; }
+    .submenu .item:hover {
+      background: #BADA55;
+      color: #3F4752; }
 
 .footer {
   font-size: 0.8rem;

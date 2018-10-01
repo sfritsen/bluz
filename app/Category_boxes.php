@@ -36,4 +36,9 @@ class Category_boxes extends Model
             ['type', '=', '1'],
         ])->orderBy('cat1_label', 'asc');
     }
+
+    public function scopeGetLabel($query, $id)
+    {
+        return $query->where('id', '=', $id);
+    }
 }

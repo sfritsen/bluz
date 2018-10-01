@@ -96,6 +96,14 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{ url('/g1_dd_menus/0') }}">
+            <div class="sidebar_item">
+                <i class="material-icons md-18">menu</i>
+                Menus
+            </div>
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="">
             <div class="sidebar_item">
                 <i class="material-icons md-18">bubble_chart</i>

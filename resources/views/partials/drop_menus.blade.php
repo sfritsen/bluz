@@ -5,11 +5,11 @@
 @endsection
 
 @section('content')
-   
+
     <div class="container-fluid nopadding">
         <div class="row submenu">
             <div class="col">
-                <a href="{{ url('g1_cat_boxes/1/0') }}"><div class="item">Home</div></a>
+                <a href="{{ url('g1_dd_menus/0') }}"><div class="item">Home</div></a>
                 <a href=""><div class="item">Trash Bin</div></a>
                 <a href=""><div class="item">Another Item</div></a>
             </div>
@@ -23,8 +23,7 @@
             <div class="col">
                 <div class="form-group">
                     <input type="text" id="new_item" class="form-control" placeholder="Add New Item" value="{{ old('new_item') }}" aria-describedby="newHelpBlock" autofocus>
-                    <input type="hidden" id="type" value="{{ $type }}">
-                    <input type="hidden" id="is_under" value="{{ $is_under }}">
+                    <input type="hidden" id="parent_id" value="{{ $parent_id }}">
                     <small>Tip! After entering a value, press TAB then ENTER</small>
                 </div>
             </div>
@@ -37,37 +36,20 @@
         </div>
         <div class="row">
             <div class="col">
-                {!! $nav_label !!}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
 
-                <table id="cat_table" class="table data_table">
+                <table id="menu_table" class="table data_table">
                     <thead>
                         <tr>
-                            <th scope="col">Box Item</th>
+                            <th scope="col">Drop Menu</th>
                             <th scope="col">Added</th>
                             <th scope="col">Last Updated</th>
-                            <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($category_items as $item)
+                        @foreach($menu_records as $item)
 
-                        {{-- Figure out which level we're on and set the proper label --}}
                         <?php 
-                        if ($item->cat1_label !== "-"){
-                            $item_label = $item->cat1_label;
-                        }elseif ($item->cat2_label !== "-"){
-                            $item_label = $item->cat2_label;
-                        }elseif ($item->cat3_label !== "-"){
-                            $item_label = $item->cat3_label;
-                        }elseif ($item->cat4_label !== "-"){
-                            $item_label = $item->cat4_label;
-                        }
-
                         if ($item->active !== 1){
                             $row_state = "disabled_row";
                         }else{
@@ -76,12 +58,12 @@
                         ?>
 
                         <tr class="{{ $row_state }}" id="{{ $item->id }}">
-                            <td><a href="{{ url('g1_cat_boxes/'.$next_level.'/'.$item->id) }}">{{ $item_label }}</a></td>
+                            <td><a href="{{ url('g1_dd_menus/'.$item->id) }}">{{ $item->menu_text }}</a></td>
                             <td>{{ $item->created_at }}</td>
-                            <td><span id="updated_val_{{ $item->id }}">{{ $item->updated_at }}</span></td>
-                            <td align="right"><button type="button" class="btn table_btn del_btn" value="{{ $item->id }}">Delete</button></td>
+                            <td>{{ $item->updated_at }}</td>
                             <td align="right">
                                 <?php
+                                if ($toggle_state !== "0") {
                                 if($item->active === 1) {
                                     $state = "checked";
                                 }else{
@@ -93,6 +75,8 @@
                                     <input type="checkbox" class="switch__toggle" value="{{ $item->id }}" <?php echo $state; ?>>
                                     <span class="switch__label"></span>
                                 </label>
+
+                                <?php } ?>
 
                             </td>
                         </tr>
@@ -107,63 +91,6 @@
     <script>
     $(document).ready(function(){
 
-        $("#add_item_btn").click(function(){
-
-            // Gets the value of item
-            var item = $("#new_item").val();
-            var type = $("#type").val();
-            var is_under = $("#is_under").val();
-
-            // Sends the info to the route to be saved
-            $.ajax({
-                type: "get",
-                url: "{{ url('g1_cat_boxes_save') }}",
-                data: {item: item, type: type, is_under: is_under},
-                dataType: 'json',
-                success:function(data){
-
-                    // Checked the active value to set the initial slider state
-                    var checked;
-                    if (data.active == 1) {
-                        checked = "checked";
-                    }else{
-                        checked = "";
-                    }
-
-                    // Append the new row to the table body with a perdy fade in =)
-                    $('#cat_table tbody').hide().append('<tr id="'+data.id+'"><td><a href="{{ url('g1_cat_boxes/'.$next_level) }}/'+data.id+'">'+data.item+'</a></td>'+
-                        '<td>'+data.created_at+'</td>'+
-                        '<td><span id="updated_val_'+data.id+'">'+data.updated_at+'</span></td>'+
-                        '<td align="right"><button type="button" class="btn table_btn del_btn" value="'+data.id+'">Delete</button></td>'+
-                        '<td align="right"><label class="switch switch_type1" role="switch">'+
-                        '<input type="checkbox" class="switch__toggle" value="'+data.id+'" '+checked+'>'+
-                        '<span class="switch__label"></span>'+
-                        '</label>'+
-                        '</td></tr>').fadeIn(600);
-
-                    // Display message
-                    $("#testresults").html(data.item);
-
-                    // Sort rows based on label
-                    var asc = 'asc';
-                    tbody = $('#cat_table').find('tbody');
-
-                    tbody.find('tr').sort(function(a, b) {
-                        if (asc) {
-                            return $('td:first', a).text().localeCompare($('td:first', b).text());
-                        } else {
-                            return $('td:first', b).text().localeCompare($('td:first', a).text());
-                        }
-                    }).appendTo(tbody);
-
-                    // Clear input value and set focus after submitting
-                    $("#new_item").val("").focus();
-                }
-            });
-            
-            return false;
-        });
-
         // Controls the toggle switches
         $(document).on('click', '.switch__toggle', function(){ /* Using the class since it's in a loop above */
             var id = $(this).val(); /* Gets the value of the clicked element */
@@ -172,7 +99,7 @@
             // Sends the change and displays returned message
             $.ajax({
                 type: "get",
-                url: "{{ url('g1_cat_boxes_edit') }}/"+id+"/"+state,
+                url: "{{ url('g1_dd_menus_edit') }}/"+id+"/"+state,
                 success: function(data){
                     $("#testresults").html(id + ' = ' + state); /* DEBUGGING or success message */
                     $("#updated_val_"+id).html(data); /* Sends the new update time to the field */
@@ -187,23 +114,61 @@
             }
         });
 
-        // Deletes the item by setting active to 9
-        $("#cat_table").on('click', '.del_btn', function() { /* Using the class since it's in a loop above */
-            var id = $(this).val(); /* Gets the value of the item to delete */
+        $("#add_item_btn").click(function(){
 
-            // Sends the change and displays returned message
+            // Gets the value of item
+            var item = $("#new_item").val();
+            var parent_id = $("#parent_id").val();
+
+            // Sends the info to the route to be saved
             $.ajax({
                 type: "get",
-                url: "{{ url('g1_cat_boxes_delete') }}/"+id,
-                success: function(data){
-                    $("#testresults").html(id + ' deleted'); /* DEBUGGING or success message */
-                    $("#updated_val_"+id).html(data); /* Sends the new update time to the field */
+                url: "{{ url('g1_dd_menus_save') }}",
+                data: {item: item, parent_id: parent_id},
+                dataType: 'json',
+                success:function(data){
+
+                    // Checked the active value to set the initial slider state
+                    var checked;
+                    if (data.active == 1) {
+                        checked = "checked";
+                    }else{
+                        checked = "";
+                    }
+
+                    // Append the new row to the table body with a perdy fade in =)
+                    $('#menu_table tbody').hide().append('<tr id="'+data.id+'"><td><a href="{{ url('g1_dd_menus/') }}/'+data.id+'">'+data.item+'</a></td>'+
+                        '<td>'+data.created_at+'</td>'+
+                        '<td><span id="updated_val_'+data.id+'">'+data.updated_at+'</span></td>'+
+                        '<td align="right"><label class="switch switch_type1" role="switch">'+
+                        '<input type="checkbox" class="switch__toggle" value="'+data.id+'" '+checked+'>'+
+                        '<span class="switch__label"></span>'+
+                        '</label>'+
+                        '</td></tr>').fadeIn(600);
+
+                    // Display message
+                    $("#testresults").html(data.item);
+
+                    // Sort rows based on label
+                    var asc = 'asc';
+                    tbody = $('#menu_table').find('tbody');
+
+                    tbody.find('tr').sort(function(a, b) {
+                        if (asc) {
+                            return $('td:first', a).text().localeCompare($('td:first', b).text());
+                        } else {
+                            return $('td:first', b).text().localeCompare($('td:first', a).text());
+                        }
+                    }).appendTo(tbody);
+
+                    // Clear input value and set focus after submitting
+                    $("#new_item").val("").focus();
                 }
             });
 
-            // Removes the row
-            $(this).closest('tr').remove();
+            return false;
         });
+
     });
     </script>
 

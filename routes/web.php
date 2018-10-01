@@ -32,5 +32,9 @@ Route::get('/g1_cat_boxes_edit/{id}/{state}', 'Group1AdminController@category_bo
 Route::get('/g1_cat_boxes_save', 'Group1AdminController@category_boxes_save')->name('g1_cat_boxes_save');
 Route::get('/g1_cat_boxes_delete/{id}', 'Group1AdminController@category_boxes_delete')->name('g1_cat_boxes_delete');
 
+Route::get('/g1_dd_menus/{id}', 'Group1AdminController@drop_menus')->name('g1_dd_menus');
+Route::get('/g1_dd_menus_edit/{id}/{state}', 'Group1AdminController@drop_menus_edit')->name('g1_dd_menus_edit');
+Route::get('/g1_dd_menus_save', 'Group1AdminController@drop_menus_save')->name('g1_dd_menus_save');
+
 // Administration
 Route::get('/category_boxes', 'Admin\CategoryBoxController@index')->name('category_boxes');

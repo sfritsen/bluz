@@ -32,5 +32,10 @@
             margin: $tbody_icon_margin;
             cursor: pointer;
         }
+
+        .disabled_row, .disabled_row a {
+            color: lighten($tbody_font_color, 25%);
+            font-style: italic;
+        }
     }
 }

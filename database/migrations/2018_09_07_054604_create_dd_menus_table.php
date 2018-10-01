@@ -14,15 +14,12 @@ class CreateDdMenusTable extends Migration
     public function up()
     {
         Schema::create('dd_menus', function (Blueprint $table) {
-            $table->increments('menu_id');
-            $table->integer('menu_owner');
+            $table->increments('id');
             $table->tinyInteger('type')->unsigned();
             $table->integer('group_id');
             $table->integer('parent_id');
             $table->string('menu_text');
             $table->tinyInteger('active')->unsigned();
-            // $table->integer('dd_last_edit_time');
-            // $table->integer('dd_last_edit_by');
             $table->timestamps();
         });
     }

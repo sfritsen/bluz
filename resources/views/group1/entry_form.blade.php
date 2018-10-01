@@ -69,18 +69,18 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <select name="resolution" class="form-control required" required>
-                                    <option value="" disabled selected hidden>Resolution</option>
-                                    @foreach($dd_resolution as $menu_text => $menu_id)
-                                        <option value="{{ $menu_id }}" {{(old('resolution') == $menu_id?'selected':'')}} >{{ $menu_text }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col">
                                 <select name="troubleshooting" class="form-control required" required>
                                     <option value="" disabled selected hidden>Troubleshooting</option>
                                     @foreach($dd_troubleshooting as $menu_text => $menu_id)
                                         <option value="{{ $menu_id }}" {{(old('troubleshooting') == $menu_id?'selected':'')}} >{{ $menu_text }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select name="resolution" class="form-control required" required>
+                                    <option value="" disabled selected hidden>Resolution</option>
+                                    @foreach($dd_resolution as $menu_text => $menu_id)
+                                        <option value="{{ $menu_id }}" {{(old('resolution') == $menu_id?'selected':'')}} >{{ $menu_text }}</option>
                                     @endforeach
                                 </select>
                             </div>

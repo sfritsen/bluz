@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Data_group1;
 use App\Groups;
-// use App\DD_menus;
+use App\DD_menus;
 use App\Category_boxes;
 use Auth;
 
@@ -38,6 +38,23 @@ class Group1AdminController extends Controller
         $data['type'] = $type;
         $data['next_level'] = $type + 1;
         $data['is_under'] = $is_under;
+
+        // Build the navigation section
+        if ($type === '1') {
+            $data['nav_label'] = "Current level 1 items";
+        }elseif ($type === '2') {
+            $value = Category_boxes::GetLabel($is_under)->first();
+            $data['nav_label'] = $value->cat1_label;
+        }elseif ($type === '3') {
+            $lvl2 = Category_boxes::GetLabel($is_under)->first();
+            $lvl1 = Category_boxes::GetLabel($lvl2->is_under)->first();
+            $data['nav_label'] = $lvl1->cat1_label." &#9679; ".$lvl2->cat2_label;
+        }elseif ($type === '4') {
+            $lvl3 = Category_boxes::GetLabel($is_under)->first();
+            $lvl2 = Category_boxes::GetLabel($lvl3->is_under)->first();
+            $lvl1 = Category_boxes::GetLabel($lvl2->is_under)->first();
+            $data['nav_label'] = $lvl1->cat1_label." &#9679; ".$lvl2->cat2_label." &#9679; ".$lvl3->cat3_label;
+        }
 
         // Category boxes.  Group_id, type, is_under
         $data['category_items'] = Category_boxes::NonDeletedItems($this->group_id, $type, $is_under)->get();
@@ -144,10 +161,80 @@ class Group1AdminController extends Controller
         return $updated;
     }
 
-    // public function category_boxes_fetch(Request $request)
-    // {
-    //     $data = Category_boxes::FetchBox($this->group_id)->get();
+    public function drop_menus($id)
+    {
+        // Sets title and route
+        $data['section_title'] = 'Drop Menu Administration';
+        $data['section_route'] = 'g1_dd_menus/';
 
-    //     return $data;
-    // }
+        // Get users today and yesterday stat count for the sidebar
+        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
+
+        $data['parent_id'] = $id;
+
+        // Gets the groups list of menus
+        if ($id === "0") {
+            $data['toggle_state'] = "0";
+            $parent_id = "0";
+            $type = "1";
+        }else{
+            $data['toggle_state'] = "1";
+            $parent_id = $id;
+            $type = "2";
+        }
+        $data['menu_records'] = DD_menus::GetMenus($this->group_id, $parent_id, $type)->get();
+
+        // Load the view and pass $data
+        return view('partials/drop_menus', $data);
+    }
+
+    public function drop_menus_edit(Request $request, $id, $state)
+    {
+        // Sets the value of $state based true or false
+        if ($state === 'true'){
+            $new_state = '1';
+        }elseif($state === 'false'){
+            $new_state = '0';
+        }
+
+        // Saves the change
+        $switch = DD_menus::find($id);
+        $switch->active = $new_state;
+        $switch->save();
+
+        // Reformat the timestamp for sending
+        $updated = date("Y-m-d H:i:s", strtotime($switch->updated_at));
+
+        // Return new date
+        return $updated;
+    }
+
+    public function drop_menus_save(Request $request)
+    {
+        // Saves the item
+        $item = new DD_menus;
+        $item->type = '2';
+        $item->group_id = '1';
+        $item->parent_id = $request->parent_id;
+        $item->menu_text = $request->item;
+        $item->active = '1';
+        $item->save();
+
+        // Reformat the 2 timestamps for sending
+        $created = date("Y-m-d H:i:s", strtotime($item->created_at));
+        $updated = date("Y-m-d H:i:s", strtotime($item->updated_at));
+
+        // Build the array of items to send back for displaying
+        $item_data = array(
+            'id' => $item->id,
+            'item' => $request->item,
+            'active' => $item->active,
+            'created_at' => $created,
+            'updated_at' => $updated
+        );
+
+        // Return the encoded array
+        return json_encode($item_data);
+    }
 }

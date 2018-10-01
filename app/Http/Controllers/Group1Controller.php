@@ -49,14 +49,14 @@ class Group1Controller extends Controller
         $data['cat_lvl3'] = Category_boxes::Box($this->group_id, '3')->orderBy('cat3_label', 'asc')->get();
 
         // Get dropdown menus. Second param is the parent_id
-        $data['dd_incident_type'] = DD_menus::GetMenu($this->group_id, '2')->pluck('menu_id', 'menu_text');
-        $data['dd_resolution'] = DD_menus::GetMenu($this->group_id, '3')->pluck('menu_id', 'menu_text');
-        $data['dd_troubleshooting'] = DD_menus::GetMenu($this->group_id, '5')->pluck('menu_id', 'menu_text');
-        $data['dd_equip_type'] = DD_menus::GetMenu($this->group_id, '8')->pluck('menu_id', 'menu_text');
+        $data['dd_incident_type'] = DD_menus::GetMenu($this->group_id, '1')->pluck('id', 'menu_text');
+        $data['dd_equip_type'] = DD_menus::GetMenu($this->group_id, '2')->pluck('id', 'menu_text');
+        $data['dd_resolution'] = DD_menus::GetMenu($this->group_id, '3')->pluck('id', 'menu_text');
+        $data['dd_troubleshooting'] = DD_menus::GetMenu($this->group_id, '4')->pluck('id', 'menu_text');
 
         // Query for entry log data
         $data['entry_records'] = Data_group1::
-            join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.menu_id')
+            join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.id')
             ->where([
                 ['data_group1.user_id', Auth::user()->id],
                 ['data_group1.created_at', 'like', date("Y-m-d") . '%']
@@ -133,7 +133,7 @@ class Group1Controller extends Controller
 
         // Gets the history for the selected user
         $data['entry_records'] = Data_group1::
-            join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.menu_id')
+            join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.id')
             ->where('data_group1.user_id', Auth::user()->id)
             ->select('data_group1.*', 'dd_menus.menu_text')
             ->orderBy('created_at', 'desc')
@@ -156,10 +156,10 @@ class Group1Controller extends Controller
             join('category_boxes as lvl1', $this->group_db_table.'.cat_box_1', '=', 'lvl1.id')
             ->join('category_boxes as lvl2', $this->group_db_table.'.cat_box_2', '=', 'lvl2.id')
             ->join('category_boxes as lvl3', $this->group_db_table.'.cat_box_3', '=', 'lvl3.id')
-            ->join('dd_menus as dd_incident_type', $this->group_db_table.'.incident_type', '=', 'dd_incident_type.menu_id')
-            ->join('dd_menus as dd_equip_type', $this->group_db_table.'.equip_type', '=', 'dd_equip_type.menu_id')
-            ->join('dd_menus as dd_resolution', $this->group_db_table.'.resolution', '=', 'dd_resolution.menu_id')
-            ->join('dd_menus as dd_troubleshooting', $this->group_db_table.'.troubleshooting', '=', 'dd_troubleshooting.menu_id')
+            ->join('dd_menus as dd_incident_type', $this->group_db_table.'.incident_type', '=', 'dd_incident_type.id')
+            ->join('dd_menus as dd_equip_type', $this->group_db_table.'.equip_type', '=', 'dd_equip_type.id')
+            ->join('dd_menus as dd_resolution', $this->group_db_table.'.resolution', '=', 'dd_resolution.id')
+            ->join('dd_menus as dd_troubleshooting', $this->group_db_table.'.troubleshooting', '=', 'dd_troubleshooting.id')
             ->where('data_group1.id', $id)
             ->select(
                 'data_group1.*', 
