@@ -28,6 +28,22 @@ class Group1AdminController extends Controller
         $this->group_label = $group['label'];
     }
 
+    public function category_boxes_trash_bin()
+    {
+        // Sets title and route
+        $data['section_title'] = 'Category Box Administration';
+        $data['section_route'] = 'g1_cat_boxes_trash';
+
+        $data['category_items'] = Category_boxes::DeletedItems($this->group_id)->get();
+
+        // Get users today and yesterday stat count for the sidebar
+        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
+
+        // Load the view and pass $data
+        return view('category_boxes/trash_bin', $data);
+    }
+
     public function category_boxes($type, $is_under)
     {
         // Sets title and route
@@ -159,6 +175,20 @@ class Group1AdminController extends Controller
         // Saves the change and flag as 9 for deleted
         $del = Category_boxes::find($id);
         $del->active = '9'; 
+        $del->save();
+
+        // Reformat the timestamp for sending
+        $updated = date("Y-m-d H:i:s", strtotime($del->updated_at));
+
+        // Return new date
+        return $updated;
+    }
+
+    public function category_boxes_restore(Request $request, $id)
+    {
+        // Saves the change and flag as 9 for deleted
+        $del = Category_boxes::find($id);
+        $del->active = '0'; 
         $del->save();
 
         // Reformat the timestamp for sending

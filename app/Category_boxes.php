@@ -28,6 +28,14 @@ class Category_boxes extends Model
         ])->orderBy('cat1_label', 'asc');
     }
 
+    public function scopeDeletedItems($query, $group_id)
+    {
+        return $query->where([
+            ['active', '=', '9'],
+            ['group_id', '=', $group_id],
+        ])->orderBy('updated_at', 'desc');
+    }
+
     public function scopeFetchBox($query, $group_id)
     {
         return $query->where([
