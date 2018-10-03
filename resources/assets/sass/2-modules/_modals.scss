@@ -1,0 +1,36 @@
+.modal .custom_modal {
+    background: $modal_bg_color;
+    border: 1px solid $modal_border_color;
+
+    .modal-header {
+        background: $modal_header_bg_color;
+        color: $modal_header_font_color;
+    }
+
+    th {
+        background: $modal_th_bg_color;
+        text-transform: $modal_th_text_transform;
+        padding: $modal_padding 10px;
+    }
+
+    td {
+        padding: $modal_padding 10px;
+    }
+
+    .label {
+        color: $modal_label_font_color;
+        font-weight: $modal_label_font_weight;
+    }
+
+    .section_title {
+        background: $modal_title_bg_color;
+        font-weight: $modal_title_font_weight;
+        color: $modal_title_font_color;
+        padding: $modal_title_padding;
+    }
+
+    .section_info {
+        padding: $modal_info_padding;
+        margin-bottom: $modal_info_bottom_margin;
+    }
+}

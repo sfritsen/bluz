@@ -149,13 +149,29 @@ $sm_btn_font_size:                  0.75rem;
 $sm_btn_hover_bg_color:             $pri_accent_color;
 $sm_btn_hover_font_color:           $pri_light_color;
 
-// Entry record modal
-$erm_padding:                       5px;
-$erm_bg_color:                      $body_bg;
-$erm_border_color:                  $sec_accent_color;
-$erm_header_bg_color:               lighten($sec_accent_color, 40%);
-$erm_header_font_color:             $pri_light_color;
-$erm_th_bg_color:                   lighten($pri_accent_color, 25%);
-$erm_label_font_color:              lighten($sec_accent_color, 40%);
+// Modals
+$modal_padding:                     5px;
+$modal_bg_color:                    $body_bg;
+$modal_border_color:                $sec_accent_color;
+$modal_header_bg_color:             lighten($sec_accent_color, 40%);
+$modal_header_font_color:           $pri_light_color;
+$modal_th_bg_color:                 lighten($pri_accent_color, 25%);
+$modal_th_text_transform:           uppercase;
+$modal_label_font_color:            lighten($sec_accent_color, 40%);
+$modal_label_font_weight:           600;
+$modal_title_bg_color:              lighten($sec_accent_color, 60%);
+$modal_title_font_weight:           600;
+$modal_title_font_color:            $sec_accent_color;
+$modal_title_padding:               5px;
+$modal_info_padding:                0 5px;
+$modal_info_bottom_margin:          6px;
 
 // Sub menus
+$submenu_bg_color:                  lighten($sec_accent_color, 45%);
+$submenu_font_size:                 0.8rem;
+$submenu_font_weight:               600;
+$submenu_margin_top:                -6px;
+$submenu_item_font_color:           $sec_accent_color;
+$submenu_item_padding:              10px;
+$submenu_item_hover_bg_color:       $pri_accent_color;
+$submenu_item_hover_font_color:     $sec_accent_color;

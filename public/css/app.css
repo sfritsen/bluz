@@ -41,6 +41,10 @@ a:hover, .btn-link:hover {
   font-style: italic;
   color: #6b7b9d; }
 
+.error_msg {
+  font-weight: 600;
+  color: #e3342f; }
+
 /* Rules for sizing the icon. */
 .material-icons.md-18 {
   font-size: 18px; }
@@ -631,6 +635,30 @@ input:-webkit-autofill:focus {
 .login_form_cage {
   margin: 25px 0; }
 
+.modal .custom_modal {
+  background: #F7F7F7;
+  border: 1px solid #3F4752; }
+  .modal .custom_modal .modal-header {
+    background: #a4adb9;
+    color: #FFF; }
+  .modal .custom_modal th {
+    background: #e5f1be;
+    text-transform: uppercase;
+    padding: 5px 10px; }
+  .modal .custom_modal td {
+    padding: 5px 10px; }
+  .modal .custom_modal .label {
+    color: #a4adb9;
+    font-weight: 600; }
+  .modal .custom_modal .section_title {
+    background: #dee1e5;
+    font-weight: 600;
+    color: #3F4752;
+    padding: 5px; }
+  .modal .custom_modal .section_info {
+    padding: 0 5px;
+    margin-bottom: 6px; }
+
 .agent_info, .manager_info {
   font-size: 0.78rem;
   text-transform: capitalize;
@@ -641,25 +669,12 @@ input:-webkit-autofill:focus {
     font-weight: 600;
     text-transform: uppercase; }
 
-.modal .entry_details_modal {
-  background: #F7F7F7;
-  border: 1px solid #3F4752; }
-  .modal .entry_details_modal .modal-header {
-    background: #a4adb9;
-    color: #FFF; }
-  .modal .entry_details_modal th {
-    background: #e5f1be;
-    text-transform: uppercase;
-    padding: 5px 10px; }
-  .modal .entry_details_modal td {
-    padding: 5px 10px; }
-  .modal .entry_details_modal .section_label {
-    color: #a4adb9;
-    font-weight: 600; }
-
 .submenu {
-  background: #dee1e5;
-  font-size: 0.8rem; }
+  background: #b2bac4;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: -6px;
+  /* Counters the section bottom margin */ }
   .submenu .item {
     display: inline-block;
     color: #3F4752;

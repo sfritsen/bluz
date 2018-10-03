@@ -1,15 +1,17 @@
 .submenu {
-    background: lighten($sec_accent_color, 60%);
-    font-size: 0.8rem;
+    background: $submenu_bg_color;
+    font-size: $submenu_font_size;
+    font-weight: $submenu_font_weight;
+    margin-top: $submenu_margin_top; /* Counters the section bottom margin */
 
     .item {
         display: inline-block;
-        color: $sec_accent_color;
-        padding: 10px;
+        color: $submenu_item_font_color;
+        padding: $submenu_item_padding;
 
         &:hover {
-            background: $pri_accent_color;
-            color: $sec_accent_color;
+            background: $submenu_item_hover_bg_color;
+            color: $submenu_item_hover_font_color;
         }
     }
 }

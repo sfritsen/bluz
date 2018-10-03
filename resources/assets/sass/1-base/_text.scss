@@ -3,3 +3,7 @@
     font-style: $info_msg_font_style;
     color: $info_msg_font_color;
 }
+.error_msg {
+    font-weight: 600;
+    color: $error_text;
+}
