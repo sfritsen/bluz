@@ -19,19 +19,24 @@
                 To add a new item, navigate to the section you want to add the item too and enter the value in the field below.
             </div>
         </div>
-        <div class="row">
+        <div class="row d-flex align-items-center">
             <div class="col">
-                <div class="form-group">
-                    <input type="text" id="new_item" class="form-control" placeholder="Add New Item" value="{{ old('new_item') }}" aria-describedby="newHelpBlock" autofocus>
-                    <input type="hidden" id="parent_id" value="{{ $parent_id }}">
-                    <small>Tip! After entering a value, press TAB then ENTER</small>
-                </div>
+                <input type="text" id="new_item" class="form-control" placeholder="Add New Item" value="{{ old('new_item') }}" aria-describedby="newHelpBlock" autofocus>
+                <input type="hidden" id="parent_id" value="{{ $parent_id }}">
             </div>
             <div class="col-auto">
                 <button type="button" id="add_item_btn" class="btn form_btn">Submit</button>
             </div>
             <div class="col">
-                <div id="testresults"></div> {{-- DEBUGGING RETURN INFO ONLY --}}
+                <div id="output_message"></div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col">
+                Current active and available drop down menus
             </div>
         </div>
         <div class="row">
@@ -101,7 +106,7 @@
                 type: "get",
                 url: "{{ url('g1_dd_menus_edit') }}/"+id+"/"+state,
                 success: function(data){
-                    $("#testresults").html(id + ' = ' + state); /* DEBUGGING or success message */
+                    $("#output_message").html(id + ' = ' + state); /* DEBUGGING or success message */
                     $("#updated_val_"+id).html(data); /* Sends the new update time to the field */
                 }
             });
@@ -114,6 +119,15 @@
             }
         });
 
+        // Trigger if the enter key is pressed
+        $('#new_item').keypress(function (e) {
+            if(e.which == 13){ // Enter key pressed
+                $('#add_item_btn').click(); // Trigger button click event
+                return false;
+            }
+        });
+
+        // If add button is clicked
         $("#add_item_btn").click(function(){
 
             // Gets the value of item
@@ -147,7 +161,7 @@
                         '</td></tr>').fadeIn(600);
 
                     // Display message
-                    $("#testresults").html(data.item);
+                    $("#output_message").html(data.item);
 
                     // Sort rows based on label
                     var asc = 'asc';

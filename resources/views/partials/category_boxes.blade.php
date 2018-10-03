@@ -37,7 +37,7 @@
 
         <div class="row">
             <div class="col">
-                {!! $nav_label !!}
+                {!! $nav_output !!}
             </div>
         </div>
         <div class="row">
@@ -76,7 +76,13 @@
                         ?>
 
                         <tr class="{{ $row_state }}" id="{{ $item->id }}">
-                            <td><a href="{{ url('g1_cat_boxes/'.$next_level.'/'.$item->id) }}">{{ $item_label }}</a></td>
+
+                            <?php if ($next_level > '4') { ?>
+                                <td>{{ $item_label }}</td>
+                            <?php }else{ ?>
+                                <td><a href="{{ url('g1_cat_boxes/'.$next_level.'/'.$item->id) }}">{{ $item_label }}</a></td>
+                            <?php } ?>
+
                             <td>{{ $item->created_at }}</td>
                             <td><span id="updated_val_{{ $item->id }}">{{ $item->updated_at }}</span></td>
                             <td align="right"><button type="button" class="btn table_btn del_btn" value="{{ $item->id }}">Delete</button></td>
@@ -166,6 +172,15 @@
     <script>
     $(document).ready(function(){
 
+        // Trigger if the enter key is pressed
+        $('#new_item').keypress(function (e) {
+            if(e.which == 13){ // Enter key pressed
+                $('#add_item_btn').click(); // Trigger button click event
+                return false;
+            }
+        });
+
+        // If add button is clicked
         $("#add_item_btn").click(function(){
 
             // Gets the value of item

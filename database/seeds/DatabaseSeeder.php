@@ -157,6 +157,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => '-',
                 'cat3_label' => '-',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -166,6 +168,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => '-',
                 'cat3_label' => '-',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -175,6 +179,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => 'No Sync',
                 'cat3_label' => '-',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -184,6 +190,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => 'No IP',
                 'cat3_label' => '-',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -193,6 +201,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => '-',
                 'cat3_label' => 'Found OK',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -202,6 +212,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => '-',
                 'cat3_label' => 'User Error',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -211,6 +223,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => 'Optik lvl2 Item 1',
                 'cat3_label' => '-',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -220,6 +234,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => 'Optik lvl2 Item 2',
                 'cat3_label' => '-',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -229,6 +245,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => '-',
                 'cat3_label' => 'Optik lvl2 Item 1 lvl3 1',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -238,6 +256,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => '-',
                 'cat3_label' => 'Optik lvl2 Item 1 lvl3 2',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -247,6 +267,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => '-',
                 'cat3_label' => 'Optik lvl2 Item 2 lvl3 1',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ],
             [
                 'group_id' => '1',
@@ -256,6 +278,8 @@ class DatabaseSeeder extends Seeder
                 'cat2_label' => '-',
                 'cat3_label' => 'Optik lvl2 Item 2 lvl3 2',
                 'active' => '1',
+                'created_at' => (date("Y-m-d H:i:s")),
+                'updated_at' => (date("Y-m-d H:i:s")),
             ]
         ]);
     }
