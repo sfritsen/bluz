@@ -71,7 +71,7 @@ class Group1AdminController extends Controller
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Load the view and pass $data
-        return view('partials/category_boxes', $data);
+        return view('category_boxes/main', $data);
     }
 
     public function category_boxes_edit(Request $request, $id, $state)
@@ -127,7 +127,7 @@ class Group1AdminController extends Controller
 
         // Saves the item
         $item = new Category_boxes;
-        $item->group_id = '1';
+        $item->group_id = $this->group_id;
         $item->type = $type;
         $item->is_under = $is_under;
         $item->cat1_label = $cat1_label;
@@ -156,9 +156,9 @@ class Group1AdminController extends Controller
 
     public function category_boxes_delete(Request $request, $id)
     {
-        // Saves the change
+        // Saves the change and flag as 9 for deleted
         $del = Category_boxes::find($id);
-        $del->active = '9';
+        $del->active = '9'; 
         $del->save();
 
         // Reformat the timestamp for sending
@@ -193,7 +193,7 @@ class Group1AdminController extends Controller
         $data['menu_records'] = DD_menus::GetMenus($this->group_id, $parent_id, $type)->get();
 
         // Load the view and pass $data
-        return view('partials/drop_menus', $data);
+        return view('drop_down_menus/main', $data);
     }
 
     public function drop_menus_edit(Request $request, $id, $state)
@@ -222,7 +222,7 @@ class Group1AdminController extends Controller
         // Saves the item
         $item = new DD_menus;
         $item->type = '2';
-        $item->group_id = '1';
+        $item->group_id = $this->group_id;
         $item->parent_id = $request->parent_id;
         $item->menu_text = $request->item;
         $item->active = '1';

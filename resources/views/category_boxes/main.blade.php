@@ -121,7 +121,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="section_title">Add New Item</div>
+                    <div class="section_title">Add a new item</div>
                     <div class="section_info">
                         <ol>
                             <li>In the table below, navigate to the section you want to add an item too.</li>
@@ -131,17 +131,15 @@
                         The item should appear in list sorted automatically and active.
                     </div>
 
-                    <div class="section_title">Editing</div>
+                    <div class="section_title">Editing items</div>
                     <div class="section_info">
                         At this time, editing is not permitted.  Entries are logged with the items value and have a general subject to them.  By editing, you run the risk of altering 
                         the subject which can change the previous records accuracy.
-                        <p>
-                            If you want an item changed, there are 2 options.
-                            <ol>
-                                <li>Delete the item then create a new one with the changes you want</li>
-                                <li>Email an admin which can alter the item</li>
-                            </ol>
-                        </p>
+                        If you want an item changed, there are 2 options.
+                        <ol>
+                            <li>Delete the item then create a new one with the changes you want</li>
+                            <li>Email an admin which can alter the item</li>
+                        </ol>
                     </div>
 
                     <div class="section_title">Disabling / Removing</div>
