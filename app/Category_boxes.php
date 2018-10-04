@@ -39,7 +39,6 @@ class Category_boxes extends Model
     public function scopeFetchBox($query, $group_id)
     {
         return $query->where([
-            // ['active', '=', '1'],
             ['group_id', '=', $group_id],
             ['type', '=', '1'],
         ])->orderBy('cat1_label', 'asc');

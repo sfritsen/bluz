@@ -28,22 +28,6 @@ class Group1AdminController extends Controller
         $this->group_label = $group['label'];
     }
 
-    public function category_boxes_trash_bin()
-    {
-        // Sets title and route
-        $data['section_title'] = 'Category Box Administration';
-        $data['section_route'] = 'g1_cat_boxes_trash';
-
-        $data['category_items'] = Category_boxes::DeletedItems($this->group_id)->get();
-
-        // Get users today and yesterday stat count for the sidebar
-        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
-        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
-
-        // Load the view and pass $data
-        return view('category_boxes/trash_bin', $data);
-    }
-
     public function category_boxes($type, $is_under)
     {
         // Sets title and route
@@ -92,11 +76,18 @@ class Group1AdminController extends Controller
 
     public function category_boxes_edit(Request $request, $id, $state)
     {
+        // Security check to make sure it's an ajax request and not loaded manually from the browser url.
+        if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+            abort(404);
+        }
+
         // Sets the value of $state based true or false
         if ($state === 'true'){
             $new_state = '1';
         }elseif($state === 'false'){
             $new_state = '0';
+        }elseif($state === 'delete'){
+            $new_state = '9';
         }
 
         // Saves the change
@@ -113,6 +104,11 @@ class Group1AdminController extends Controller
 
     public function category_boxes_save(Request $request)
     {
+        // Security check to make sure it's an ajax request and not loaded manually from the browser url.
+        if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+            abort(404);
+        }
+
         // Set recieved paramaters into easy to use variables
         $item = $request->item;
         $type = $request->type;
@@ -170,32 +166,20 @@ class Group1AdminController extends Controller
         return json_encode($item_data);
     }
 
-    public function category_boxes_delete(Request $request, $id)
+    public function category_boxes_trash_bin()
     {
-        // Saves the change and flag as 9 for deleted
-        $del = Category_boxes::find($id);
-        $del->active = '9'; 
-        $del->save();
+        // Sets title and route
+        $data['section_title'] = 'Category Box Administration';
+        $data['section_route'] = 'g1_cat_boxes_trash';
 
-        // Reformat the timestamp for sending
-        $updated = date("Y-m-d H:i:s", strtotime($del->updated_at));
+        $data['category_items'] = Category_boxes::DeletedItems($this->group_id)->get();
 
-        // Return new date
-        return $updated;
-    }
+        // Get users today and yesterday stat count for the sidebar
+        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
-    public function category_boxes_restore(Request $request, $id)
-    {
-        // Saves the change and flag as 9 for deleted
-        $del = Category_boxes::find($id);
-        $del->active = '0'; 
-        $del->save();
-
-        // Reformat the timestamp for sending
-        $updated = date("Y-m-d H:i:s", strtotime($del->updated_at));
-
-        // Return new date
-        return $updated;
+        // Load the view and pass $data
+        return view('category_boxes/trash_bin', $data);
     }
 
     public function drop_menus($id)
@@ -228,6 +212,11 @@ class Group1AdminController extends Controller
 
     public function drop_menus_edit(Request $request, $id, $state)
     {
+        // Security check to make sure it's an ajax request and not loaded manually from the browser url.
+        if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+            abort(404);
+        }
+
         // Sets the value of $state based true or false
         if ($state === 'true'){
             $new_state = '1';
@@ -249,6 +238,11 @@ class Group1AdminController extends Controller
 
     public function drop_menus_save(Request $request)
     {
+        // Security check to make sure it's an ajax request and not loaded manually from the browser url.
+        if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+            abort(404);
+        }
+
         // Saves the item
         $item = new DD_menus;
         $item->type = '2';
