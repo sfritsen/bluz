@@ -9,7 +9,14 @@
             </div>
             <div class="modal-body">
                 
-				Under construction
+				<div class="section_title">Restoring</div>
+                <div class="section_info">
+                    To restore an item and make it usable, simply click the "Restore" button.
+                    <p>
+                        Items will be restored to the original menu in an disabled state.  To use the item, you will need to 
+                        enable the item from the main section.
+                    </p>
+                </div>
 				
             </div>
             <div class="modal-footer">

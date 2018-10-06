@@ -21,8 +21,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">Menu Item</th>
-                                <th scope="col">Is In Menu</th>
-                                <th scope="col">Parent</th>
+                                <th scope="col">Parent Menu</th>
+                                <th scope="col">Added</th>
                                 <th scope="col">Last Updated</th>
                                 <th scope="col"></th>
                             </tr>
@@ -40,8 +40,8 @@
 
                             <tr id="{{ $item->id }}">
                                 <td>{{ $item->menu_text }}</td>
-                                <td>{{ $item->type }}</td>
-                                <td></td>
+                                <td>{{ $item->dd_parent }}</td>
+                                <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td align="right"><button type="button" class="btn table_btn restore_btn" value="{{ $item->id }}">Restore</button></td>
                             </tr>

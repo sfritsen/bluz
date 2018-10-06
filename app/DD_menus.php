@@ -31,10 +31,14 @@ class DD_menus extends Model
     
     public function scopeDeletedItems($query, $group_id)
     {
-        return $query->where([
-            ['active', '=', '9'],
-            ['group_id', '=', $group_id],
-        ])->orderBy('updated_at', 'desc');
+        return $query->join('dd_menus as dd_parent', 'dd_menus.parent_id', '=', 'dd_parent.id')
+        ->where([
+            ['dd_menus.active', '=', '9'],
+            ['dd_menus.group_id', '=', $group_id],
+        ])->select(
+            'dd_menus.*', 
+            'dd_parent.menu_text as dd_parent'
+        )->orderBy('dd_menus.updated_at', 'desc');
     }
     
     public function scopeGetLabel($query, $id)
