@@ -9,34 +9,36 @@
     <div class="container-fluid nopadding">
         <div class="row submenu">
             <div class="col">
-                <a href="{{ url('g1_dd_menus/0') }}"><div class="item">Home</div></a>
-                <a href=""><div class="item">Trash Bin</div></a>
-                <a href=""><div class="item">Another Item</div></a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                To add a new item, navigate to the section you want to add the item too and enter the value in the field below.
-            </div>
-        </div>
-        <div class="row d-flex align-items-center">
-            <div class="col">
-                <input type="text" id="new_item" class="form-control" placeholder="Add New Item" value="{{ old('new_item') }}" aria-describedby="newHelpBlock" autofocus>
-                <input type="hidden" id="parent_id" value="{{ $parent_id }}">
-            </div>
-            <div class="col-auto">
-                <button type="button" id="add_item_btn" class="btn form_btn">Submit</button>
-            </div>
-            <div class="col">
-                <div id="output_message"></div>
+                @include('drop_down_menus/submenu')
             </div>
         </div>
 
-        <hr>
+        {{-- Disable entry form if on base level --}}
+        @if ($parent_id !== "0")
+            <div class="row">
+                <div class="col">
+                    To add a new item, navigate to the section you want to add the item too and enter the value in the field below.
+                </div>
+            </div>
+            <div class="row d-flex align-items-center">
+                <div class="col">
+                    <input type="text" id="new_item" class="form-control" placeholder="Add New Item" value="{{ old('new_item') }}" aria-describedby="newHelpBlock" autofocus>
+                    <input type="hidden" id="parent_id" value="{{ $parent_id }}">
+                </div>
+                <div class="col-auto">
+                    <button type="button" id="add_item_btn" class="btn form_btn">Submit</button>
+                </div>
+                <div class="col">
+                    <div id="output_message"></div>
+                </div>
+            </div>
+
+            <hr>
+        @endif
 
         <div class="row">
             <div class="col">
-                Current active and available drop down menus
+                {{ $nav_label }}
             </div>
         </div>
         <div class="row">
@@ -48,6 +50,7 @@
                             <th scope="col">Drop Menu</th>
                             <th scope="col">Added</th>
                             <th scope="col">Last Updated</th>
+                            <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -65,15 +68,23 @@
                         <tr class="{{ $row_state }}" id="{{ $item->id }}">
                             <td><a href="{{ url('g1_dd_menus/'.$item->id) }}">{{ $item->menu_text }}</a></td>
                             <td>{{ $item->created_at }}</td>
-                            <td>{{ $item->updated_at }}</td>
+                            <td><span id="updated_val_{{ $item->id }}">{{ $item->updated_at }}</span></td>
+                            <td align="right">
+                                
+                                {{-- Hides the delete button if on menu select --}}
+                                @if ($parent_id !== "0")
+                                    <button type="button" class="btn table_btn del_btn" value="{{ $item->id }}">Delete</button>
+                                @endif
+                                
+                            </td>
                             <td align="right">
                                 <?php
                                 if ($toggle_state !== "0") {
-                                if($item->active === 1) {
-                                    $state = "checked";
-                                }else{
-                                    $state = "";
-                                }
+                                    if($item->active === 1) {
+                                        $state = "checked";
+                                    }else{
+                                        $state = "";
+                                    }
                                 ?>
 
                                 <label class="switch switch_type1" role="switch">
@@ -93,31 +104,11 @@
         </div>
     </div>
 
+    {{-- Help Modal --}}
+    @include('drop_down_menus/help_modal')
+
     <script>
     $(document).ready(function(){
-
-        // Controls the toggle switches
-        $(document).on('click', '.switch__toggle', function(){ /* Using the class since it's in a loop above */
-            var id = $(this).val(); /* Gets the value of the clicked element */
-            var state = $(this).prop('checked'); /* Checks if the item is checked or not */
-
-            // Sends the change and displays returned message
-            $.ajax({
-                type: "get",
-                url: "{{ url('g1_dd_menus_edit') }}/"+id+"/"+state,
-                success: function(data){
-                    $("#output_message").html(id + ' = ' + state); /* DEBUGGING or success message */
-                    $("#updated_val_"+id).html(data); /* Sends the new update time to the field */
-                }
-            });
-
-            // If the item is disabled, toggle the row class
-            if(state == true) {
-                $(this).closest('tr').removeClass('disabled_row');
-            } else {
-                $(this).closest('tr').addClass('disabled_row');
-            }
-        });
 
         // Trigger if the enter key is pressed
         $('#new_item').keypress(function (e) {
@@ -154,6 +145,7 @@
                     $('#menu_table tbody').hide().append('<tr id="'+data.id+'"><td><a href="{{ url('g1_dd_menus/') }}/'+data.id+'">'+data.item+'</a></td>'+
                         '<td>'+data.created_at+'</td>'+
                         '<td><span id="updated_val_'+data.id+'">'+data.updated_at+'</span></td>'+
+                        '<td align="right"><button type="button" class="btn table_btn del_btn" value="'+data.id+'">Delete</button></td>'+
                         '<td align="right"><label class="switch switch_type1" role="switch">'+
                         '<input type="checkbox" class="switch__toggle" value="'+data.id+'" '+checked+'>'+
                         '<span class="switch__label"></span>'+
@@ -161,7 +153,7 @@
                         '</td></tr>').fadeIn(600);
 
                     // Display message
-                    $("#output_message").html(data.item);
+                    $("#output_message").hide().html(data.item+" added successfully").fadeIn(400).delay(2000).fadeOut(400);
 
                     // Sort rows based on label
                     var asc = 'asc';
@@ -181,6 +173,47 @@
             });
 
             return false;
+        });
+        
+        // Controls the toggle switches
+        $(document).on('click', '.switch__toggle', function(){ /* Using the class since it's in a loop above */
+            var id = $(this).val(); /* Gets the value of the clicked element */
+            var state = $(this).prop('checked'); /* Checks if the item is checked or not */
+
+            // Sends the change and displays returned message
+            $.ajax({
+                type: "get",
+                url: "{{ url('g1_dd_menus_edit') }}/"+id+"/"+state,
+                success: function(data){
+//                  $("#output_message").hide().html(id + ' = ' + state).fadeIn(400).delay(2000).fadeOut(400); /* DEBUGGING or success message */
+                    $("#updated_val_"+id).html(data); /* Sends the new update time to the field */
+                }
+            });
+
+            // If the item is disabled, toggle the row class
+            if(state == true) {
+                $(this).closest('tr').removeClass('disabled_row');
+            } else {
+                $(this).closest('tr').addClass('disabled_row');
+            }
+        });
+        
+        // Deletes the item by setting active to 9
+        $("#menu_table").on('click', '.del_btn', function() { /* Using the class since it's in a loop above */
+            var id = $(this).val(); /* Gets the value of the item to delete */
+
+            // Sends the change and displays returned message
+            $.ajax({
+                type: "get",
+                url: "{{ url('g1_dd_menus_edit') }}/"+id+"/delete",
+                success: function(data){
+                    $("#output_message").hide().html(id + ' deleted').fadeIn(400).delay(2000).fadeOut(400); /* DEBUGGING or success message */
+                    $("#updated_val_"+id).html(data); /* Sends the new update time to the field */
+                }
+            });
+
+            // Removes the row
+            $(this).closest('tr').remove();
         });
 
     });

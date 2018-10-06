@@ -9,7 +9,7 @@
     <div class="container-fluid nopadding">
         <div class="row submenu">
             <div class="col">
-                @include('category_boxes/submenu')
+                @include('drop_down_menus/submenu')
             </div>
         </div>
 
@@ -20,8 +20,8 @@
                     <table id="cat_table" class="table data_table">
                         <thead>
                             <tr>
-                                <th scope="col">Box Item</th>
-                                <th scope="col">Item Level</th>
+                                <th scope="col">Menu Item</th>
+                                <th scope="col">Is In Menu</th>
                                 <th scope="col">Parent</th>
                                 <th scope="col">Last Updated</th>
                                 <th scope="col"></th>
@@ -29,22 +29,17 @@
                         </thead>
                         <tbody>
                             @foreach($category_items as $item)
-
-                            {{-- Figure out which level we're on and set the proper label --}}
-                            <?php 
-                            if ($item->cat1_label !== "-"){
-                                $item_label = $item->cat1_label;
-                            }elseif ($item->cat2_label !== "-"){
-                                $item_label = $item->cat2_label;
-                            }elseif ($item->cat3_label !== "-"){
-                                $item_label = $item->cat3_label;
-                            }elseif ($item->cat4_label !== "-"){
-                                $item_label = $item->cat4_label;
-                            }
-                            ?>
+							
+							<?php 
+							if ($item->active !== 1){
+								$row_state = "disabled_row";
+							}else{
+								$row_state = "";
+							}
+							?>
 
                             <tr id="{{ $item->id }}">
-                                <td><span class="output_message">{{ $item_label }}</span></td>
+                                <td>{{ $item->menu_text }}</td>
                                 <td>{{ $item->type }}</td>
                                 <td></td>
                                 <td>{{ $item->updated_at }}</td>
@@ -63,7 +58,7 @@
     </div>
 
     {{-- Help Modal --}}
-    @include('category_boxes/help_modal')
+    @include('drop_down_menus/help_modal')
 
     <script>
     $(document).ready(function(){
@@ -74,7 +69,7 @@
             // Sends the change and displays returned message
             $.ajax({
                 type: "get",
-                url: "{{ url('g1_cat_boxes_edit') }}/"+id+"/false",
+                url: "{{ url('g1_dd_menus_edit') }}/"+id+"/false",
             });
 
             // Removes the row

@@ -196,10 +196,14 @@ class Group1AdminController extends Controller
 
         // Gets the groups list of menus
         if ($id === "0") {
+//             $get_item = DD_menus::GetLabel($id)->first();
+            $data['nav_label'] = "Current available drop down menus";
             $data['toggle_state'] = "0";
             $parent_id = "0";
             $type = "1";
         }else{
+            $get_item = DD_menus::GetLabel($id)->first();
+            $data['nav_label'] = $get_item->menu_text;
             $data['toggle_state'] = "1";
             $parent_id = $id;
             $type = "2";
@@ -222,6 +226,8 @@ class Group1AdminController extends Controller
             $new_state = '1';
         }elseif($state === 'false'){
             $new_state = '0';
+        }elseif($state === 'delete'){
+            $new_state = '9';
         }
 
         // Saves the change
@@ -267,5 +273,21 @@ class Group1AdminController extends Controller
 
         // Return the encoded array
         return json_encode($item_data);
+    }
+    
+    public function drop_menus_trash_bin()
+    {
+        // Sets title and route
+        $data['section_title'] = 'Drop Menu Administration';
+        $data['section_route'] = 'g1_dd_menus_trash';
+
+        $data['category_items'] = DD_menus::DeletedItems($this->group_id)->get();
+
+        // Get users today and yesterday stat count for the sidebar
+        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
+
+        // Load the view and pass $data
+        return view('drop_down_menus/trash_bin', $data);
     }
 }

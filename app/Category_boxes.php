@@ -36,13 +36,13 @@ class Category_boxes extends Model
         ])->orderBy('updated_at', 'desc');
     }
 
-    public function scopeFetchBox($query, $group_id)
-    {
-        return $query->where([
-            ['group_id', '=', $group_id],
-            ['type', '=', '1'],
-        ])->orderBy('cat1_label', 'asc');
-    }
+//     public function scopeFetchBox($query, $group_id)
+//     {
+//         return $query->where([
+//             ['group_id', '=', $group_id],
+//             ['type', '=', '1'],
+//         ])->orderBy('cat1_label', 'asc');
+//     }
 
     public function scopeGetLabel($query, $id)
     {
