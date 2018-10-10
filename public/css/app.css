@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Assistant:400,600|Source+Sans+Pro:600");
-@import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono");
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400");
 @font-face {
   font-family: 'GoogleSans';
   src: url("../fonts/GoogleSans/GoogleSans-Regular.ttf"); }
@@ -388,13 +388,13 @@ a:hover, .btn-link:hover {
   padding: 6px 0; }
 
 .sidebar_statistics {
+  font-family: "Source Code Pro", monospace;
   color: #FFF;
   text-transform: uppercase;
   padding: 2px 8px; }
   .sidebar_statistics .sidebar_stat_text {
-    font-size: 0.8rem; }
+    font-size: 0.75rem; }
   .sidebar_statistics .sidebar_stat_count {
-    font-family: "Ubuntu Mono", monospace;
     font-size: 0.85rem;
     text-align: right; }
 
@@ -648,7 +648,7 @@ input:-webkit-autofill:focus {
   .modal .custom_modal td {
     padding: 5px 10px; }
   .modal .custom_modal .label {
-    color: #a4adb9;
+    color: #b2bac4;
     font-weight: 600; }
   .modal .custom_modal .section_title {
     background: #dee1e5;

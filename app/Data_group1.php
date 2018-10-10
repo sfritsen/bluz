@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Data_group1 extends Model
 {
@@ -24,6 +25,23 @@ class Data_group1 extends Model
         return $query->where([
             ['user_id', $user],
             ['created_at', 'like', date("Y-m-d", strtotime("-1 days")) . '%']
+            ]);
+    }
+
+    // Group entry count for current day
+    public function scopeGroupCount($query)
+    {
+        return $query->where([
+            ['created_at', 'like', date("Y-m-d") . '%']
+            ]);
+    }
+
+    // Group abandon count for current day
+    public function scopeGroupAbandonCount($query)
+    {
+        return $query->where([
+            ['additional_notes', 'Abandon'],
+            ['created_at', 'like', date("Y-m-d") . '%']
             ]);
     }
 }

@@ -47,6 +47,7 @@
     padding: 6px 0;
 }
 .sidebar_statistics { 
+    font-family: $sb_stat_font_family;
     color: $sb_item_font_color;
     text-transform: uppercase;
     padding: $sb_stat_padding;
@@ -55,7 +56,6 @@
         font-size: $sb_stat_text_font_size;
     }
     .sidebar_stat_count {
-        font-family: $sb_stat_font_family;
         font-size: $sb_stat_count_font_size;
         text-align: right;
     }

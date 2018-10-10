@@ -13,6 +13,12 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                These are items that have been marked as deleted and are not available on the admin or live menus.
+            </div>
+        </div>
+
         @if (count($category_items) > '0')
             <div class="row pt-1">
                 <div class="col">

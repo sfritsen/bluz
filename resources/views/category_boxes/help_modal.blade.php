@@ -8,6 +8,12 @@
                 </button>
             </div>
             <div class="modal-body">
+
+                <div class="section_title">IMPORTANT!</div>
+                <div class="section_info">
+                    Be careful when disabling items.  When you disable an item, all its child levels will be unavailable on the live menus.
+                </div>
+
                 <div class="section_title">Add a new item</div>
                 <div class="section_info">
                     You can add items up to 4 levels deep.  Please ensure the entry form has the appropriate amount of box menu fields

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Data_group1;
 use App\Groups;
 use App\DD_menus;
@@ -27,6 +28,72 @@ class Group1AdminController extends Controller
         $this->group_route = $group['entry_route'];
         $this->group_label = $group['label'];
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Administration Main
+    |--------------------------------------------------------------------------
+    */
+
+    public function admin_main()
+    {
+        // Sets title and route
+        $data['section_title'] = $this->group_name.' Administration';
+        $data['section_route'] = 'g1_admin/';
+
+        // Get users today and yesterday stat count for the sidebar
+        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
+
+        // Gets the stats to display
+        $data['group_count_today'] = Data_group1::GroupCount()->count();
+        $data['group_abandon_count_today'] = Data_group1::GroupAbandonCount()->count();
+
+        // Find the current year and month
+        $cur_year = date("Y");
+        $cur_month = date("m");
+
+        // Check the counts_monthly table if an entry exists
+        $m_stats = DB::table('counts_monthly')->where([
+            ['group_id', $this->group_id],
+            ['year', $cur_year]
+            ])
+            ->select('year', 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december')
+            ->get();
+
+        $m_stats_count = $m_stats->count();
+
+        if ($m_stats_count >= "1") {
+            $jan = $m_stats[0]->january;
+            $feb = $m_stats[0]->february;
+            $mar = $m_stats[0]->march;
+            $apr = $m_stats[0]->april;
+            $may = $m_stats[0]->may;
+            $jun = $m_stats[0]->june;
+            $jul = $m_stats[0]->july;
+            $aug = $m_stats[0]->august;
+            $sep = $m_stats[0]->september;
+            $oct = $m_stats[0]->october;
+            $nov = $m_stats[0]->november;
+            $dec = $m_stats[0]->december;
+
+            $data['chartdata'] = '['.$jan.','.$feb.','.$mar.','.$apr.','.$may.','.$jun.','.$jul.','.$aug.','.$sep.','.$oct.','.$nov.','.$dec.']';
+            $data['chartyear'] = $m_stats[0]->year;
+        }else{
+            DB::table('counts_monthly')->insert(
+                ['group_id' =>  $this->group_id, 'year' =>  $cur_year]
+            );
+        }
+
+        // Load the view and pass $data
+        return view('group1/admin/main', $data);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Category Boxes
+    |--------------------------------------------------------------------------
+    */
 
     public function category_boxes($type, $is_under)
     {
@@ -182,6 +249,12 @@ class Group1AdminController extends Controller
         return view('category_boxes/trash_bin', $data);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Drop Down Menus
+    |--------------------------------------------------------------------------
+    */
+
     public function drop_menus($id)
     {
         // Sets title and route
@@ -196,7 +269,6 @@ class Group1AdminController extends Controller
 
         // Gets the groups list of menus
         if ($id === "0") {
-//             $get_item = DD_menus::GetLabel($id)->first();
             $data['nav_label'] = "Current available drop down menus";
             $data['toggle_state'] = "0";
             $parent_id = "0";

@@ -15,7 +15,7 @@ $box-shadow:                        0 2px 4px rgba(0, 0, 0, 0.04);
 // Typography
 $pri_font_family:                   'Assistant', sans-serif;
 $sec_font_family:                   'Source Sans Pro', sans-serif;
-$mono_font_family:                  'Ubuntu Mono', monospace;
+$mono_font_family:                  'Source Code Pro', monospace;
 $font_size_base:                    16px;
 $pri_font_size:                     0.95rem;
 $pri_font_color:                    #6b7b9d;
@@ -95,7 +95,7 @@ $sb_hover_icon_color:               $pri_light_color;
 $sb_break_margin:                   10px 0;
 $sb_break_color:                    lighten($sb_bg_color, 8%);
 $sb_stat_font_family:               $mono_font_family;
-$sb_stat_text_font_size:            0.8rem;
+$sb_stat_text_font_size:            0.75rem;
 $sb_stat_count_font_size:           0.85rem;
 $sb_stat_padding:                   2px 8px;
 
@@ -157,7 +157,7 @@ $modal_header_bg_color:             lighten($sec_accent_color, 40%);
 $modal_header_font_color:           $pri_light_color;
 $modal_th_bg_color:                 lighten($pri_accent_color, 25%);
 $modal_th_text_transform:           uppercase;
-$modal_label_font_color:            lighten($sec_accent_color, 40%);
+$modal_label_font_color:            lighten($sec_accent_color, 45%);
 $modal_label_font_weight:           600;
 $modal_title_bg_color:              lighten($sec_accent_color, 60%);
 $modal_title_font_weight:           600;

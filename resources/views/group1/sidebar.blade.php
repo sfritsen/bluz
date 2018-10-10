@@ -37,7 +37,7 @@
     <li class="nav-item">
         <a class="nav-link" href="#">
             <div class="sidebar_item">
-                <i class="material-icons md-18">feedback</i>
+                <i class="material-icons md-18">remove_circle_outline</i>
                 Abandon
             </div>
         </a>
@@ -53,7 +53,7 @@
     <li class="nav-item">
         <a class="nav-link" href="#">
             <div class="sidebar_item">
-                <i class="material-icons md-18">format_quote</i>
+                <i class="material-icons md-18">done_all</i>
                 QCE
             </div>
         </a>
@@ -72,9 +72,9 @@
 <div class="sidebar_title">Administration</div>
 <ul class="nav flex-column">
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ url('/g1_admin') }}">
             <div class="sidebar_item">
-                <i class="material-icons md-18">lock</i>
+                <i class="material-icons md-18">bubble_chart</i>
                 Main
             </div>
         </a>
@@ -82,7 +82,7 @@
     <li class="nav-item">
         <a class="nav-link" href="#">
             <div class="sidebar_item">
-                <i class="material-icons md-18">assessment</i>
+                <i class="material-icons md-18">history</i>
                 Entry History
             </div>
         </a>
@@ -98,7 +98,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/g1_dd_menus/0') }}">
             <div class="sidebar_item">
-                <i class="material-icons md-18">menu</i>
+                <i class="material-icons md-18">arrow_downward</i>
                 Menus
             </div>
         </a>
@@ -106,8 +106,8 @@
     <li class="nav-item">
         <a class="nav-link" href="">
             <div class="sidebar_item">
-                <i class="material-icons md-18">bubble_chart</i>
-                Activity
+                <i class="material-icons md-18">bar_chart</i>
+                Statistics
             </div>
         </a>
     </li>
@@ -116,6 +116,14 @@
             <div class="sidebar_item">
                 <i class="material-icons md-18">search</i>
                 Search
+            </div>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="">
+            <div class="sidebar_item">
+                <i class="material-icons md-18">people</i>
+                Users
             </div>
         </a>
     </li>
