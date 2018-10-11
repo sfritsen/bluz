@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Seed sample group
-        DB::table('groups')->insert([
+        $group = DB::table('groups')->insert([
             'label' => 'group1',
             'name' => 'Group 1 Name',
             'db_table' => 'data_group1',
@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
             'created_at' => (date("Y-m-d H:i:s")),
             'updated_at' => (date("Y-m-d H:i:s")),
         ]);
+
+        DB::table('counts_monthly')->insert(
+            ['group_id' =>  $group->id, 'year' =>  $cur_year]
+        );
 
         // Seed sample permissions for user_id 1
         DB::table('permissions')->insert([

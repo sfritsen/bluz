@@ -58,32 +58,60 @@ class Group1AdminController extends Controller
             ['group_id', $this->group_id],
             ['year', $cur_year]
             ])
-            ->select('year', 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december')
+            ->select('january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december')
             ->get();
 
-        $m_stats_count = $m_stats->count();
+        // $m_stats_count = $m_stats->count();
 
-        if ($m_stats_count >= "1") {
-            $jan = $m_stats[0]->january;
-            $feb = $m_stats[0]->february;
-            $mar = $m_stats[0]->march;
-            $apr = $m_stats[0]->april;
-            $may = $m_stats[0]->may;
-            $jun = $m_stats[0]->june;
-            $jul = $m_stats[0]->july;
-            $aug = $m_stats[0]->august;
-            $sep = $m_stats[0]->september;
-            $oct = $m_stats[0]->october;
-            $nov = $m_stats[0]->november;
-            $dec = $m_stats[0]->december;
+        // Update the monthy counts
+        Data_group1::BuildMonthCounts($this->group_db_table, $cur_year, $this->group_id);
+            
+        // Initialize array
+        $output_array = array();
 
-            $data['chartdata'] = '['.$jan.','.$feb.','.$mar.','.$apr.','.$may.','.$jun.','.$jul.','.$aug.','.$sep.','.$oct.','.$nov.','.$dec.']';
-            $data['chartyear'] = $m_stats[0]->year;
-        }else{
-            DB::table('counts_monthly')->insert(
-                ['group_id' =>  $this->group_id, 'year' =>  $cur_year]
-            );
+        // Loop through array to get all values
+        foreach($m_stats[0] as $key => $value) {
+            $output_array[] = $value.", ";
         }
+
+        // Join the array elements into a string
+        $output = implode("", $output_array);
+
+        // Sets the values to be passed to view
+        $data['chartdata'] = "[".$output."]";
+        $data['chartyear'] = $cur_year;
+
+        // If an entry was found ...
+        // if ($m_stats_count === "1") {
+
+        //     // Update the monthy counts
+        //     Data_group1::BuildMonthCounts($this->group_db_table, $cur_year, $this->group_id);
+            
+        //     // Initialize array
+        //     $output_array = array();
+
+        //     // Loop through array to get all values
+        //     foreach($m_stats[0] as $key => $value) {
+        //         $output_array[] = $value.", ";
+        //     }
+
+        //     // Join the array elements into a string
+        //     $output = implode("", $output_array);
+
+        //     // Sets the values to be passed to view
+        //     $data['chartdata'] = "[".$output."]";
+        //     $data['chartyear'] = $cur_year;
+
+        // }else{
+        //     // If no entry was found, create one for the year
+        //     DB::table('counts_monthly')->insert(
+        //         ['group_id' =>  $this->group_id, 'year' =>  $cur_year]
+        //     );
+
+        //     // Pass default chart data
+        //     $data['chartdata'] = "[0,0,0,0,0,0,0,0,0,0,0,0]";
+        //     $data['chartyear'] = $cur_year;
+        // }
 
         // Load the view and pass $data
         return view('group1/admin/main', $data);
