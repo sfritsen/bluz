@@ -1,3 +1,4 @@
+{{ $entry_records->links() }}
 <table class="table table-hover data_table">
     <thead>
         <tr>
@@ -27,6 +28,7 @@
         @endforeach
     </tbody>
 </table>
+{{ $entry_records->links() }}
 
 {{-- Make sure to add the modal --}}
 @include('group1/modal_entry_details')

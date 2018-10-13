@@ -115,6 +115,15 @@ $tbody_font_color:                  $pri_font_color;
 $tbody_icon_margin:                 0 4px;
 $tbody_icon_size:                   1rem;
 
+// Pagination
+$pag_margin:                        4px 0;
+$pag_base_bg_color:                 $sec_light_color;
+$pag_base_border_color:             lighten($tri_light_color, 20%);
+$pag_base_font_color:               lighten($sec_accent_color, 30%);
+$pag_active_bg_color:               $pri_accent_color;
+$pag_active_border_color:           $tri_light_color;
+$pag_active_font_color:             $sec_accent_color;
+
 // Forms
 $input_bg_color:                    $pri_light_color;
 $input_border_radius:               6px;
@@ -175,3 +184,12 @@ $submenu_item_font_color:           $sec_accent_color;
 $submenu_item_padding:              10px;
 $submenu_item_hover_bg_color:       $pri_accent_color;
 $submenu_item_hover_font_color:     $sec_accent_color;
+
+// Stats display
+$stat_label_bg_color:               lighten($sec_accent_color, 30%);
+$stat_label_border_size:            2px;
+$stat_label_border_color:           lighten($sec_accent_color, 45%);
+$stat_label_font_color:             $pri_light_color;
+$stat_label_font_transform:         uppercase;
+$stat_label_padding:                5px;
+$stat_value_font_size:              3.5rem;

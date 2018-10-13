@@ -8,6 +8,7 @@ use App\Data_group1;
 use App\Groups;
 use App\DD_menus;
 use App\Category_boxes;
+use App\Counts_monthly;
 use Auth;
 
 class Group1AdminController extends Controller
@@ -53,68 +54,41 @@ class Group1AdminController extends Controller
         $cur_year = date("Y");
         $cur_month = date("m");
 
-        // Check the counts_monthly table if an entry exists
-        $m_stats = DB::table('counts_monthly')->where([
-            ['group_id', $this->group_id],
-            ['year', $cur_year]
-            ])
-            ->select('january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december')
-            ->get();
+        // Update the monthy counts based on the current year
+        Counts_monthly::BuildMonthCounts($this->group_db_table, $cur_year, $this->group_id);
 
-        // $m_stats_count = $m_stats->count();
-
-        // Update the monthy counts
-        Data_group1::BuildMonthCounts($this->group_db_table, $cur_year, $this->group_id);
-            
-        // Initialize array
-        $output_array = array();
-
-        // Loop through array to get all values
-        foreach($m_stats[0] as $key => $value) {
-            $output_array[] = $value.", ";
-        }
-
-        // Join the array elements into a string
-        $output = implode("", $output_array);
-
-        // Sets the values to be passed to view
-        $data['chartdata'] = "[".$output."]";
+        // Gets the yearly data from the counts_monthly table
+        $data['chartdata'] = Counts_monthly::GetMonthData($cur_year, $this->group_id);
         $data['chartyear'] = $cur_year;
-
-        // If an entry was found ...
-        // if ($m_stats_count === "1") {
-
-        //     // Update the monthy counts
-        //     Data_group1::BuildMonthCounts($this->group_db_table, $cur_year, $this->group_id);
-            
-        //     // Initialize array
-        //     $output_array = array();
-
-        //     // Loop through array to get all values
-        //     foreach($m_stats[0] as $key => $value) {
-        //         $output_array[] = $value.", ";
-        //     }
-
-        //     // Join the array elements into a string
-        //     $output = implode("", $output_array);
-
-        //     // Sets the values to be passed to view
-        //     $data['chartdata'] = "[".$output."]";
-        //     $data['chartyear'] = $cur_year;
-
-        // }else{
-        //     // If no entry was found, create one for the year
-        //     DB::table('counts_monthly')->insert(
-        //         ['group_id' =>  $this->group_id, 'year' =>  $cur_year]
-        //     );
-
-        //     // Pass default chart data
-        //     $data['chartdata'] = "[0,0,0,0,0,0,0,0,0,0,0,0]";
-        //     $data['chartyear'] = $cur_year;
-        // }
 
         // Load the view and pass $data
         return view('group1/admin/main', $data);
+    }
+
+    public function entry_history()
+    {
+        // Sets title and route
+        $data['section_title'] = $this->group_name.' Entry History';
+        $data['section_route'] = 'g1_admin/';
+
+        // Get users today and yesterday stat count for the sidebar
+        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
+
+        // Gets the history for the selected user
+        $data['entry_records'] = Data_group1::
+            join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.id')
+            ->select('data_group1.*', 'dd_menus.menu_text')
+            ->orderBy('created_at', 'desc')
+            ->paginate(50);
+
+        // Sets the date format for the records shown
+        $data['entry_records_date_format'] = 'M d Y h:i:s a';
+
+        // Count the results
+        $data['history_count'] = $data['entry_records']->count();
+
+        return view('group1/history', $data);
     }
 
     /*

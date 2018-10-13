@@ -1,0 +1,15 @@
+.stats_cage {
+    text-align: center;
+
+    .stat_label {
+        background: $stat_label_bg_color;
+        border: $stat_label_border_size solid $stat_label_border_color;
+        color: $stat_label_font_color;
+        text-transform: $stat_label_font_transform;
+        padding: $stat_label_padding;
+    }
+
+    .stat_value {
+        font-size: $stat_value_font_size;
+    }
+}

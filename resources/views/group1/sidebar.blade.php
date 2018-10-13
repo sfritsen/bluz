@@ -80,7 +80,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ url('g1_admin_history') }}">
             <div class="sidebar_item">
                 <i class="material-icons md-18">history</i>
                 Entry History

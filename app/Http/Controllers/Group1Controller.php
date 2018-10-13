@@ -137,7 +137,7 @@ class Group1Controller extends Controller
             ->where('data_group1.user_id', Auth::user()->id)
             ->select('data_group1.*', 'dd_menus.menu_text')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(50);
 
         // Sets the date format for the records shown
         $data['entry_records_date_format'] = 'M d Y h:i:s a';

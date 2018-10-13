@@ -1,0 +1,17 @@
+.pagination {
+    margin: $pag_margin;
+
+    // Base styling
+    .page-link {
+        background-color: $pag_base_bg_color;
+        border: 1px solid $pag_base_border_color;
+        color: $pag_base_font_color;
+    }
+
+    // Active state and hover
+    .page-item.active .page-link, .page-link:hover {
+        background-color: $pag_active_bg_color;
+        border: 1px solid $pag_active_border_color;
+        color: $pag_active_font_color;
+    }
+}

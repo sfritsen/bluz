@@ -683,6 +683,28 @@ input:-webkit-autofill:focus {
       background: #BADA55;
       color: #3F4752; }
 
+.stats_cage {
+  text-align: center; }
+  .stats_cage .stat_label {
+    background: #8793a3;
+    border: 2px solid #b2bac4;
+    color: #FFF;
+    text-transform: uppercase;
+    padding: 5px; }
+  .stats_cage .stat_value {
+    font-size: 3.5rem; }
+
+.pagination {
+  margin: 4px 0; }
+  .pagination .page-link {
+    background-color: #F7F7F7;
+    border: 1px solid #ccced1;
+    color: #8793a3; }
+  .pagination .page-item.active .page-link, .pagination .page-link:hover {
+    background-color: #BADA55;
+    border: 1px solid #969BA1;
+    color: #3F4752; }
+
 .footer {
   font-size: 0.8rem;
   text-align: center;
