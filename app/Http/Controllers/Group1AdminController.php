@@ -43,7 +43,7 @@ class Group1AdminController extends Controller
         $data['section_route'] = 'g1_admin/';
 
         // Get users today and yesterday stat count for the sidebar
-        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Gets the stats to display
@@ -72,7 +72,7 @@ class Group1AdminController extends Controller
         $data['section_route'] = 'g1_admin/';
 
         // Get users today and yesterday stat count for the sidebar
-        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Gets the history for the selected user
@@ -83,12 +83,25 @@ class Group1AdminController extends Controller
             ->paginate(50);
 
         // Sets the date format for the records shown
-        $data['entry_records_date_format'] = 'M d Y h:i:s a';
+        $data['date_format'] = 'M d Y h:i:s a';
 
         // Count the results
         $data['history_count'] = $data['entry_records']->count();
 
         return view('group1/history', $data);
+    }
+
+    public function admin_search()
+    {
+        // Sets title and route
+        $data['section_title'] = $this->group_name.' Data Search';
+        $data['section_route'] = 'g1_admin/';
+
+        // Get users today and yesterday stat count for the sidebar
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
+
+        return view('group1/admin/search', $data);
     }
 
     /*
@@ -136,7 +149,7 @@ class Group1AdminController extends Controller
         $data['category_items'] = Category_boxes::NonDeletedItems($this->group_id, $type, $is_under)->get();
 
         // Get users today and yesterday stat count for the sidebar
-        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Load the view and pass $data
@@ -244,7 +257,7 @@ class Group1AdminController extends Controller
         $data['category_items'] = Category_boxes::DeletedItems($this->group_id)->get();
 
         // Get users today and yesterday stat count for the sidebar
-        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Load the view and pass $data
@@ -264,7 +277,7 @@ class Group1AdminController extends Controller
         $data['section_route'] = 'g1_dd_menus/';
 
         // Get users today and yesterday stat count for the sidebar
-        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         $data['parent_id'] = $id;
@@ -358,7 +371,7 @@ class Group1AdminController extends Controller
         $data['category_items'] = DD_menus::DeletedItems($this->group_id)->get();
 
         // Get users today and yesterday stat count for the sidebar
-        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Load the view and pass $data

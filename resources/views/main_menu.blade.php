@@ -1,9 +1,14 @@
-@extends('layouts.main_menu')
+@include('partials/header')
 
-@section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
+            <div class="col mm_header">
+                <i class="material-icons md-85 mm_logo_icon">landscape</i>
+                <div class="mm_logo_text">{{ config('app.name', 'Laravel') }}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mm_form_cage">
 
                 @foreach($groups as $row)
 
@@ -36,7 +41,23 @@
 
                 @endforeach
 
+                {{-- User management --}}
+                @if(Auth::user()->permission->user_management === 1)
+                    <div class="mm_plate">
+                        <a href="#">
+                            <div class="mm_left">
+                                User Management
+                            </div>
+                        </a>
+                    </div>
+                @endif
+
             </div>
         </div>
     </div>
-@endsection
+
+    {{-- Include the footer container --}}
+    @include('partials/footer')
+
+</body>
+</html>

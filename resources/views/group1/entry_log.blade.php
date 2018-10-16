@@ -14,7 +14,7 @@
     <tbody>
         @foreach($entry_records as $row)
         <tr>
-            <td>{{ date($entry_records_date_format, strtotime($row->created_at)) }}</td>
+            <td>{{ date($date_format, strtotime($row->created_at)) }}</td>
             <td>{{ $row->emp_info_name }}</td>
             <td>{{ $row->phone_number }}</td>
             <td>{{ $row->lynx }}</td>

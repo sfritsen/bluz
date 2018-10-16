@@ -194,7 +194,7 @@
                 dataType: 'json',
                 success: function(data){
                     // Displays the returned agent information
-                    $("#show_agent_info").hide().html('<div class="title">Agent Information</div>'+data.employee_name+' &#9679; '+data.employee_title).slideDown("slow");
+                    $("#show_agent_info").hide().html('<div class="title">Agent Information</div>'+data.employee_name+' {!! config("constants.divider") !!} '+data.employee_title).slideDown("slow");
                     $("#show_manager_info").hide().html('<div class="title">Manager Information</div>'+data.employee_mgr_name).slideDown("slow");
 
                     // Sets the value of the hidden inputs for submission

@@ -10,9 +10,6 @@
     
     <title>{{ config('app.name', 'Laravel') }}</title>
     
-    {{-- Fonts --}}
-    {{-- <link rel="dns-prefetch" href="https://fonts.gstatic.com"> --}}
-    
     {{-- Styles --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

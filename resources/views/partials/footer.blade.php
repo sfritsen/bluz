@@ -3,9 +3,9 @@
         <div class="col">
             <hr>
             {{ Auth::user()->name }} 
-            <span class="divider">&#9679;</span>
+            <span class="divider">{!! config('constants.divider') !!}</span>
             <a href="{{ url('/logout') }}">Logout</a>
-            <span class="divider">&#9679;</span> 
+            <span class="divider">{!! config('constants.divider') !!}</span> 
             {{ config('app.name', 'Laravel')." ".date("Y")}}
         </div>
     </div>

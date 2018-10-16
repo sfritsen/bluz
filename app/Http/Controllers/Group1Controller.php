@@ -32,11 +32,11 @@ class Group1Controller extends Controller
     public function entry()
     {
         // Check permissions for access to this controller (group)
-        $check = Permissions::CheckAccess()->first();
+        $check = Permissions::CheckAccess(Auth::user()->id)->first();
 
-        // If false, abort to 404
-        if($check['g1_entry'] === 0){
-            abort(404);
+        // If false, abort to error
+        if($check['g1_entry'] === 0){ 
+            return view('errors/no_access');
         }
 
         // Sets title and route
@@ -55,18 +55,10 @@ class Group1Controller extends Controller
         $data['dd_troubleshooting'] = DD_menus::GetMenu($this->group_id, '4')->pluck('id', 'menu_text');
 
         // Query for entry log data
-        $data['entry_records'] = Data_group1::
-            join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.id')
-            ->where([
-                ['data_group1.user_id', Auth::user()->id],
-                ['data_group1.created_at', 'like', date("Y-m-d") . '%']
-            ])
-            ->select('data_group1.*', 'dd_menus.menu_text')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $data['entry_records'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->paginate(200);
 
         // Sets the date format for the records shown
-        $data['entry_records_date_format'] = 'h:i:s a';
+        $data['date_format'] = 'h:i:s a';
 
         // Get todays and yesterdays stat count
         $data['entry_count_today'] = $data['entry_records']->count();
@@ -128,22 +120,17 @@ class Group1Controller extends Controller
         $data['section_route'] = $this->group_route;
 
         // Get todays and yesterdays stat count
-        $data['entry_count_today'] = Data_group1::TodayCount(Auth::user()->id)->count();
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
         $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
 
         // Gets the history for the selected user
-        $data['entry_records'] = Data_group1::
-            join('dd_menus', $this->group_db_table.'.incident_type', '=', 'dd_menus.id')
-            ->where('data_group1.user_id', Auth::user()->id)
-            ->select('data_group1.*', 'dd_menus.menu_text')
-            ->orderBy('created_at', 'desc')
-            ->paginate(50);
-
-        // Sets the date format for the records shown
-        $data['entry_records_date_format'] = 'M d Y h:i:s a';
+        $data['entry_records'] = Data_group1::UserHistory($this->group_db_table, Auth::user()->id)->paginate(50);
 
         // Count the results
         $data['history_count'] = $data['entry_records']->count();
+
+        // Sets the date format for the records shown
+        $data['date_format'] = 'M d Y h:i:s a';
 
         // Load the view and pass $data
         return view('group1/history', $data);
@@ -151,7 +138,7 @@ class Group1Controller extends Controller
 
     public function record_details(Request $request, $id)
     {
-        // Gets the entire record for the supplied $id
+        // Gets the record details for the supplied $id
         $data['record'] = Data_group1::
             join('category_boxes as lvl1', $this->group_db_table.'.cat_box_1', '=', 'lvl1.id')
             ->join('category_boxes as lvl2', $this->group_db_table.'.cat_box_2', '=', 'lvl2.id')
