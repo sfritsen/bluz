@@ -234,7 +234,8 @@ a:hover, .btn-link:hover {
   margin-top: 0; }
 
 .mm_logo_icon {
-  color: #BADA55; }
+  color: #BADA55;
+  font-size: 70px; }
 
 .mm_form_cage {
   margin: 25px 0;
@@ -242,31 +243,24 @@ a:hover, .btn-link:hover {
 
 .mm_plate {
   background: #8793a3;
-  display: inline-block;
+  display: inline-flex;
   margin: 6px;
-  text-align: left;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 2px solid #b2bac4;
-  font-size: 0.9rem; }
+  font-size: 0.9rem;
+  width: 18rem;
+  overflow: hidden; }
   .mm_plate a:link, .mm_plate a:active, .mm_plate a:hover, .mm_plate a:visited {
     color: #FFF; }
   .mm_plate .mm_left {
-    display: inline-block;
-    padding: 12px;
-    width: 200px;
-    transition: 0.4s; }
-    .mm_plate .mm_left:hover {
-      background: #BADA55;
-      color: #3F4752;
-      opacity: 1; }
-  .mm_plate .mm_right {
-    display: inline-block;
+    flex-grow: 100;
+    text-align: left; }
+  .mm_plate .mm_left, .mm_plate .mm_right {
     padding: 12px;
     transition: 0.4s; }
-    .mm_plate .mm_right:hover {
-      background: #BADA55;
-      color: #3F4752;
-      opacity: 1; }
+  .mm_plate .mm_left:hover, .mm_plate .mm_right:hover {
+    background: #BADA55;
+    color: #3F4752; }
 
 .navbar_custom {
   background-color: #FFF;

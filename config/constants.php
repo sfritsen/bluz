@@ -14,5 +14,6 @@ return [
     */
 
     'divider' => env('DIVIDER', '&#9679;'),
+    'checkmark' => env('DIVIDER', '&#10004;'),
 
 ];

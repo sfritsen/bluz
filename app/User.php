@@ -41,4 +41,14 @@ class User extends Authenticatable
         // Auth::user()->permissions->[permission]
         return $permission;
     }
+    
+    public function scopeGetGroupUsers($query, $group_route, $admin_route)
+    {
+        return $query->join('permissions', 'users.id', '=', 'permissions.user_id')
+            ->where([
+                ['permissions.'.$group_route, '1']
+                ])
+            ->select('users.*', 'permissions.user_management', 'permissions.'.$admin_route)
+            ->orderBy('users.name', 'asc');
+    }
 }

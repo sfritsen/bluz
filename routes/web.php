@@ -31,7 +31,10 @@ Route::get('/g1_record_details/{id}', 'Group1Controller@record_details')->name('
 // Group 1 Admin
 Route::get('/g1_admin', 'Group1AdminController@admin_main')->name('g1_admin');
 Route::get('/g1_admin_history', 'Group1AdminController@entry_history')->name('g1_admin_history');
+Route::get('/g1_admin_settings', 'Group1AdminController@group_settings')->name('g1_admin_settings');
+Route::post('/g1_admin_group_name_submit', 'Group1AdminController@group_name_submit')->name('g1_admin_group_name_submit');
 Route::get('/g1_admin_search', 'Group1AdminController@admin_search')->name('g1_admin_search');
+Route::get('/g1_admin_users', 'Group1AdminController@admin_users')->name('g1_admin_users');
 
 Route::get('/g1_cat_boxes/{type}/{id}', 'Group1AdminController@category_boxes')->name('g1_cat_boxes');
 Route::get('/g1_cat_boxes_edit/{id}/{state}', 'Group1AdminController@category_boxes_edit')->name('g1_cat_boxes_edit');

@@ -9,6 +9,7 @@ use App\Groups;
 use App\DD_menus;
 use App\Category_boxes;
 use App\Counts_monthly;
+use App\User;
 use Auth;
 
 class Group1AdminController extends Controller
@@ -27,6 +28,7 @@ class Group1AdminController extends Controller
         $this->group_name = $group['name'];
         $this->group_db_table = $group['db_table'];
         $this->group_route = $group['entry_route'];
+        $this->group_admin_route = $group['admin_route'];
         $this->group_label = $group['label'];
     }
 
@@ -52,14 +54,15 @@ class Group1AdminController extends Controller
 
         // Find the current year and month
         $cur_year = date("Y");
-        $cur_month = date("m");
 
         // Update the monthy counts based on the current year
         Counts_monthly::BuildMonthCounts($this->group_db_table, $cur_year, $this->group_id);
 
         // Gets the yearly data from the counts_monthly table
-        $data['chartdata'] = Counts_monthly::GetMonthData($cur_year, $this->group_id);
-        $data['chartyear'] = $cur_year;
+        $data['cur_chart_year'] = $cur_year;
+        $data['cur_chart_data'] = Counts_monthly::YearData($cur_year, $this->group_id);
+        $data['prev_chart_year'] = $cur_year - 1;
+        $data['prev_chart_data'] = Counts_monthly::YearData($data['prev_chart_year'], $this->group_id);
 
         // Load the view and pass $data
         return view('group1/admin/main', $data);
@@ -90,12 +93,89 @@ class Group1AdminController extends Controller
 
         return view('group1/history', $data);
     }
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Settings
+    |--------------------------------------------------------------------------
+    */
+
+    public function group_settings()
+    {
+        // Sets title and route
+        $data['section_title'] = $this->group_name.' Settings';
+        $data['section_route'] = 'g1_admin/';
+
+        // Get users today and yesterday stat count for the sidebar
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
+
+        $data['group_id'] = $this->group_id;
+        $data['group_name'] = $this->group_name;
+
+        return view('group1/admin/settings', $data);
+    }
+    
+    public function group_name_submit(Request $request)
+    {
+        // Validates the data
+        $validateData = $request->validate([
+            'group_name' => 'bail|required|min:2|max:25',
+        ]);
+        
+        // Saves the data to the table once it validates
+        Groups::where('id', $this->group_id)->update(['name' => $request->group_name]);
+        
+        // Redirect after writing
+        return redirect('/g1_admin_settings');
+    }
+    
+    /*
+    |--------------------------------------------------------------------------
+    | User Management
+    |--------------------------------------------------------------------------
+    */
+    
+    public function admin_users()
+    {
+        // Sets title and route
+        $data['section_title'] = $this->group_name.' User Management';
+        $data['section_route'] = 'g1_admin_users/';
+
+        // Get users today and yesterday stat count for the sidebar
+        $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();
+        $data['entry_count_yesterday'] = Data_group1::YesterdayCount(Auth::user()->id)->count();
+        
+        // Gets the users list for this group and associated permissions
+        $data['users_list'] = User::GetGroupUsers($this->group_route, $this->group_admin_route)->get();
+
+        // Pass the group admin route to be used to flag users with admin
+        $data['admin_route'] = $this->group_admin_route;
+
+        // Configuration array for the table.  1 = show, 0 = hide
+        $data['config'] = array(
+            'show_email'            => '1',
+            'show_users_col'        => '1',
+            'show_admin_col'        => '1',
+            'show_created_time'     => '0',
+            'show_updated_time'     => '1',
+            'show_controls'         => '1'
+        );
+
+        return view('users/users_list', $data);
+    }
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Search and Data Retrieval
+    |--------------------------------------------------------------------------
+    */
 
     public function admin_search()
     {
         // Sets title and route
         $data['section_title'] = $this->group_name.' Data Search';
-        $data['section_route'] = 'g1_admin/';
+        $data['section_route'] = 'g1_admin_search/';
 
         // Get users today and yesterday stat count for the sidebar
         $data['entry_count_today'] = Data_group1::TodayCount($this->group_db_table, Auth::user()->id)->count();

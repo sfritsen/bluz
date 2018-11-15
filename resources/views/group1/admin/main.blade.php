@@ -34,11 +34,20 @@
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets : [
                 {
-                    label: {!! $chartyear !!}+' Submissions',
+                    label: {!! $prev_chart_year !!}+' Submissions',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 3,
+                    data: {!! $prev_chart_data !!},
+                    fill: false
+                },
+                {
+                    label: {!! $cur_chart_year !!}+' Submissions',
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                    data: {!! $chartdata !!}
+                    borderWidth: 2,
+                    data: {!! $cur_chart_data !!},
+                    fill: false
                 }
             ]
         };
@@ -50,7 +59,7 @@
                 maintainAspectRatio: false,
                 elements: {
                     line: {
-                        tension: 0, // disables bezier curves
+                        tension: 0.3, // disables bezier curves
                     }
                 }
             }

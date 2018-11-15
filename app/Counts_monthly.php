@@ -31,12 +31,12 @@ class Counts_monthly extends Model
         }
     }
 
-    public function scopeGetMonthData($query, $cur_year, $group_id)
+    public function scopeYearData($query, $year, $group_id)
     {
         // Get the data
         $m_stats = DB::table('counts_monthly')->where([
             ['group_id', $group_id],
-            ['year', $cur_year]
+            ['year', $year]
         ])
         ->select('january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december')
         ->get();
