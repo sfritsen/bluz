@@ -21,8 +21,8 @@
             <td>{{ $row->chat_session_id }}</td>
             <td>{{ $row->menu_text }}</td>
             <td align="right">
-                <i class="material-icons table_icon" title="Edit Record">edit</i>
-                <i href="{{ url('g1_record_details/'.$row->id) }}" data-remote="false" class="material-icons table_icon" title="Entry Details" data-toggle="modal" data-target="#entry_details_modal">info</i>
+                <i class="material-icons table_icon" title="Edit">edit</i>
+                <i href="{{ url('g1_record_details/'.$row->id) }}" data-remote="false" class="material-icons table_icon" title="Info" data-toggle="modal" data-target="#entry_details_modal">drag_indicator</i>
             </td>
         </tr>
         @endforeach

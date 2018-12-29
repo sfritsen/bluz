@@ -22,6 +22,9 @@ Route::get('/main_menu', 'MainMenuController@index')->name('main_menu');
 // Agent search
 Route::get('/agent_search','AgentSearchController@search')->name('agent_search');
 
+// User accounts & management
+Route::get('/my_account','AccountController@account_details')->name('my_account');
+
 // Group 1
 Route::get('/g1_entry', 'Group1Controller@entry')->name('g1_entry');
 Route::post('/g1_submit_entry', 'Group1Controller@submit_entry')->name('g1_submit_entry');

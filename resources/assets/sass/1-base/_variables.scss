@@ -112,6 +112,8 @@ $tbody_row_padding:                 6px 10px;
 $tbody_font_size:                   0.9rem;
 $tbody_font_color:                  $pri_font_color;
 $tbody_icon_margin:                 0 4px;
+$tbody_icon_color:                  $pri_light_color;
+$tbody_icon_border_color:           lighten($tbody_font_color, 8%);
 $tbody_icon_size:                   1rem;
 
 // Pagination

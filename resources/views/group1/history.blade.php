@@ -12,12 +12,12 @@
                 <i class="material-icons md-24">history</i> History
             </div>
             <div class="col table_title_records">
-                {{ $history_count }} found
+                {{ $entry_records->total() }} found
             </div>
         </div>
         <div class="row">
             <div class="col">
-                @if ($history_count > 0)
+                @if ($entry_records->total() > 0)
                     @include('group1/entry_log')
                 @endif
             </div>

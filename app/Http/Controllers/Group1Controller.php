@@ -126,9 +126,6 @@ class Group1Controller extends Controller
         // Gets the history for the selected user
         $data['entry_records'] = Data_group1::UserHistory($this->group_db_table, Auth::user()->id)->paginate(50);
 
-        // Count the results
-        $data['history_count'] = $data['entry_records']->count();
-
         // Sets the date format for the records shown
         $data['date_format'] = 'M d Y h:i:s a';
 

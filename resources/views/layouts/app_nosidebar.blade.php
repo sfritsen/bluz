@@ -44,14 +44,8 @@
 
     <div class="container-fluid">
         <div class="row">
-            
-            <nav class="col-md-2 d-none d-md-block sidebar">
-                <div class="sidebar-sticky">
-                    @yield('sidebar')
-                </div>
-            </nav>
                 
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
+            <main role="main" class="col-md-12 ml-sm-auto col-lg-12">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                     @yield('content')
                 </div>

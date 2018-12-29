@@ -28,6 +28,10 @@
         }
 
         .table_icon {
+            background: $tbody_font_color;
+            color: $tbody_icon_color;
+            border: 1px solid $tbody_icon_border_color;
+            border-radius: 4px;
             font-size: $tbody_icon_size;
             margin: $tbody_icon_margin;
             cursor: pointer;

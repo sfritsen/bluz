@@ -606,6 +606,10 @@ input:-webkit-autofill:focus {
   .data_table tbody td {
     padding: 6px 10px; }
   .data_table tbody .table_icon {
+    background: #6b7b9d;
+    color: #FFF;
+    border: 1px solid #8491ad;
+    border-radius: 4px;
     font-size: 1rem;
     margin: 0 4px;
     cursor: pointer; }
