@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'divider' => env('DIVIDER', '&#9679;'),
-    'checkmark' => env('DIVIDER', '&#10004;'),
+    'site_logo'             => 'fas fa-leaf',
+    'divider'               => '&#9679;',
+    'checkmark'             => '&#10004;',
+    'table_record_blank'    => '--',
 
 ];

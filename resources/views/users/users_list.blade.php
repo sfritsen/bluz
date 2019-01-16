@@ -48,7 +48,7 @@
 										@if($value['user_management'] === 1)
 											{!! config('constants.checkmark') !!}
 										@else
-											--
+											{!! config('constants.table_record_blank') !!}
 										@endif
 									</td>
 								@endif
@@ -57,7 +57,7 @@
 										@if($value[$admin_route] === 1)
 											{!! config('constants.checkmark') !!}
 										@else
-											--
+											{!! config('constants.table_record_blank') !!}
 										@endif
 									</td>
 								@endif
@@ -69,8 +69,9 @@
 								@endif
 								@if($config['show_controls'] === '1')
 									<td align="right">
-										<i class="material-icons table_icon" title="Edit User">edit</i>
-										<i href="" data-remote="false" class="material-icons table_icon" title="User Details" data-toggle="modal" data-target="#entry_details_modal">info</i>
+										{{-- Icons are set in config/icon_ref.php --}}
+										<i class="{!! config('icon_ref.edit') !!} table_icon" title="Edit User"></i>
+										<i href="" data-remote="false" class="{!! config('icon_ref.info') !!} table_icon" title="User Details" data-toggle="modal" data-target="#entry_details_modal"></i>
 									</td>
 								@endif
 							</tr>

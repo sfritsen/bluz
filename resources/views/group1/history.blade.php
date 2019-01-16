@@ -9,7 +9,7 @@
     <div class="container-fluid nopadding">
         <div class="row">
             <div class="col table_title">
-                <i class="material-icons md-24">history</i> My History
+                <i class="{!! config('icon_ref.history') !!}"></i> My History
             </div>
             <div class="col table_title_records">
                 {{ $entry_records->total() }} found
