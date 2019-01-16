@@ -12,6 +12,19 @@ class Counts_monthly extends Model
 
     public function scopeBuildMonthCounts($query, $db_table, $cur_year, $group_id)
     {
+        // First check to make sure the year record is in place
+        $year_check = DB::table('counts_monthly')->where([
+            ['group_id', $group_id],
+            ['year', $cur_year]
+        ])->count();
+
+        // If 0, make one!
+        if ($year_check == '0'){
+            DB::table('counts_monthly')->insert([
+                ['group_id' => $group_id, 'year' => $cur_year]
+            ]);
+        }
+
         // Redo all the counts to make sure they're up to date
         // Build array of table columns and values
         $month_array = array("january"=>"01", "february"=>"02","march"=>"03","april"=>"04","may"=>"05","june"=>"06","july"=>"07","august"=>"08","september"=>"09","october"=>"10","november"=>"11","december"=>"12");

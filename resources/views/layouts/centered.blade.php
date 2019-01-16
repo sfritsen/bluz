@@ -3,7 +3,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col login_header">
-                    <i class="material-icons md-85 login_logo_icon">landscape</i>
+                    {{-- <i class="material-icons md-85 login_logo_icon">landscape</i> --}}
+                    <i class="fas fa-atom"></i>
                 <div class="login_logo_text">{{ config('app.name', 'Laravel') }}</div>
             </div>
         </div>

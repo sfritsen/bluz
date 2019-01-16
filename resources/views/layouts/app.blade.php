@@ -3,7 +3,7 @@
     {{-- Navbar --}}
     <nav class="navbar navbar-light fixed-top navbar_custom flex-md-nowrap p-0">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ url('/') }}">
-            <i class="material-icons logo_icon">landscape</i>{{ config('app.name', 'Laravel') }}
+            <i class="fas fa-atom logo_icon"></i>{{ config('app.name', 'Laravel') }}
         </a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap ">

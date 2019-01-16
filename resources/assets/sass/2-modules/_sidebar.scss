@@ -66,3 +66,9 @@
     color: $sb_break_color;
     margin: $sb_break_margin;
 }
+.sidebar_icon {
+    font-size: 18px;
+    vertical-align: text-bottom;
+    margin-right: 8px;
+    color: darken($sb_item_font_color, 40%);
+}

@@ -17,6 +17,7 @@ class Group1AdminController extends Controller
     // Set global variables which are used below
     // Set the group_id from the value given
     private $group_id = "1";
+    // private $group_db_table;
 
     public function __construct()
     {

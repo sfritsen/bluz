@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col mm_header">
-                <i class="material-icons md-85 mm_logo_icon">landscape</i>
+                <i class="fas fa-atom mm_logo_icon"></i>
                 <div class="mm_logo_text">{{ config('app.name', 'Laravel') }}</div>
             </div>
         </div>

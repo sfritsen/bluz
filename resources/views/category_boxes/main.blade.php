@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-   
+
     <div class="container-fluid nopadding">
         <div class="row submenu">
             <div class="col">
@@ -30,6 +30,8 @@
                 <div id="output_message"></div>
             </div>
         </div>
+
+        div	
 
         <hr>
 
