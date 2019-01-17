@@ -16,14 +16,32 @@
         <tr>
             <td>{{ date($date_format, strtotime($row->created_at)) }}</td>
             <td>{{ $row->emp_info_name }}</td>
-            <td>{{ $row->phone_number }}</td>
-            <td>{{ $row->lynx }}</td>
+            <td>
+                <?php
+                if ($row->abandon === 0) {
+                    echo $row->phone_number;
+                }else{
+                    echo config('constants.table_record_blank');
+                }
+                ?>
+            </td>
+            <td>
+                <?php
+                if ($row->abandon === 0) {
+                    echo $row->lynx;
+                }else{
+                    echo config('constants.table_record_blank');
+                }
+                ?>
+            </td>
             <td>{{ $row->chat_session_id }}</td>
             <td>{{ $row->menu_text }}</td>
             <td align="right">
                 {{-- Icons are set in config/icon_ref.php --}}
-                <i class="{!! config('icon_ref.edit') !!} table_icon" title="Edit"></i>
-                <i href="{{ url('g1_record_details/'.$row->id) }}" data-remote="false" class="{!! config('icon_ref.info') !!} table_icon" title="Info" data-toggle="modal" data-target="#entry_details_modal"></i>
+                <?php if ($row->abandon === 0) { ?>
+                    <i class="{!! config('icon_ref.edit') !!} table_icon" title="Edit"></i>
+                    <i href="{{ url('g1_record_details/'.$row->id) }}" data-remote="false" class="{!! config('icon_ref.info') !!} table_icon" title="Info" data-toggle="modal" data-target="#entry_details_modal"></i>
+                <?php } ?>
             </td>
         </tr>
         @endforeach

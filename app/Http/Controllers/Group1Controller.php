@@ -133,7 +133,7 @@ class Group1Controller extends Controller
 		$g1->phone_number           = '0';
 		$g1->lynx                   = '0';
         $g1->chat_session_id        = $request->chat_session_id;
-        $g1->incident_type          = '0';
+        $g1->incident_type          = '1';
         $g1->equip_type             = '0';
         $g1->resolution             = '0';
         $g1->troubleshooting        = '0';
