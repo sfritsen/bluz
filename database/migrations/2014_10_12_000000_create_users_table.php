@@ -30,14 +30,14 @@ class CreateUsersTable extends Migration
         // Create admin user with default password 123456
         DB::table('users')->insert(
             array(
-                'account_type' => '1',
-                'name' => 'Admin',
-                'email' => 'donotreply@telus.com',
-                'username' => 'admin',
-                'password' => '$2y$10$ME40yRp7XTXBowJ28QWmpuUW4E8ytgyq2z1UhEFy7KujJilCmpjya',
-                'theme' => 'app.css',
-                'searchable' => '0',
-                'active' => '1'
+                'account_type'  => '1',
+                'name'          => 'Admin',
+                'email'         => 'donotreply@telus.com',
+                'username'      => 'admin',
+                'password'      => bcrypt('123456'),
+                'theme'         => 'app.css',
+                'searchable'    => '0',
+                'active'        => '1'
             )
         );
     }

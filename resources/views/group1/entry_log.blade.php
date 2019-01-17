@@ -37,8 +37,9 @@
             <td>{{ $row->chat_session_id }}</td>
             <td>{{ $row->menu_text }}</td>
             <td align="right">
-                {{-- Icons are set in config/icon_ref.php --}}
+                {{-- Hide controls if it's flagged abandon --}}
                 <?php if ($row->abandon === 0) { ?>
+                    {{-- Icons are set in config/icon_ref.php --}}
                     <i class="{!! config('icon_ref.edit') !!} table_icon" title="Edit"></i>
                     <i href="{{ url('g1_record_details/'.$row->id) }}" data-remote="false" class="{!! config('icon_ref.info') !!} table_icon" title="Info" data-toggle="modal" data-target="#entry_details_modal"></i>
                 <?php } ?>

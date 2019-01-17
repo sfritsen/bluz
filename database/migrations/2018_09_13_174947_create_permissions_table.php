@@ -25,12 +25,12 @@ class CreatePermissionsTable extends Migration
             $table->timestamps();
         });
 
-        // Create admin user with default password 123456
+        // Create admin user permissions
         DB::table('permissions')->insert(
             array(
-                'user_id' => '1',
-                'sys_admin' => '1',
-                'user_management' => '1'
+                'user_id'           => '1',
+                'sys_admin'         => '1',
+                'user_management'   => '1'
             )
         );
     }
