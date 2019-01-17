@@ -26,13 +26,24 @@ class CreatePermissionsTable extends Migration
         });
 
         // Create admin user permissions
-        DB::table('permissions')->insert(
-            array(
+        DB::table('permissions')->insert([
+            [
                 'user_id'           => '1',
                 'sys_admin'         => '1',
-                'user_management'   => '1'
-            )
-        );
+                'user_management'   => '1',
+                'g1_entry'          => '1',
+                'g1_admin'          => '1',
+                'g2_entry'          => '1'
+            ],
+            [
+                'user_id'           => '2',
+                'sys_admin'         => '0',
+                'user_management'   => '1',
+                'g1_entry'          => '1',
+                'g1_admin'          => '1',
+                'g2_entry'          => '1'
+            ]
+        ]);
     }
 
     /**

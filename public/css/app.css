@@ -352,9 +352,6 @@ a:hover, .btn-link:hover {
   .sidebar-sticky {
     position: -webkit-sticky;
     position: sticky; } }
-.material-icons {
-  vertical-align: text-bottom; }
-
 .sidebar .nav-link .material-icons {
   margin-right: 8px;
   color: #999999; }
@@ -383,7 +380,7 @@ a:hover, .btn-link:hover {
   margin: 10px 0; }
 
 .sidebar_icon {
-  font-size: 18px;
+  font-size: 0.9rem;
   vertical-align: text-bottom;
   margin-right: 8px;
   color: #999999; }

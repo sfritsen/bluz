@@ -88,6 +88,8 @@ $sb_item_font_size:                 0.9rem;
 $sb_item_font_color:                $pri_light_color;
 $sb_item_transition:                0.4s;
 $sb_item_border_radius:             12px;
+$sb_item_icon_size:                 $sb_item_font_size;
+$sb_item_icon_color:                darken($sb_item_font_color, 40%);
 $sb_hover_bg_color:                 $pri_accent_color;
 $sb_hover_font_color:               darken($sb_bg_color, 20%);
 $sb_hover_icon_color:               $pri_light_color;

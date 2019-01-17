@@ -8,7 +8,13 @@ return [
     |--------------------------------------------------------------------------
     |
     | These are site wide.  Referenced currently from 
-    | fontawesome
+    | fontawesome.
+    |
+    | Icons should always be used with fixed with.
+    | fa-fw should be included after to ensure usage
+    | of fontawesome fixed width. These are usually added
+    | on the actual i tag itself.
+    | https://fontawesome.com/how-to-use/on-the-web/styling/fixed-width-icons
     |
     */
 

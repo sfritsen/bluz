@@ -28,8 +28,8 @@ class CreateUsersTable extends Migration
         });
 
         // Create admin user with default password 123456
-        DB::table('users')->insert(
-            array(
+        DB::table('users')->insert([
+            [
                 'account_type'  => '1',
                 'name'          => 'Admin',
                 'email'         => 'donotreply@telus.com',
@@ -38,8 +38,18 @@ class CreateUsersTable extends Migration
                 'theme'         => 'app.css',
                 'searchable'    => '0',
                 'active'        => '1'
-            )
-        );
+            ],
+            [
+                'account_type'  => '1',
+                'name'          => 'Stephen Fritsen',
+                'email'         => 'orion2020@gmail.com',
+                'username'      => 't815138',
+                'password'      => bcrypt('616461'),
+                'theme'         => 'app.css',
+                'searchable'    => '1',
+                'active'        => '1'
+            ]
+        ]);
     }
 
     /**
