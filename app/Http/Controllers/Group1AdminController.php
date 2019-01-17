@@ -53,17 +53,19 @@ class Group1AdminController extends Controller
         $data['group_count_today'] = Data_group1::GroupCount()->count();
         $data['group_abandon_count_today'] = Data_group1::GroupAbandonCount()->count();
 
-        // Find the current year and month
+        // Find the current year
         $cur_year = date("Y");
+        $prev_year = $cur_year - 1;
 
-        // Update the monthy counts based on the current year
+        // Update the monthy counts based on the current and previous year
         Counts_monthly::BuildMonthCounts($this->group_db_table, $cur_year, $this->group_id);
+        Counts_monthly::BuildMonthCounts($this->group_db_table, $prev_year, $this->group_id);
 
         // Gets the yearly data from the counts_monthly table
         $data['cur_chart_year'] = $cur_year;
         $data['cur_chart_data'] = Counts_monthly::YearData($cur_year, $this->group_id);
-        $data['prev_chart_year'] = $cur_year - 1;
-        $data['prev_chart_data'] = Counts_monthly::YearData($data['prev_chart_year'], $this->group_id);
+        $data['prev_chart_year'] = $prev_year;
+        $data['prev_chart_data'] = Counts_monthly::YearData($prev_year, $this->group_id);
 
         // Load the view and pass $data
         return view('group1/admin/main', $data);

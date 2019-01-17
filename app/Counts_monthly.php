@@ -10,18 +10,18 @@ class Counts_monthly extends Model
     protected $primaryKey = 'id';
     protected $table = 'counts_monthly';
 
-    public function scopeBuildMonthCounts($query, $db_table, $cur_year, $group_id)
+    public function scopeBuildMonthCounts($query, $db_table, $year, $group_id)
     {
         // First check to make sure the year record is in place
         $year_check = DB::table('counts_monthly')->where([
             ['group_id', $group_id],
-            ['year', $cur_year]
+            ['year', $year]
         ])->count();
 
         // If 0, make one!
         if ($year_check == '0'){
             DB::table('counts_monthly')->insert([
-                ['group_id' => $group_id, 'year' => $cur_year]
+                ['group_id' => $group_id, 'year' => $year]
             ]);
         }
 
@@ -33,13 +33,13 @@ class Counts_monthly extends Model
         foreach ($month_array as $m_name => $m_val) {
             // Get the totals of submissions for each value in the array
             $month_counts = DB::table($db_table)->where([
-                ['created_at', 'like', $cur_year.'-'.$m_val.'%'],
+                ['created_at', 'like', $year.'-'.$m_val.'%'],
             ])->count();
 
             // Update the counts_monthly table
             DB::table('counts_monthly')->where([
                 ['group_id', $group_id],
-                ['year', $cur_year]
+                ['year', $year]
             ])->update([$m_name => $month_counts]);
         }
     }
