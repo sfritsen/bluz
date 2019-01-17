@@ -31,7 +31,7 @@
 </table>
 {{ $entry_records->links() }}
 
-{{-- Make sure to add the modal --}}
+{{-- Make sure to add the details modal --}}
 @include('group1/modal_entry_details')
 
 <script>

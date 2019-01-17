@@ -35,6 +35,7 @@ class CreateDataGroup1Table extends Migration
             $table->integer('cat_box_2');
             $table->integer('cat_box_3' );
             $table->text('additional_notes');
+            $table->tinyInteger('abandon')->unsigned();
             $table->timestamps();
         });
     }

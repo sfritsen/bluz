@@ -23,17 +23,6 @@ class CreateGroupsTable extends Migration
             $table->tinyInteger('active');
             $table->timestamps();
         });
-
-        Schema::create('groups', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('label');
-            $table->string('name');
-            $table->string('db_table');
-            $table->string('entry_route');
-            $table->string('admin_route');
-            $table->tinyInteger('active');
-            $table->timestamps();
-        });
     }
 
     /**

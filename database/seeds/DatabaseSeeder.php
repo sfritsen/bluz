@@ -23,22 +23,6 @@ class DatabaseSeeder extends Seeder
             'updated_at' => (date("Y-m-d H:i:s")),
         ]);
 
-        DB::table('counts_monthly')->insert(
-            ['group_id' =>  $group->id, 'year' =>  $cur_year]
-        );
-
-        // Seed sample permissions for user_id 1
-        DB::table('permissions')->insert([
-            'user_id' => '1',
-            'sys_admin' => '0',
-            'g1_entry' => '1',
-            'g1_admin' => '1',
-            'g2_entry' => '1',
-            'g2_admin' => '0',
-            'created_at' => (date("Y-m-d H:i:s")),
-            'updated_at' => (date("Y-m-d H:i:s")),
-        ]);
-
         // Seed sample drop menus
         DB::table('dd_menus')->insert([
             [

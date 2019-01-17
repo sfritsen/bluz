@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <div class="col">
-                To add a new item, navigate to the section you want to add the item too and enter the value in the field below.
+                To add a new item, navigate below to the section you want to add the item too and enter the value in the field.
             </div>
         </div>
         <div class="row d-flex align-items-center">
@@ -30,8 +30,6 @@
                 <div id="output_message"></div>
             </div>
         </div>
-
-        div	
 
         <hr>
 

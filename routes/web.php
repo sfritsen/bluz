@@ -28,6 +28,7 @@ Route::get('/my_account','AccountController@account_details')->name('my_account'
 // Group 1
 Route::get('/g1_entry', 'Group1Controller@entry')->name('g1_entry');
 Route::post('/g1_submit_entry', 'Group1Controller@submit_entry')->name('g1_submit_entry');
+Route::post('/g1_submit_abandon', 'Group1Controller@submit_abandon')->name('g1_submit_abandon');
 Route::get('/g1_history', 'Group1Controller@history')->name('g1_history');
 Route::get('/g1_record_details/{id}', 'Group1Controller@record_details')->name('g1_record_details');
 

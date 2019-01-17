@@ -22,6 +22,16 @@ class CreateDdMenusTable extends Migration
             $table->tinyInteger('active')->unsigned();
             $table->timestamps();
         });
+
+        DB::table('dd_menus')->insert(
+            array(
+                'type' => '0',
+                'group_id' => '0',
+                'parent_id' => '0',
+                'menu_text' => 'Abandon',
+                'active' => '1'
+            )
+        );
     }
 
     /**

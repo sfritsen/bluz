@@ -35,7 +35,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="#" id="open_abandon_modal" data-toggle="modal" data-target="#abandon_modal">
             <div class="sidebar_item">
                 <i class="{!! config('icon_ref.abandon') !!} sidebar_icon"></i>
                 Abandon
@@ -136,3 +136,13 @@
         </a>
     </li>
 </ul>
+
+{{-- Including abandon modal --}}
+@include('group1/modal_abandon')
+
+{{-- Used to append the modal to parent.  Prevents it from being behind backdrop --}}
+<script>
+$("#open_abandon_modal").click(function(){
+    $('#abandon_modal').appendTo("body").modal('show');
+});
+</script>

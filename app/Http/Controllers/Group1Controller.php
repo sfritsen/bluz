@@ -107,6 +107,43 @@ class Group1Controller extends Controller
         $g1->cat_box_2              = $request->cat_box_2;
         $g1->cat_box_3              = $request->cat_box_3;
         $g1->additional_notes       = $request->additional_notes ?: 'na';
+        $g1->abandon                = '0';
+        $g1->save();
+        
+        // Redirect after writing
+        return redirect('/g1_entry');
+    }
+
+    public function submit_abandon(Request $request)
+    {
+        // Validates the data
+        $validateData = $request->validate([
+            'chat_session_id' => 'required',
+        ]);
+
+        // Saves the data to the table once it validates
+        $g1 = new Data_group1;
+        $g1->user_id                = Auth::user()->id;
+        $g1->emp_info_name          = 'Abandon';
+        $g1->emp_info_id            = 'Abandon';
+        $g1->emp_info_city          = 'Abandon';
+        $g1->emp_info_mgr_id        = 'Abandon';
+        $g1->emp_info_mgr_name      = 'Abandon';
+        $g1->emp_info_title         = 'Abandon';
+		$g1->phone_number           = '0';
+		$g1->lynx                   = '0';
+        $g1->chat_session_id        = $request->chat_session_id;
+        $g1->incident_type          = '0';
+        $g1->equip_type             = '0';
+        $g1->resolution             = '0';
+        $g1->troubleshooting        = '0';
+        $g1->client_no_ts           = '0';
+        $g1->invalid_ref            = '0';
+        $g1->cat_box_1              = '0';
+        $g1->cat_box_2              = '0';
+        $g1->cat_box_3              = '0';
+        $g1->additional_notes       = 'Abandon';
+        $g1->abandon                = '1';
         $g1->save();
         
         // Redirect after writing
