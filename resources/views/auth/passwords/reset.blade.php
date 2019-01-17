@@ -1,4 +1,4 @@
-@extends('layouts.centered')
+@extends('layouts.login')
 
 @section('content')
 
