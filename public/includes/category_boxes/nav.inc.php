@@ -20,3 +20,10 @@ if ($type === '1') {
     $lvl2_type = $lvl2->type + 1;
     $data['nav_output'] = '<a href="'.$url.'/'.$lvl1_type.'/'.$lvl1->id.'">'.$lvl1->cat1_label.'</a> &#9679; <a href="'.$url.'/'.$lvl2_type.'/'.$lvl2->id.'">'.$lvl2->cat2_label.'</a> &#9679; <a href="'.$url.'/'.$type.'/'.$is_under.'">'.$lvl3->cat3_label.'</a>';
 }
+?>
+
+<script>
+$(document).ready(function(){
+
+});
+</script>

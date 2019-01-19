@@ -199,34 +199,13 @@ class Group1AdminController extends Controller
         $data['section_title'] = 'Category Box Administration';
         $data['section_route'] = 'g1_cat_boxes/'.$type.'/'.$is_under;
 
+        // Sidebar is loaded in /resources/views/category_boxes/main.blade.php
+        $data['load_sidebar'] = $this->group_label;
+
         // Include type and is_under in data
         $data['type'] = $type;
         $data['next_level'] = $type + 1;
         $data['is_under'] = $is_under;
-
-        $url = url('g1_cat_boxes/');
-
-        // Build the navigation section
-        if ($type === '1') {
-            $data['nav_label'] = "Current level 1 items";
-            $data['nav_output'] = 'Current level 1 items';
-        }elseif ($type === '2') {
-            $value = Category_boxes::GetLabel($is_under)->first();
-            $data['nav_output'] = '<a href="'.$url.'/'.$type.'/'.$is_under.'">'.$value->cat1_label.'</a>';
-        }elseif ($type === '3') {
-            $lvl2 = Category_boxes::GetLabel($is_under)->first();
-            $lvl1 = Category_boxes::GetLabel($lvl2->is_under)->first();
-            $lvl1_type = $lvl1->type + 1;
-            $data['nav_output'] = '<a href="'.$url.'/'.$lvl1_type.'/'.$lvl1->id.'">'.$lvl1->cat1_label.'</a> &#9679; <a href="'.$url.'/'.$type.'/'.$is_under.'">'.$lvl2->cat2_label.'</a>';
-        }elseif ($type === '4') {
-            $lvl3 = Category_boxes::GetLabel($is_under)->first();
-            $lvl2 = Category_boxes::GetLabel($lvl3->is_under)->first();
-            $lvl1 = Category_boxes::GetLabel($lvl2->is_under)->first();
-            // $data['nav_label'] = $lvl1->cat1_label." &#9679; ".$lvl2->cat2_label." &#9679; ".$lvl3->cat3_label;
-            $lvl1_type = $lvl1->type + 1;
-            $lvl2_type = $lvl2->type + 1;
-            $data['nav_output'] = '<a href="'.$url.'/'.$lvl1_type.'/'.$lvl1->id.'">'.$lvl1->cat1_label.'</a> &#9679; <a href="'.$url.'/'.$lvl2_type.'/'.$lvl2->id.'">'.$lvl2->cat2_label.'</a> &#9679; <a href="'.$url.'/'.$type.'/'.$is_under.'">'.$lvl3->cat3_label.'</a>';
-        }
 
         // Category boxes.  Group_id, type, is_under
         $data['category_items'] = Category_boxes::NonDeletedItems($this->group_id, $type, $is_under)->get();
@@ -239,8 +218,41 @@ class Group1AdminController extends Controller
         return view('category_boxes/main', $data);
     }
 
+    public function category_box_quick_nav($type, $is_under)
+    {
+        // AJAX REQUEST ONLY
+
+        // Security check to make sure it's an ajax request and not loaded manually from the browser url.
+        if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+            abort(404);
+        }
+
+        $url = url('g1_cat_boxes/');
+
+        if ($type === '2') {
+            $value = Category_boxes::GetLabel($is_under)->first();
+            $output = '<a href="'.$url.'/'.$type.'/'.$is_under.'">'.$value->cat1_label.'</a>';
+        } elseif ($type === '3') {
+            $lvl2 = Category_boxes::GetLabel($is_under)->first();
+            $lvl1 = Category_boxes::GetLabel($lvl2->is_under)->first();
+            $lvl1_type = $lvl1->type + 1;
+            $output = '<a href="'.$url.'/'.$lvl1_type.'/'.$lvl1->id.'">'.$lvl1->cat1_label.'</a> &#9679; <a href="'.$url.'/'.$type.'/'.$is_under.'">'.$lvl2->cat2_label.'</a>';
+        } elseif ($type === '4') {
+            $lvl3 = Category_boxes::GetLabel($is_under)->first();
+            $lvl2 = Category_boxes::GetLabel($lvl3->is_under)->first();
+            $lvl1 = Category_boxes::GetLabel($lvl2->is_under)->first();
+            $lvl1_type = $lvl1->type + 1;
+            $lvl2_type = $lvl2->type + 1;
+            $output = '<a href="'.$url.'/'.$lvl1_type.'/'.$lvl1->id.'">'.$lvl1->cat1_label.'</a> &#9679; <a href="'.$url.'/'.$lvl2_type.'/'.$lvl2->id.'">'.$lvl2->cat2_label.'</a> &#9679; <a href="'.$url.'/'.$type.'/'.$is_under.'">'.$lvl3->cat3_label.'</a>';
+        }
+
+        return $output;
+    }
+
     public function category_boxes_edit(Request $request, $id, $state)
     {
+        // AJAX REQUEST ONLY
+
         // Security check to make sure it's an ajax request and not loaded manually from the browser url.
         if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
             abort(404);
@@ -269,6 +281,8 @@ class Group1AdminController extends Controller
 
     public function category_boxes_save(Request $request)
     {
+        // AJAX REQUEST ONLY
+        
         // Security check to make sure it's an ajax request and not loaded manually from the browser url.
         if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
             abort(404);

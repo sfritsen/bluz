@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('sidebar')
-    @include('group1/sidebar')
+    @include($load_sidebar.'/sidebar')
 @endsection
 
 @section('content')
@@ -34,8 +34,8 @@
         <hr>
 
         <div class="row">
-            <div class="col">
-                {!! $nav_output !!}
+            <div class="col" id="quick_nav">
+                {{-- {!! $nav_output !!} --}}
             </div>
         </div>
         <div class="row">
@@ -226,6 +226,21 @@
 
             // Removes the row
             $(this).closest('tr').remove();
+        });
+
+        // Quick Navigation
+        $(function() {
+            if( {{ $type }} == '1' ) {
+                $("#quick_nav").html("Current level 1 items");
+            } else {
+                $.ajax({
+                    type: "get",
+                    url: "{{ url('cat_boxes_quick_nav') }}/"+{{ $type }}+"/"+{{ $is_under }},
+                    success: function(data){
+                        $("#quick_nav").html(data);
+                    }
+                });
+            }
         });
     });
     </script>

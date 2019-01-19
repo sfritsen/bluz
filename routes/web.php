@@ -46,6 +46,8 @@ Route::get('/g1_cat_boxes_save', 'Group1AdminController@category_boxes_save')->n
 Route::get('/g1_cat_boxes_trash', 'Group1AdminController@category_boxes_trash_bin')->name('g1_cat_boxes_trash');
 Route::get('/g1_cat_boxes_restore/{id}', 'Group1AdminController@category_boxes_restore')->name('g1_cat_boxes_restore');
 
+Route::get('/cat_boxes_quick_nav/{type}/{is_under}', 'Group1AdminController@category_box_quick_nav');
+
 Route::get('/g1_dd_menus/{id}', 'Group1AdminController@drop_menus')->name('g1_dd_menus');
 Route::get('/g1_dd_menus_edit/{id}/{state}', 'Group1AdminController@drop_menus_edit')->name('g1_dd_menus_edit');
 Route::get('/g1_dd_menus_save', 'Group1AdminController@drop_menus_save')->name('g1_dd_menus_save');
