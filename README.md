@@ -2,7 +2,7 @@
 Data collection and reporting
 
 ## Installation
-1. Pull from gitlab
+1. Pull from github
 2. chmod -R 777 /storage
 3. Create the db table
 4. Fill out the .env file with your values
